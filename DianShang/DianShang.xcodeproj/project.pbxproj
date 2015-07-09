@@ -15,6 +15,15 @@
 		20CAFF2E1B4E154A008FFF11 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF2D1B4E154A008FFF11 /* Images.xcassets */; };
 		20CAFF311B4E154A008FFF11 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF2F1B4E154A008FFF11 /* LaunchScreen.xib */; };
 		20CAFF3D1B4E154A008FFF11 /* DianShangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF3C1B4E154A008FFF11 /* DianShangTests.m */; };
+		20CAFF4E1B4E2070008FFF11 /* first_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF481B4E2070008FFF11 /* first_normal.png */; };
+		20CAFF4F1B4E2070008FFF11 /* first_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF491B4E2070008FFF11 /* first_selected.png */; };
+		20CAFF501B4E2070008FFF11 /* second_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF4A1B4E2070008FFF11 /* second_normal.png */; };
+		20CAFF511B4E2070008FFF11 /* second_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF4B1B4E2070008FFF11 /* second_selected.png */; };
+		20CAFF521B4E2070008FFF11 /* third_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF4C1B4E2070008FFF11 /* third_normal.png */; };
+		20CAFF531B4E2070008FFF11 /* third_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20CAFF4D1B4E2070008FFF11 /* third_selected.png */; };
+		20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF571B4E209A008FFF11 /* RDVTabBar.m */; };
+		20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */; };
+		20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +51,18 @@
 		20CAFF361B4E154A008FFF11 /* DianShangTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DianShangTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CAFF3B1B4E154A008FFF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFF3C1B4E154A008FFF11 /* DianShangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DianShangTests.m; sourceTree = "<group>"; };
+		20CAFF481B4E2070008FFF11 /* first_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first_normal.png; sourceTree = "<group>"; };
+		20CAFF491B4E2070008FFF11 /* first_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first_selected.png; sourceTree = "<group>"; };
+		20CAFF4A1B4E2070008FFF11 /* second_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second_normal.png; sourceTree = "<group>"; };
+		20CAFF4B1B4E2070008FFF11 /* second_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second_selected.png; sourceTree = "<group>"; };
+		20CAFF4C1B4E2070008FFF11 /* third_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third_normal.png; sourceTree = "<group>"; };
+		20CAFF4D1B4E2070008FFF11 /* third_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third_selected.png; sourceTree = "<group>"; };
+		20CAFF561B4E209A008FFF11 /* RDVTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBar.h; sourceTree = "<group>"; };
+		20CAFF571B4E209A008FFF11 /* RDVTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBar.m; sourceTree = "<group>"; };
+		20CAFF581B4E209A008FFF11 /* RDVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarController.h; sourceTree = "<group>"; };
+		20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
+		20CAFF5A1B4E209A008FFF11 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
+		20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +86,9 @@
 		20CAFF111B4E154A008FFF11 = {
 			isa = PBXGroup;
 			children = (
+				20CAFF541B4E2082008FFF11 /* Librarys */,
+				20CAFF471B4E202A008FFF11 /* Images */,
+				20CAFF461B4E1FE8008FFF11 /* Controllers */,
 				20CAFF1C1B4E154A008FFF11 /* DianShang */,
 				20CAFF391B4E154A008FFF11 /* DianShangTests */,
 				20CAFF1B1B4E154A008FFF11 /* Products */,
@@ -83,8 +107,6 @@
 		20CAFF1C1B4E154A008FFF11 /* DianShang */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFF211B4E154A008FFF11 /* AppDelegate.h */,
-				20CAFF221B4E154A008FFF11 /* AppDelegate.m */,
 				20CAFF271B4E154A008FFF11 /* ViewController.h */,
 				20CAFF281B4E154A008FFF11 /* ViewController.m */,
 				20CAFF2A1B4E154A008FFF11 /* Main.storyboard */,
@@ -99,6 +121,8 @@
 		20CAFF1D1B4E154A008FFF11 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				20CAFF211B4E154A008FFF11 /* AppDelegate.h */,
+				20CAFF221B4E154A008FFF11 /* AppDelegate.m */,
 				20CAFF1E1B4E154A008FFF11 /* Info.plist */,
 				20CAFF1F1B4E154A008FFF11 /* main.m */,
 			);
@@ -120,6 +144,47 @@
 				20CAFF3B1B4E154A008FFF11 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		20CAFF461B4E1FE8008FFF11 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		20CAFF471B4E202A008FFF11 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				20CAFF481B4E2070008FFF11 /* first_normal.png */,
+				20CAFF491B4E2070008FFF11 /* first_selected.png */,
+				20CAFF4A1B4E2070008FFF11 /* second_normal.png */,
+				20CAFF4B1B4E2070008FFF11 /* second_selected.png */,
+				20CAFF4C1B4E2070008FFF11 /* third_normal.png */,
+				20CAFF4D1B4E2070008FFF11 /* third_selected.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		20CAFF541B4E2082008FFF11 /* Librarys */ = {
+			isa = PBXGroup;
+			children = (
+				20CAFF551B4E209A008FFF11 /* RDVTabBarController */,
+			);
+			name = Librarys;
+			sourceTree = "<group>";
+		};
+		20CAFF551B4E209A008FFF11 /* RDVTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				20CAFF561B4E209A008FFF11 /* RDVTabBar.h */,
+				20CAFF571B4E209A008FFF11 /* RDVTabBar.m */,
+				20CAFF581B4E209A008FFF11 /* RDVTabBarController.h */,
+				20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */,
+				20CAFF5A1B4E209A008FFF11 /* RDVTabBarItem.h */,
+				20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */,
+			);
+			path = RDVTabBarController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,9 +267,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20CAFF511B4E2070008FFF11 /* second_selected.png in Resources */,
+				20CAFF531B4E2070008FFF11 /* third_selected.png in Resources */,
 				20CAFF2C1B4E154A008FFF11 /* Main.storyboard in Resources */,
+				20CAFF4F1B4E2070008FFF11 /* first_selected.png in Resources */,
+				20CAFF501B4E2070008FFF11 /* second_normal.png in Resources */,
 				20CAFF311B4E154A008FFF11 /* LaunchScreen.xib in Resources */,
 				20CAFF2E1B4E154A008FFF11 /* Images.xcassets in Resources */,
+				20CAFF521B4E2070008FFF11 /* third_normal.png in Resources */,
+				20CAFF4E1B4E2070008FFF11 /* first_normal.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +296,10 @@
 				20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */,
 				20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */,
 				20CAFF291B4E154A008FFF11 /* ViewController.m in Sources */,
+				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
+				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
+				20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
