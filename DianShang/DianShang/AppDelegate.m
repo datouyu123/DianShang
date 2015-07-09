@@ -11,6 +11,7 @@
 #import "RDVTabBar.h"
 #import "RDVTabBarItem.h"
 #import "ViewController.h"
+#import "FirstViewController.h"
 
 @interface AppDelegate ()
 
@@ -140,17 +141,20 @@
 - (void)setupViewControllers {
     
     
-    UIViewController *firstViewController = [[ViewController alloc] init];
+    FirstViewController *firstViewController = [[FirstViewController alloc] init];
     UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:firstViewController];
+    [firstViewController setTitle:@"首页"];
     
     UIViewController *secondViewController = [[ViewController alloc] init];
     UIViewController *secondNavigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:secondViewController];
+    [secondViewController setTitle:@"购物车"];
     
     UIViewController *thirdViewController = [[ViewController alloc] init];
     UIViewController *thirdNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:thirdViewController];
+    [thirdViewController setTitle:@"我的"];
     
     RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
     [tabBarController setViewControllers:@[firstNavigationController, secondNavigationController,
