@@ -14,6 +14,8 @@
 		20306FD11B4E576D0088985D /* third_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 20306FCB1B4E576D0088985D /* third_normal.png */; };
 		20306FD21B4E576D0088985D /* third_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 20306FCC1B4E576D0088985D /* third_selected.png */; };
 		20306FD51B4E5BA70088985D /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20306FD41B4E5BA70088985D /* FirstViewController.m */; };
+		2042AA641B4F62C60076D6CA /* search.png in Resources */ = {isa = PBXBuildFile; fileRef = 2042AA631B4F62C60076D6CA /* search.png */; };
+		2042AA6A1B4F6B0C0076D6CA /* sao.png in Resources */ = {isa = PBXBuildFile; fileRef = 2042AA691B4F6B0C0076D6CA /* sao.png */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
 		20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF221B4E154A008FFF11 /* AppDelegate.m */; };
 		20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF241B4E154A008FFF11 /* DianShang.xcdatamodeld */; };
@@ -46,6 +48,8 @@
 		20306FCC1B4E576D0088985D /* third_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third_selected.png; sourceTree = "<group>"; };
 		20306FD31B4E5BA70088985D /* FirstViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstViewController.h; path = DianShang/FirstViewController.h; sourceTree = "<group>"; };
 		20306FD41B4E5BA70088985D /* FirstViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstViewController.m; path = DianShang/FirstViewController.m; sourceTree = "<group>"; };
+		2042AA631B4F62C60076D6CA /* search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = search.png; sourceTree = "<group>"; };
+		2042AA691B4F6B0C0076D6CA /* sao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sao.png; sourceTree = "<group>"; };
 		20CAFF1A1B4E154A008FFF11 /* DianShang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DianShang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CAFF1E1B4E154A008FFF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFF1F1B4E154A008FFF11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 		20306FC61B4E576D0088985D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2042AA631B4F62C60076D6CA /* search.png */,
+				2042AA691B4F6B0C0076D6CA /* sao.png */,
 				20306FC71B4E576D0088985D /* first_normal.png */,
 				20306FC81B4E576D0088985D /* first_selected.png */,
 				20306FC91B4E576D0088985D /* second_normal.png */,
@@ -275,11 +281,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				20306FD01B4E576D0088985D /* second_selected.png in Resources */,
+				2042AA641B4F62C60076D6CA /* search.png in Resources */,
 				20306FD21B4E576D0088985D /* third_selected.png in Resources */,
 				20CAFF2C1B4E154A008FFF11 /* Main.storyboard in Resources */,
 				20306FCE1B4E576D0088985D /* first_selected.png in Resources */,
 				20306FCF1B4E576D0088985D /* second_normal.png in Resources */,
 				20CAFF311B4E154A008FFF11 /* LaunchScreen.xib in Resources */,
+				2042AA6A1B4F6B0C0076D6CA /* sao.png in Resources */,
 				20CAFF2E1B4E154A008FFF11 /* Images.xcassets in Resources */,
 				20306FD11B4E576D0088985D /* third_normal.png in Resources */,
 				20306FCD1B4E576D0088985D /* first_normal.png in Resources */,

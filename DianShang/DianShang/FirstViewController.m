@@ -9,7 +9,12 @@
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
-
+{
+    //定义搜索按钮
+    UIButton *searchButton;
+    //定义扫一扫按钮
+    UIButton *saoButton;
+}
 @end
 
 @implementation FirstViewController
@@ -17,11 +22,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    
+    //搜索按钮
+    searchButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 50, 24)];
+    [searchButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [searchButton setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:searchButton];
+    self.navigationItem.rightBarButtonItem=right;
+    
+    //扫一扫按钮
+    saoButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 50, 24)];
+    [saoButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [saoButton setImage:[UIImage imageNamed:@"sao.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *left=[[UIBarButtonItem alloc]initWithCustomView:saoButton];
+    self.navigationItem.leftBarButtonItem=left;
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // self.navigationItem.rightBarButtonItem = self.searchButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -146,6 +146,13 @@
                                                    initWithRootViewController:firstViewController];
     [firstViewController setTitle:@"首页"];
     
+    self.tabBarCtr=[[UITabBarController alloc]init];
+    self.tabBarCtr.delegate = self;
+    //设置顶部栏背景颜色
+    self.tabBarCtr.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:77.0/255.0 blue:61.0/255.0 alpha:0.8];
+    
+
+    
     UIViewController *secondViewController = [[ViewController alloc] init];
     UIViewController *secondNavigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:secondViewController];
