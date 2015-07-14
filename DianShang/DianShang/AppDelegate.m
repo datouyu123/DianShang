@@ -12,6 +12,8 @@
 #import "RDVTabBarItem.h"
 #import "ViewController.h"
 #import "FirstViewController.h"
+#import "FirstCollectionViewController.h"
+#import "FirstCollectionViewLayout.h"
 
 @interface AppDelegate ()
 
@@ -140,17 +142,13 @@
 
 - (void)setupViewControllers {
     
-    
-    FirstViewController *firstViewController = [[FirstViewController alloc] init];
+    FirstCollectionViewLayout *flowLayout = [[FirstCollectionViewLayout alloc] init];
+    //[flowLayout setItemSize:CGSizeMake(375, 200)];
+    //[flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    FirstCollectionViewController *firstViewController = [[FirstCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:firstViewController];
     [firstViewController setTitle:@"首页"];
-    
-    self.tabBarCtr=[[UITabBarController alloc]init];
-    self.tabBarCtr.delegate = self;
-    //设置顶部栏背景颜色
-    self.tabBarCtr.navigationController.navigationBar.backgroundColor = [UIColor colorWithRed:254.0/255.0 green:77.0/255.0 blue:61.0/255.0 alpha:0.8];
-    
 
     
     UIViewController *secondViewController = [[ViewController alloc] init];
