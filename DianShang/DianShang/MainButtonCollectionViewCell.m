@@ -14,20 +14,27 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.button = [[UIButton alloc]initWithFrame:CGRectMake(0.0, 0.0, 50,50)];
+        self.button = [[UIButton alloc]initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
         
         // 设置圆角半径
         self.button.layer.masksToBounds = YES;
-        self.button.layer.cornerRadius = 4;
+        self.button.layer.cornerRadius = 50.0f;
+        //self.button.imageView.image = [UIImage imageNamed:@"content.jpg"];
         [self.contentView addSubview:self.button];
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0, frame.size.width, frame.size.height)];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2-5.0f, frame.size.height+2.0f, 30,30)];
         self.label.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-        self.label.textAlignment = NSTextAlignmentCenter;
-        self.label.font = [UIFont boldSystemFontOfSize:50.0];
+        self.label.textAlignment = NSTextAlignmentLeft;
+        self.label.font = [UIFont boldSystemFontOfSize:20.0];
         //self.label.text = @"1111";
-        self.label.backgroundColor = [UIColor whiteColor];
-        self.label.textColor = [UIColor blackColor];
+        //self.label.backgroundColor = [UIColor whiteColor];
+        self.label.textColor = [UIColor darkGrayColor];
         [self.contentView addSubview:self.label];
+        self.imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bear_button.png"]];
+        self.imageView.frame = CGRectMake(0, 0, 50.0f, 50.0f);
+        self.imageView.layer.masksToBounds = YES;
+        self.imageView.layer.cornerRadius = 25.0f;
+        [self.contentView addSubview:self.imageView];
+
     }
     return self;
 }

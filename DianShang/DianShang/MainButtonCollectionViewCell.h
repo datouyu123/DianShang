@@ -10,7 +10,8 @@
 
 @interface MainButtonCollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) UIButton* button;
-@property (strong, nonatomic) UILabel* label;
+@property (strong, nonatomic) UIButton *button;
+@property (strong, nonatomic) UILabel *label;
+@property (strong, nonatomic) UIImageView *imageView;
 
 @end

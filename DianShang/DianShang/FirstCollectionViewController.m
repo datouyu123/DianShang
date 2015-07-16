@@ -9,6 +9,8 @@
 #import "FirstCollectionViewController.h"
 #import "ASScroll.h"
 #import "MainButtonCollectionViewCell.h"
+#import "MainButtonbgView.h"
+#import "MainButtonCVLayoutAttributes.h"
 
 @interface FirstCollectionViewController ()
 {
@@ -37,11 +39,13 @@ static NSString * const reuseIdentifier3 = @"contentCell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier1];
     [self.collectionView registerClass:[MainButtonCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier2];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier3];
-
+    
     
     // Do any additional setup after loading the view.
     //背景颜色
-    self.collectionView.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
+    //self.collectionView.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
+    self.collectionView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
+
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     
@@ -103,7 +107,7 @@ static NSString * const reuseIdentifier3 = @"contentCell";
       
         :returns: <#return value description#>
         */
-        ASScroll *asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, self.collectionView.frame.size.width, self.collectionView.frame.size.width * 0.3)];
+        ASScroll *asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, self.collectionView.frame.size.width, self.collectionView.frame.size.width * 0.25)];
         NSLog([NSString stringWithFormat:@"%.2f",self.collectionView.frame.size.width*0.3]);
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier1 forIndexPath:indexPath];
       
@@ -128,7 +132,10 @@ static NSString * const reuseIdentifier3 = @"contentCell";
     {
         MainButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier2 forIndexPath:indexPath];
         cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
-        //cell.label.text =@"sss";
+        //cell.button.imageView.image = [UIImage imageNamed:@"sao.png"];
+        [cell.layer setBorderWidth:2.0f];
+        [cell.layer setBorderColor:[UIColor cyanColor].CGColor];
+        [cell.layer setCornerRadius:25.0f];
         return cell;
 
     }
@@ -184,11 +191,11 @@ static NSString * const reuseIdentifier3 = @"contentCell";
   sizeForItemAtIndexPath:(NSIndexPath*)indexPath
 {
     if (indexPath.section == 0) {
-        return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.width*0.3);
+        return CGSizeMake(collectionView.frame.size.width, collectionView.frame.size.width*0.25);
         
     }
     else if(indexPath.section == 1){
-        return CGSizeMake(100, 100);
+        return CGSizeMake(50, 50);
     }
     else
         return CGSizeMake(163, 163);
@@ -199,14 +206,34 @@ static NSString * const reuseIdentifier3 = @"contentCell";
                    layout:(UICollectionViewLayout *)collectionViewLayout
 minimumLineSpacingForSectionAtIndex:(NSInteger)section
 {
-    return 50.0;
+    if (section == 1) {
+        return 30.0;
+    }
+    return 10.0;
 }
 
 //  定义每个元素的margin(边缘 上-左-下-右)
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    if (section == 0) {
+        return UIEdgeInsetsMake(0, 0, 20, 0);
+    }
+    else if(section == 1)
+        return UIEdgeInsetsMake(15, 30, 35, 30);
     
-    return UIEdgeInsetsMake(0, 0, 20, 0);
+    return UIEdgeInsetsMake(0, 15, 20, 15);
     
+}
+
+// 定义section内cell间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
+{
+    if (section == 1) {
+        return 50.0f;
+    }
+    else
+        return 6.0f;
 }
 
 //  设置页眉(水平滑动的时候设置width,垂直滑动的时候设置height)
@@ -222,6 +249,9 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     return CGSizeMake(0, 0);
     
 }
+
+
+
 /*
 // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath {

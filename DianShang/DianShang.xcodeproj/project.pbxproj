@@ -22,6 +22,10 @@
 		2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8DA1B535210001AC233 /* FirstCollectionViewLayout.m */; };
 		2058D8E21B54F434001AC233 /* content.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8E11B54F434001AC233 /* content.jpg */; };
 		2058D8E61B550662001AC233 /* MainButtonCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8E51B550662001AC233 /* MainButtonCollectionViewCell.m */; };
+		2058D8E81B563EDC001AC233 /* bear_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8E71B563EDC001AC233 /* bear_button.png */; };
+		2058D8EF1B56557F001AC233 /* MainButtonbgView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8EE1B56557F001AC233 /* MainButtonbgView.m */; };
+		2058D8F21B566121001AC233 /* MainButtonCVLayoutAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8F11B566121001AC233 /* MainButtonCVLayoutAttributes.m */; };
+		2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8F41B575BD3001AC233 /* MainLineView.m */; };
 		20751CCA1B525806009A064F /* FirstCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CC91B525806009A064F /* FirstCollectionViewController.m */; };
 		20751CCE1B529DAD009A064F /* ASScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CCD1B529DAD009A064F /* ASScroll.m */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
@@ -66,6 +70,13 @@
 		2058D8E11B54F434001AC233 /* content.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = content.jpg; sourceTree = "<group>"; };
 		2058D8E41B550662001AC233 /* MainButtonCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainButtonCollectionViewCell.h; sourceTree = "<group>"; };
 		2058D8E51B550662001AC233 /* MainButtonCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainButtonCollectionViewCell.m; sourceTree = "<group>"; };
+		2058D8E71B563EDC001AC233 /* bear_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bear_button.png; sourceTree = "<group>"; };
+		2058D8ED1B56557F001AC233 /* MainButtonbgView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainButtonbgView.h; sourceTree = "<group>"; };
+		2058D8EE1B56557F001AC233 /* MainButtonbgView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainButtonbgView.m; sourceTree = "<group>"; };
+		2058D8F01B566121001AC233 /* MainButtonCVLayoutAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainButtonCVLayoutAttributes.h; sourceTree = "<group>"; };
+		2058D8F11B566121001AC233 /* MainButtonCVLayoutAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainButtonCVLayoutAttributes.m; sourceTree = "<group>"; };
+		2058D8F31B575BD3001AC233 /* MainLineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLineView.h; sourceTree = "<group>"; };
+		2058D8F41B575BD3001AC233 /* MainLineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLineView.m; sourceTree = "<group>"; };
 		20751CC81B525806009A064F /* FirstCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstCollectionViewController.h; path = DianShang/FirstCollectionViewController.h; sourceTree = "<group>"; };
 		20751CC91B525806009A064F /* FirstCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstCollectionViewController.m; path = DianShang/FirstCollectionViewController.m; sourceTree = "<group>"; };
 		20751CCC1B529DAD009A064F /* ASScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScroll.h; sourceTree = "<group>"; };
@@ -113,6 +124,7 @@
 		20306FC61B4E576D0088985D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				2058D8E71B563EDC001AC233 /* bear_button.png */,
 				2042AA631B4F62C60076D6CA /* search.png */,
 				2042AA691B4F6B0C0076D6CA /* sao.png */,
 				20306FC71B4E576D0088985D /* first_normal.png */,
@@ -134,6 +146,8 @@
 			children = (
 				2058D8D91B535210001AC233 /* FirstCollectionViewLayout.h */,
 				2058D8DA1B535210001AC233 /* FirstCollectionViewLayout.m */,
+				2058D8F01B566121001AC233 /* MainButtonCVLayoutAttributes.h */,
+				2058D8F11B566121001AC233 /* MainButtonCVLayoutAttributes.m */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";
@@ -152,6 +166,17 @@
 				2058D8E51B550662001AC233 /* MainButtonCollectionViewCell.m */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		2058D8E91B5654F8001AC233 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2058D8ED1B56557F001AC233 /* MainButtonbgView.h */,
+				2058D8EE1B56557F001AC233 /* MainButtonbgView.m */,
+				2058D8F31B575BD3001AC233 /* MainLineView.h */,
+				2058D8F41B575BD3001AC233 /* MainLineView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		20751CCB1B529DAD009A064F /* ASScroll */ = {
@@ -185,6 +210,7 @@
 		20CAFF1C1B4E154A008FFF11 /* DianShang */ = {
 			isa = PBXGroup;
 			children = (
+				2058D8E91B5654F8001AC233 /* Views */,
 				2058D8E31B5505FE001AC233 /* Cells */,
 				2058D8D81B5351B5001AC233 /* Layouts */,
 				20306FC61B4E576D0088985D /* Images */,
@@ -351,6 +377,7 @@
 				20CAFF2C1B4E154A008FFF11 /* Main.storyboard in Resources */,
 				2058D8D71B52A759001AC233 /* ad_3.jpg in Resources */,
 				2058D8D51B52A759001AC233 /* ad_1.jpg in Resources */,
+				2058D8E81B563EDC001AC233 /* bear_button.png in Resources */,
 				20306FCE1B4E576D0088985D /* first_selected.png in Resources */,
 				20306FCF1B4E576D0088985D /* second_normal.png in Resources */,
 				20CAFF311B4E154A008FFF11 /* LaunchScreen.xib in Resources */,
@@ -376,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2058D8F21B566121001AC233 /* MainButtonCVLayoutAttributes.m in Sources */,
 				20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */,
 				2058D8E61B550662001AC233 /* MainButtonCollectionViewCell.m in Sources */,
 				20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */,
@@ -384,7 +412,9 @@
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
 				2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
+				2058D8EF1B56557F001AC233 /* MainButtonbgView.m in Sources */,
 				20751CCA1B525806009A064F /* FirstCollectionViewController.m in Sources */,
+				2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */,
 				20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */,
 				20751CCE1B529DAD009A064F /* ASScroll.m in Sources */,
 				20306FD51B4E5BA70088985D /* FirstViewController.m in Sources */,
