@@ -11,6 +11,7 @@
 #import "MainButtonCollectionViewCell.h"
 #import "MainButtonbgView.h"
 #import "MainButtonCVLayoutAttributes.h"
+#import "MainHeaderView.h"
 
 @interface FirstCollectionViewController ()
 {
@@ -27,6 +28,8 @@
 static NSString * const reuseIdentifier1 = @"adCell";
 static NSString * const reuseIdentifier2 = @"btnCell";
 static NSString * const reuseIdentifier3 = @"contentCell";
+static NSString * const reuseIdentifier4 = @"headerView";
+static NSString * const reuseIdentifier5 = @"headerView1";
 
 
 - (void)viewDidLoad {
@@ -39,7 +42,8 @@ static NSString * const reuseIdentifier3 = @"contentCell";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier1];
     [self.collectionView registerClass:[MainButtonCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier2];
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier3];
-    
+    [self.collectionView registerClass:[MainHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4];
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5];
     
     // Do any additional setup after loading the view.
     //背景颜色
@@ -108,8 +112,7 @@ static NSString * const reuseIdentifier3 = @"contentCell";
         :returns: <#return value description#>
         */
         ASScroll *asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, self.collectionView.frame.size.width, self.collectionView.frame.size.width * 0.25)];
-        NSLog([NSString stringWithFormat:@"%.2f",self.collectionView.frame.size.width*0.3]);
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier1 forIndexPath:indexPath];
+                UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier1 forIndexPath:indexPath];
       
         NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
         UIImage *image1 = [UIImage imageNamed:@"ad_1.jpg"];
@@ -124,7 +127,7 @@ static NSString * const reuseIdentifier3 = @"contentCell";
 
         [asScroll setArrOfImages:imagesArray];
         [cell.contentView addSubview:asScroll];
-        NSLog([NSString stringWithFormat:@"%.2f",cell.contentView.frame.size.height]);
+        
         return cell;
     
     }
@@ -152,6 +155,27 @@ static NSString * const reuseIdentifier3 = @"contentCell";
 
     }
     
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+
+{
+    UICollectionReusableView *reusableView = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader && indexPath.section == 2){
+        
+        MainHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4 forIndexPath:indexPath];
+        //reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5 forIndexPath:indexPath];
+        headerView.layer.borderWidth = 2.0f;
+        headerView.layer.borderColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0].CGColor;
+        NSString *title = [[NSString alloc] initWithFormat:@"Group #%li",indexPath.section +1];
+        headerView.nameLabel.text = title;
+       
+        //headerView.backgroundImage.image = headerImage;
+        reusableView = headerView;
+        //NSLog([NSString stringWithFormat:@"%@",reusableView.nameLabel.text]);
+    }
+    return reusableView;
 }
 
 #pragma mark <UICollectionViewDelegate>
@@ -238,9 +262,10 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 
 //  设置页眉(水平滑动的时候设置width,垂直滑动的时候设置height)
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    
-    return CGSizeMake(0, 0);
-    
+    if(section == 2)
+        return CGSizeMake(collectionView.frame.size.width, 50);
+    else
+        return CGSizeZero;
 }
 
 //  设置页脚(水平滑动的时候设置width,垂直滑动的时候设置height)

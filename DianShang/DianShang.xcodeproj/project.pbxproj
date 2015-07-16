@@ -28,6 +28,8 @@
 		2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8F41B575BD3001AC233 /* MainLineView.m */; };
 		2058D8F71B5796F0001AC233 /* mainLine_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8F61B5796F0001AC233 /* mainLine_background.png */; };
 		2058D8FB1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8FA1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m */; };
+		2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8FD1B57AB41001AC233 /* MainHeaderView.m */; };
+		2058D9001B57B57C001AC233 /* header_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8FF1B57B57C001AC233 /* header_banner.png */; };
 		20751CCA1B525806009A064F /* FirstCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CC91B525806009A064F /* FirstCollectionViewController.m */; };
 		20751CCE1B529DAD009A064F /* ASScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CCD1B529DAD009A064F /* ASScroll.m */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
@@ -82,6 +84,9 @@
 		2058D8F61B5796F0001AC233 /* mainLine_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mainLine_background.png; sourceTree = "<group>"; };
 		2058D8F91B579BF7001AC233 /* UICollectionViewFlowLayout+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionViewFlowLayout+helper.h"; sourceTree = "<group>"; };
 		2058D8FA1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewFlowLayout+helper.m"; sourceTree = "<group>"; };
+		2058D8FC1B57AB41001AC233 /* MainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHeaderView.h; sourceTree = "<group>"; };
+		2058D8FD1B57AB41001AC233 /* MainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHeaderView.m; sourceTree = "<group>"; };
+		2058D8FF1B57B57C001AC233 /* header_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_banner.png; sourceTree = "<group>"; };
 		20751CC81B525806009A064F /* FirstCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstCollectionViewController.h; path = DianShang/FirstCollectionViewController.h; sourceTree = "<group>"; };
 		20751CC91B525806009A064F /* FirstCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstCollectionViewController.m; path = DianShang/FirstCollectionViewController.m; sourceTree = "<group>"; };
 		20751CCC1B529DAD009A064F /* ASScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScroll.h; sourceTree = "<group>"; };
@@ -132,6 +137,7 @@
 				2058D8F61B5796F0001AC233 /* mainLine_background.png */,
 				2058D8E71B563EDC001AC233 /* bear_button.png */,
 				2042AA631B4F62C60076D6CA /* search.png */,
+				2058D8FF1B57B57C001AC233 /* header_banner.png */,
 				2042AA691B4F6B0C0076D6CA /* sao.png */,
 				20306FC71B4E576D0088985D /* first_normal.png */,
 				20306FC81B4E576D0088985D /* first_selected.png */,
@@ -181,6 +187,8 @@
 				2058D8EE1B56557F001AC233 /* MainButtonbgView.m */,
 				2058D8F31B575BD3001AC233 /* MainLineView.h */,
 				2058D8F41B575BD3001AC233 /* MainLineView.m */,
+				2058D8FC1B57AB41001AC233 /* MainHeaderView.h */,
+				2058D8FD1B57AB41001AC233 /* MainHeaderView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -398,6 +406,7 @@
 				20306FCF1B4E576D0088985D /* second_normal.png in Resources */,
 				20CAFF311B4E154A008FFF11 /* LaunchScreen.xib in Resources */,
 				2058D8F71B5796F0001AC233 /* mainLine_background.png in Resources */,
+				2058D9001B57B57C001AC233 /* header_banner.png in Resources */,
 				2042AA6A1B4F6B0C0076D6CA /* sao.png in Resources */,
 				20CAFF2E1B4E154A008FFF11 /* Images.xcassets in Resources */,
 				2058D8D61B52A759001AC233 /* ad_2.jpg in Resources */,
@@ -427,6 +436,7 @@
 				2058D8FB1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m in Sources */,
 				20CAFF291B4E154A008FFF11 /* ViewController.m in Sources */,
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
+				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
 				2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
