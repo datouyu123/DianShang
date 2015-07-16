@@ -21,13 +21,13 @@
         self.button.layer.cornerRadius = 50.0f;
         //self.button.imageView.image = [UIImage imageNamed:@"content.jpg"];
         [self.contentView addSubview:self.button];
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2-5.0f, frame.size.height+2.0f, 30,30)];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(frame.size.width/2-5.0f, frame.size.height+1.0f, 20,20)];
         self.label.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         self.label.textAlignment = NSTextAlignmentLeft;
-        self.label.font = [UIFont boldSystemFontOfSize:20.0];
+        self.label.font = [UIFont boldSystemFontOfSize:15.0];
         //self.label.text = @"1111";
         //self.label.backgroundColor = [UIColor whiteColor];
-        self.label.textColor = [UIColor darkGrayColor];
+        self.label.textColor = [UIColor colorWithRed:148.0/255.0 green:148.0/255.0 blue:148.0/255.0 alpha:1.0];
         [self.contentView addSubview:self.label];
         self.imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bear_button.png"]];
         self.imageView.frame = CGRectMake(0, 0, 50.0f, 50.0f);

@@ -166,9 +166,9 @@ static NSString * const reuseIdentifier5 = @"headerView1";
         
         MainHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4 forIndexPath:indexPath];
         //reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5 forIndexPath:indexPath];
-        headerView.layer.borderWidth = 2.0f;
+        headerView.layer.borderWidth = 1.0f;
         headerView.layer.borderColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0].CGColor;
-        NSString *title = [[NSString alloc] initWithFormat:@"Group #%li",indexPath.section +1];
+        NSString *title = @"抢购";
         headerView.nameLabel.text = title;
        
         //headerView.backgroundImage.image = headerImage;
@@ -242,7 +242,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
         return UIEdgeInsetsMake(0, 0, 20, 0);
     }
     else if(section == 1)
-        return UIEdgeInsetsMake(15, 30, 35, 30);
+        return UIEdgeInsetsMake(10, 30, 30, 30);
     
     return UIEdgeInsetsMake(0, 20, 20, 20);
     
@@ -263,7 +263,7 @@ minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
 //  设置页眉(水平滑动的时候设置width,垂直滑动的时候设置height)
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     if(section == 2)
-        return CGSizeMake(collectionView.frame.size.width, 50);
+        return CGSizeMake(collectionView.frame.size.width, 40);
     else
         return CGSizeZero;
 }
