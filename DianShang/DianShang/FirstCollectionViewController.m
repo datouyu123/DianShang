@@ -220,7 +220,7 @@ minimumLineSpacingForSectionAtIndex:(NSInteger)section
     else if(section == 1)
         return UIEdgeInsetsMake(15, 30, 35, 30);
     
-    return UIEdgeInsetsMake(0, 15, 20, 15);
+    return UIEdgeInsetsMake(0, 20, 20, 20);
     
 }
 
