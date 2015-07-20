@@ -12,6 +12,10 @@
 #import "MainButtonbgView.h"
 #import "MainButtonCVLayoutAttributes.h"
 #import "MainHeaderView.h"
+#import "MJRefresh.h"
+#import "MJChiBaoZiHeader.h"
+
+static const CGFloat MJDuration = 2.0;
 
 @interface FirstCollectionViewController ()
 {
@@ -66,7 +70,10 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     [saoButton setImage:[UIImage imageNamed:@"sao.png"] forState:UIControlStateNormal];
     UIBarButtonItem *left=[[UIBarButtonItem alloc]initWithCustomView:saoButton];
     self.navigationItem.leftBarButtonItem=left;
-;
+    
+    //添加刷新
+    [self setupRefresh];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +90,60 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark UICollectionView 上下拉刷新
+- (void)setupRefresh
+{
+    // 下拉刷新
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    self.collectionView.header = [MJChiBaoZiHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    // 马上进入刷新状态
+    [self.collectionView.header beginRefreshing];
+    /*self.collectionView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        // 模拟延迟加载数据，因此2秒后才调用（真实开发中，可以移除这段gcd代码）
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0)), dispatch_get_main_queue(), ^{
+            
+            
+            // 结束刷新
+            [self.collectionView.header endRefreshing];
+        });
+     
+        
+    }];*/
+    
+    // 上拉刷新
+    self.collectionView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        // 进入刷新状态后会自动调用这个block
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            // 刷新表格
+            //[self.tableView reloadData];
+            
+            // 拿到当前的下拉刷新控件，结束刷新状态
+            [self.collectionView.footer endRefreshing];
+        });
+
+    }];
+}
+
+#pragma mark 下拉刷新数据
+- (void)loadNewData
+{
+    // 1.添加假数据
+    /*for (int i = 0; i<5; i++) {
+        [self.data insertObject:MJRandomData atIndex:0];
+    }*/
+    
+    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 刷新表格
+        //[self.tableView reloadData];
+        
+        // 拿到当前的下拉刷新控件，结束刷新状态
+        [self.collectionView.header endRefreshing];
+    });
+}
+
 
 #pragma mark <UICollectionViewDataSource>
 
