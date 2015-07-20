@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>81A81131-1873-4FD5-8E58-982B18022D58</string>
+	<key>IDESourceControlProjectName</key>
+	<string>DianShang</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4BA0CE2FF4959EE3D89D9FD0314BB6442240287F</key>
+		<string>https://github.com/datouyu123/DianShang.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>DianShang/DianShang.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4BA0CE2FF4959EE3D89D9FD0314BB6442240287F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/datouyu123/DianShang.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4BA0CE2FF4959EE3D89D9FD0314BB6442240287F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4BA0CE2FF4959EE3D89D9FD0314BB6442240287F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>DianShang</string>
+		</dict>
+	</array>
+</dict>
+</plist>
