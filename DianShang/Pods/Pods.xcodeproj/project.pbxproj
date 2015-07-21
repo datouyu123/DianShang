@@ -20,6 +20,7 @@
 		1C9CF194209A6D3D894CEF76 /* MJRefreshHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = BC293F20F69EDD537DD13394 /* MJRefreshHeader.h */; };
 		1D3AB2FE60FAD81CBF69C016 /* AFURLSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A19148AAA71578D1FEC831E /* AFURLSessionManager.h */; };
 		1D7FF337D2B487333EC02C96 /* FMDatabasePool.h in Headers */ = {isa = PBXBuildFile; fileRef = C5E73F817FAD618FF2C1F848 /* FMDatabasePool.h */; };
+		204B5CD21B5D2C5F0069194E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 204B5CD11B5D2C5F0069194E /* libsqlite3.dylib */; };
 		20DE23D11BAE1F4B9A3446D7 /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB1FCE326FD4500C6454235 /* UIProgressView+AFNetworking.m */; };
 		230305CED7FE1CE16776DBD6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 594CB8B724D2A12B35950BE5 /* AFHTTPSessionManager.m */; };
 		2571FCF91F6A15095DDD283F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 592053D53FEFCE17EB46EFE8 /* UIWebView+AFNetworking.m */; };
@@ -150,6 +151,7 @@
 		1F8B2BE1AB4767438139FF11 /* MJRefreshBackStateFooter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshBackStateFooter.h; path = MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h; sourceTree = "<group>"; };
 		1FE0365D688DDD45342351F9 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
 		2046A177537B607AC4A33DDB /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		204B5CD11B5D2C5F0069194E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsqlite3.dylib; sourceTree = "<group>"; };
 		208FE74F956F298749AA5A3C /* MJRefreshBackNormalFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackNormalFooter.m; path = MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.m; sourceTree = "<group>"; };
 		216D4E80E6D2AEE2B1942B23 /* MJRefreshFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshFooter.m; path = MJRefresh/Base/MJRefreshFooter.m; sourceTree = "<group>"; };
 		26B2D74F98FA9349545704B2 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				204B5CD21B5D2C5F0069194E /* libsqlite3.dylib in Frameworks */,
 				EF342C82331A507DD631D28A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +429,7 @@
 		BB41539028B9D2F8F460B196 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				204B5CD11B5D2C5F0069194E /* libsqlite3.dylib */,
 				32D5F6BA98FFB3774253A627 /* CoreGraphics.framework */,
 				19F158701688D26F9707359E /* Foundation.framework */,
 				0DEA2C27D7E314F01A8025DD /* MobileCoreServices.framework */,

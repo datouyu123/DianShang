@@ -144,6 +144,7 @@
 		204B5CCA1B5CBDDE0069194E /* dropdown_loading_02@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 204B5C4B1B5CBDDE0069194E /* dropdown_loading_02@2x.png */; };
 		204B5CCB1B5CBDDE0069194E /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 204B5C4D1B5CBDDE0069194E /* Contents.json */; };
 		204B5CCC1B5CBDDE0069194E /* dropdown_loading_03@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 204B5C4E1B5CBDDE0069194E /* dropdown_loading_03@2x.png */; };
+		204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 204B5CCF1B5D2A1F0069194E /* FMDBHelper.m */; };
 		2058D8D51B52A759001AC233 /* ad_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8D21B52A759001AC233 /* ad_1.jpg */; };
 		2058D8D61B52A759001AC233 /* ad_2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8D31B52A759001AC233 /* ad_2.jpg */; };
 		2058D8D71B52A759001AC233 /* ad_3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8D41B52A759001AC233 /* ad_3.jpg */; };
@@ -171,6 +172,7 @@
 		20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF571B4E209A008FFF11 /* RDVTabBar.m */; };
 		20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */; };
 		20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */; };
+		20EF32D71B5D2E6D0096A015 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -322,6 +324,8 @@
 		204B5C4B1B5CBDDE0069194E /* dropdown_loading_02@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_loading_02@2x.png"; sourceTree = "<group>"; };
 		204B5C4D1B5CBDDE0069194E /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
 		204B5C4E1B5CBDDE0069194E /* dropdown_loading_03@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_loading_03@2x.png"; sourceTree = "<group>"; };
+		204B5CCE1B5D2A1F0069194E /* FMDBHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDBHelper.h; sourceTree = "<group>"; };
+		204B5CCF1B5D2A1F0069194E /* FMDBHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDBHelper.m; sourceTree = "<group>"; };
 		2058D8D21B52A759001AC233 /* ad_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ad_1.jpg; sourceTree = "<group>"; };
 		2058D8D31B52A759001AC233 /* ad_2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ad_2.jpg; sourceTree = "<group>"; };
 		2058D8D41B52A759001AC233 /* ad_3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ad_3.jpg; sourceTree = "<group>"; };
@@ -367,6 +371,7 @@
 		20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
 		20CAFF5A1B4E209A008FFF11 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
 		20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
+		20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		335F763AB501858712F1B6CB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A59E9267BC387DF2435289A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		8728DA6B8545302EFECB882E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -377,6 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20EF32D71B5D2E6D0096A015 /* libsqlite3.tbd in Frameworks */,
 				10A677347F1EC56ED7BBB6F3 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -394,6 +400,7 @@
 		20306FC61B4E576D0088985D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				204B5B911B5CBDDD0069194E /* DianPing */,
 				2058D8F61B5796F0001AC233 /* mainLine_background.png */,
 				2058D8E71B563EDC001AC233 /* bear_button.png */,
 				2042AA631B4F62C60076D6CA /* search.png */,
@@ -480,7 +487,8 @@
 				204B5C491B5CBDDE0069194E /* dropdown_loading_02.imageset */,
 				204B5C4C1B5CBDDE0069194E /* dropdown_loading_03.imageset */,
 			);
-			path = DianPing;
+			name = DianPing;
+			path = ../DianPing;
 			sourceTree = "<group>";
 		};
 		204B5B921B5CBDDD0069194E /* dropdown_anim__0001.imageset */ = {
@@ -1050,6 +1058,15 @@
 			path = dropdown_loading_03.imageset;
 			sourceTree = "<group>";
 		};
+		204B5CCD1B5D28D00069194E /* SqliteDB */ = {
+			isa = PBXGroup;
+			children = (
+				204B5CCE1B5D2A1F0069194E /* FMDBHelper.h */,
+				204B5CCF1B5D2A1F0069194E /* FMDBHelper.m */,
+			);
+			name = SqliteDB;
+			sourceTree = "<group>";
+		};
 		2058D8D81B5351B5001AC233 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1064,6 +1081,7 @@
 		2058D8E01B54A085001AC233 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */,
 				335F763AB501858712F1B6CB /* libPods.a */,
 			);
 			name = Frameworks;
@@ -1134,6 +1152,7 @@
 		20CAFF1C1B4E154A008FFF11 /* DianShang */ = {
 			isa = PBXGroup;
 			children = (
+				204B5CCD1B5D28D00069194E /* SqliteDB */,
 				2058D8F81B579B85001AC233 /* Categorys */,
 				2058D8E91B5654F8001AC233 /* Views */,
 				2058D8E31B5505FE001AC233 /* Cells */,
@@ -1145,7 +1164,6 @@
 				20CAFF281B4E154A008FFF11 /* ViewController.m */,
 				20CAFF2A1B4E154A008FFF11 /* Main.storyboard */,
 				20CAFF2D1B4E154A008FFF11 /* Images.xcassets */,
-				204B5B911B5CBDDD0069194E /* DianPing */,
 				20CAFF2F1B4E154A008FFF11 /* LaunchScreen.xib */,
 				20CAFF241B4E154A008FFF11 /* DianShang.xcdatamodeld */,
 				20CAFF1D1B4E154A008FFF11 /* Supporting Files */,
@@ -1511,6 +1529,7 @@
 				20CAFF291B4E154A008FFF11 /* ViewController.m in Sources */,
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
 				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
+				204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */,
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
 				2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
