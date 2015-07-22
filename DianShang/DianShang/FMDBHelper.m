@@ -60,7 +60,7 @@
  *
  *  @param dbName <#dbName description#>
  */
-- (void)createTableByName:(NSString *) dbName
+- (void)createTableByName:(NSString *)dbName
 {
     if ([db open]) {
         if ([dbName isEqualToString:GOODS_TABLENAME]) {
@@ -81,13 +81,13 @@
 /**
  *  插入一条数据到GOODS_TABLE
  */
-- (BOOL) insertIntoGOODS_TABLE:(NSString *) tID:(NSString *) postID:(NSString *) orderID:(NSString *) postURL:(NSString *) tag:(NSString *) title:(NSString *) postCoverImg:(NSString *) price
+- (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL
+                           tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price
 {
     if ([db open]) {
-        NSString *insertSql= [NSString stringWithFormat:
-                              @"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@')",
-                              GOODS_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE, postID, orderID, postURL, tag, title, postCoverImg, price];
-        if ([db executeUpdate:insertSql]) {
+        NSString *insertSql=@"INSERT INTO %@ (%@, %@, %@, %@, %@, %@, %@) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+        if ([db executeUpdate:insertSql,GOODS_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE, postID, orderID, postURL, tag, title, postCoverImg, price]) {
             NSLog(@"success to insert a data");
             return true;
         }
@@ -97,12 +97,12 @@
         return false;
 
     }
-    NSLog(@"fail to open db");
+    NSLog(@"fail to open db in insertIntoGOODS_TABLE");
     return false;
 }
 
 /**
- *  表查询
+ *  表查询 GOODS_TABLE
  */
 -(NSMutableArray *) selectFromGOODS_TABLE
 {
@@ -122,13 +122,36 @@
             NSString *postCoverImg = [rs stringForColumn:GOODS_COVERIMG];
             NSString *price = [rs stringForColumn:GOODS_PRICE];
             
-            NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, prive=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price);
+            NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price);
         }
         [db close];
         return mutableGoods;
     }
-    NSLog(@"fail to open db");
+    NSLog(@"fail to open db in selectFromGOODS_TABLE");
     return nil;
+}
+
+/**
+ *  清空数据库
+ */
+
+-(BOOL) emptyDatabaseByName:(NSString *)dbName
+{
+    if ([db open]) {
+        if ([dbName isEqualToString:GOODS_TABLENAME]) {
+            NSString *sqlDeleteTable = [NSString stringWithFormat:@"DELETE *FROM %@", GOODS_TABLENAME];
+            
+            if (![db executeUpdate:sqlDeleteTable]) {
+                NSLog(@"fail to delete GOODS_TABLE");
+            }
+            else
+                NSLog(@"success to delete GOODS_TABLE");
+        }
+        [db close];
+        return true;
+    }
+    NSLog(@"fail to open db in emptyDatebaseByName");
+    return false;
 }
 @end
 

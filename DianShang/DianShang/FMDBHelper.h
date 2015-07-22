@@ -43,5 +43,11 @@
 - (void)initDocPath;
 //新建表
 - (void)createTableByName:(NSString *) dbName;
+//表查询
+- (NSMutableArray *) selectFromGOODS_TABLE;
+//清空表
+-(BOOL) emptyDatabaseByName:(NSString *)dbName;
+
+
 
 @end
