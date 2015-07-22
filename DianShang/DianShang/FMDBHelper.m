@@ -113,7 +113,16 @@
         
         FMResultSet *rs = [db executeQuery:selectSql];
         while ([rs next]) {
+            int id = [rs intForColumn:GOODS_TID];
+            NSString *postId = [rs stringForColumn:GOODS_POSTID];
+            NSString *orderId = [rs stringForColumn:GOODS_ORDERID];
+            NSString *postURL = [rs stringForColumn:GOODS_POSTURL];
+            NSString *tag = [rs stringForColumn:GOODS_TAG];
+            NSString *title = [rs stringForColumn:GOODS_TITLE];
+            NSString *postCoverImg = [rs stringForColumn:GOODS_COVERIMG];
+            NSString *price = [rs stringForColumn:GOODS_PRICE];
             
+            NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, prive=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price);
         }
         [db close];
         return mutableGoods;
