@@ -1,0 +1,36 @@
+//
+//  Prefix.pch
+//  DianShang
+//
+//  Created by 张伟颖 on 15/7/22.
+//  Copyright © 2015年 XMUSoftware. All rights reserved.
+//
+#import <Availability.h>
+
+#ifndef Prefix_pch
+#define Prefix_pch
+
+
+#endif /* Prefix_pch */
+
+
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED
+#ifndef __IPHONE_6_0
+#warning "This project uses features only available in iPhone SDK 6.0 and later."
+#endif
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#endif
+#else
+#ifdef __OBJC__
+#import <Cocoa/Cocoa.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <AssertMacros.h>
+#import <CoreServices/CoreServices.h>
+#endif
+#endif

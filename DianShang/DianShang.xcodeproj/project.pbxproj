@@ -173,6 +173,9 @@
 		20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */; };
 		20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */; };
 		20EF32D71B5D2E6D0096A015 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */; };
+		20F370E01B5F962800E8C243 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F370DF1B5F962800E8C243 /* AFAppDotNetAPIClient.m */; };
+		20F370E51B5FB3F700E8C243 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F370E41B5FB3F700E8C243 /* Post.m */; };
+		20F370E81B5FB56300E8C243 /* Good.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F370E71B5FB56300E8C243 /* Good.m */; };
 		394D9D151B5F2AA4007F3E1E /* launch_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 394D9D141B5F2AA4007F3E1E /* launch_bg.png */; };
 		394D9D231B5F33B4007F3E1E /* icon_40pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 394D9D221B5F33B4007F3E1E /* icon_40pt@3x.png */; };
 		394D9D281B5F343B007F3E1E /* icon_29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 394D9D241B5F343B007F3E1E /* icon_29pt@2x.png */; };
@@ -378,6 +381,13 @@
 		20CAFF5A1B4E209A008FFF11 /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
 		20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
 		20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		20F370DE1B5F962800E8C243 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
+		20F370DF1B5F962800E8C243 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
+		20F370E31B5FB3F700E8C243 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		20F370E41B5FB3F700E8C243 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		20F370E61B5FB56300E8C243 /* Good.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Good.h; sourceTree = "<group>"; };
+		20F370E71B5FB56300E8C243 /* Good.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Good.m; sourceTree = "<group>"; };
+		20F370E91B5FCB0000E8C243 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		335F763AB501858712F1B6CB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		394D9D141B5F2AA4007F3E1E /* launch_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch_bg.png; sourceTree = "<group>"; };
 		394D9D221B5F33B4007F3E1E /* icon_40pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_40pt@3x.png"; sourceTree = "<group>"; };
@@ -1170,6 +1180,8 @@
 		20CAFF1C1B4E154A008FFF11 /* DianShang */ = {
 			isa = PBXGroup;
 			children = (
+				20F370E21B5FB38900E8C243 /* Models */,
+				20F370DD1B5F95FE00E8C243 /* Networking Extensions */,
 				204B5CCD1B5D28D00069194E /* SqliteDB */,
 				2058D8F81B579B85001AC233 /* Categorys */,
 				2058D8E91B5654F8001AC233 /* Views */,
@@ -1196,6 +1208,7 @@
 				20CAFF221B4E154A008FFF11 /* AppDelegate.m */,
 				20CAFF1E1B4E154A008FFF11 /* Info.plist */,
 				20CAFF1F1B4E154A008FFF11 /* main.m */,
+				20F370E91B5FCB0000E8C243 /* Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1250,6 +1263,26 @@
 				20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */,
 			);
 			path = RDVTabBarController;
+			sourceTree = "<group>";
+		};
+		20F370DD1B5F95FE00E8C243 /* Networking Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				20F370DE1B5F962800E8C243 /* AFAppDotNetAPIClient.h */,
+				20F370DF1B5F962800E8C243 /* AFAppDotNetAPIClient.m */,
+			);
+			name = "Networking Extensions";
+			sourceTree = "<group>";
+		};
+		20F370E21B5FB38900E8C243 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20F370E31B5FB3F700E8C243 /* Post.h */,
+				20F370E41B5FB3F700E8C243 /* Post.m */,
+				20F370E61B5FB56300E8C243 /* Good.h */,
+				20F370E71B5FB56300E8C243 /* Good.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		CF8BE09CA6C8963347D2AF6C /* Pods */ = {
@@ -1552,10 +1585,13 @@
 				2058D8FB1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m in Sources */,
 				20CAFF291B4E154A008FFF11 /* ViewController.m in Sources */,
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
+				20F370E01B5F962800E8C243 /* AFAppDotNetAPIClient.m in Sources */,
 				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
 				204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */,
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
+				20F370E81B5FB56300E8C243 /* Good.m in Sources */,
 				2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */,
+				20F370E51B5FB3F700E8C243 /* Post.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
 				2058D8EF1B56557F001AC233 /* MainButtonbgView.m in Sources */,
 				20751CCA1B525806009A064F /* FirstCollectionViewController.m in Sources */,
