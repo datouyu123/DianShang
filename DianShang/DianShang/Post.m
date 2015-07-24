@@ -34,11 +34,34 @@
 {
     return [[AFAppDotNetAPIClient sharedClient] GET:[[NSUserDefaults standardUserDefaults] stringForKey:@"loadAPI"] parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
     {
+        NSLog(@"\n开始调用POST.M\n");
         
+        NSLog(@"\n这是JSON%@\n", JSON);
+        NSArray *postsFromResponse = [JSON valueForKeyPath:@"message"];
+        
+        
+        NSLog(@"\n这是JSON二层%@\n", postsFromResponse);
+        
+        NSArray *postsFromResponse2 = [postsFromResponse valueForKeyPath:@"itemlist"];
+        //NSArray *postsFromResponseLun = [postsFromResponse valueForKeyPath:@"toplist"];
+        NSLog(@"\n这是JSON三层%@\n", postsFromResponse2);
+        
+        NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse2 count]];
+        for (NSMutableDictionary *attributes in postsFromResponse2)
+        {
+            Post *post = [[Post alloc] initWithAttributes:attributes];
+            [mutablePosts addObject:post];
+        }
+        if (block) {
+            block([NSArray arrayWithArray:mutablePosts], nil);
+        }
+
     }
         failure:^(NSURLSessionDataTask *__unused task, NSError *error)
     {
-        
+        if (block) {
+            block([NSArray array], error);
+        }
     }];
 }
 @end
