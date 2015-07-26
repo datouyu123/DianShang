@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+
 @class Good;
 
 @interface Post : NSObject
 
 @property (nonatomic, assign) NSUInteger postID;
-@property (nonatomic, strong) NSString *postType; //上拉下拉
+@property (nonatomic, strong) NSString *goodType; //
 
 @property (nonatomic, strong) Good *good;
 

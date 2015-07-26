@@ -20,9 +20,9 @@
     }
     
     self.postID = (NSUInteger)[[attributes valueForKeyPath:@"tid"] integerValue];
-    self.postType = [attributes valueForKeyPath:@"type"];
-    
-    self.good = [[Good alloc] initWithAttributes:[attributes valueForKeyPath:@"good"]];
+    self.goodType = [attributes valueForKeyPath:@"type"];
+
+    self.good = [[Good alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[attributes valueForKeyPath:@"url"],@"goods_url", [attributes valueForKeyPath:@"title"],@"goods_title",[attributes valueForKeyPath:@"coverimg"],@"goods_image_string",[attributes valueForKeyPath:@"price"],@"goods_price",[attributes valueForKeyPath:@"tag"],@"goods_tag",nil] ];
     
     return self;
 }
@@ -32,7 +32,7 @@
 
 + (NSURLSessionDataTask *)globalTimelinePostsWithBlock:(void (^)(NSArray *posts, NSError *error))block
 {
-    return [[AFAppDotNetAPIClient sharedClient] GET:[[NSUserDefaults standardUserDefaults] stringForKey:@"loadAPI"] parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
+    return [[AFAppDotNetAPIClient sharedClient] GET:[[NSUserDefaults standardUserDefaults] stringForKey:@"loadAPI"]parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
     {
         NSLog(@"\n开始调用POST.M\n");
         
@@ -49,7 +49,9 @@
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse2 count]];
         for (NSMutableDictionary *attributes in postsFromResponse2)
         {
-            Post *post = [[Post alloc] initWithAttributes:attributes];
+            NSMutableDictionary * attr = [NSMutableDictionary dictionaryWithDictionary:attributes];
+            [attr setValue:@"item" forKey:@"type"];
+            Post *post = [[Post alloc] initWithAttributes:attr];
             [mutablePosts addObject:post];
         }
         if (block) {

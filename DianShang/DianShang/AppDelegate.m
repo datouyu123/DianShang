@@ -14,6 +14,7 @@
 #import "FirstViewController.h"
 #import "FirstCollectionViewController.h"
 #import "FirstCollectionViewLayout.h"
+#import "FMDBHelper.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,9 @@
     [self.window makeKeyAndVisible];
     
     [self customizeInterface];
+    //新建表
+    [[FMDBHelper sharedFMDBHelper] createTableByName: @"GOODS_TABLE"];
+
     return YES;
 }
 

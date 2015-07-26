@@ -13,10 +13,12 @@ NSString * const kUserCoverImageDidLoadNotification = @"com.alamofire.user.profi
 
 @interface Good ()
 
-//@property (readwrite, nonatomic, copy) NSString *goodURL;
+@property (readwrite, nonatomic, copy) NSString *goodURL;
 @property (readwrite, nonatomic, copy) NSString *goodTitle;
 @property (readwrite, nonatomic, copy) NSString *goodPrice;
-@property (readwrite, nonatomic, copy) NSString *coverImageURLString;
+@property (readwrite, nonatomic, copy) NSString *goodTag;
+@property (readwrite, nonatomic, copy) NSString *goodCoverImgString;
+
 
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 @property (readwrite, nonatomic, strong) AFHTTPRequestOperation *coverImageRequestOperation;
@@ -32,16 +34,18 @@ NSString * const kUserCoverImageDidLoadNotification = @"com.alamofire.user.profi
         return nil;
     }
     
-    //self.goodURL = [attributes valueForKeyPath:@"good_url"];
-    self.goodTitle = [attributes valueForKeyPath:@"good_title"];
-    self.goodPrice = [attributes valueForKeyPath:@"good_price"];
-    self.coverImageURLString = [attributes valueForKeyPath:@"cover_img.url"];
+    self.goodURL = [attributes valueForKeyPath:@"goods_url"];
+    self.goodTitle = [attributes valueForKeyPath:@"goods_title"];
+    self.goodPrice = [attributes valueForKeyPath:@"goods_price"];
+    self.goodTag = [attributes valueForKeyPath:@"goods_tag"];
+    self.goodCoverImgString = [attributes valueForKeyPath:@"goods_image_string"];
+    
     
     return self;
 }
 
 - (NSURL *)coverImageURL {
-    return [NSURL URLWithString:self.coverImageURLString];
+    return [NSURL URLWithString:self.goodCoverImgString];
 }
 
 #pragma mark -

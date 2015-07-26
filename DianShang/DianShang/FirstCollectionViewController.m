@@ -9,11 +9,15 @@
 #import "FirstCollectionViewController.h"
 #import "ASScroll.h"
 #import "MainButtonCollectionViewCell.h"
+#import "MainGoodsListCollectionViewCell.h"
 #import "MainButtonbgView.h"
 #import "MainButtonCVLayoutAttributes.h"
 #import "MainHeaderView.h"
 #import "MJRefresh.h"
 #import "MJChiBaoZiHeader.h"
+#import "FMDBHelper.h"
+#import "Post.h"
+#import "UIAlertView+AFNetworking.h"
 
 static const CGFloat MJDuration = 2.0;
 
@@ -24,6 +28,11 @@ static const CGFloat MJDuration = 2.0;
     //定义扫一扫按钮
     UIButton *saoButton;
 }
+/*!
+ 用于添加AFNetworking
+ */
+@property (readwrite, nonatomic, strong) NSArray *posts;
+@property (readwrite, nonatomic, strong) NSArray *postsLun;
 
 @end
 
@@ -33,7 +42,7 @@ static NSString * const reuseIdentifier1 = @"adCell";
 static NSString * const reuseIdentifier2 = @"btnCell";
 static NSString * const reuseIdentifier3 = @"contentCell";
 static NSString * const reuseIdentifier4 = @"headerView";
-static NSString * const reuseIdentifier5 = @"headerView1";
+//static NSString * const reuseIdentifier5 = @"headerView1";
 
 
 - (void)viewDidLoad {
@@ -45,9 +54,9 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     // Register cell classes
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier1];
     [self.collectionView registerClass:[MainButtonCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier2];
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier3];
+    [self.collectionView registerClass:[MainGoodsListCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier3];
     [self.collectionView registerClass:[MainHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4];
-    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5];
+    //[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5];
     
     // Do any additional setup after loading the view.
     //背景颜色
@@ -71,6 +80,9 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     UIBarButtonItem *left=[[UIBarButtonItem alloc]initWithCustomView:saoButton];
     self.navigationItem.leftBarButtonItem=left;
     
+    //加载本地数据
+    [self loadLocalData];
+    
     //添加刷新
     [self setupRefresh];
 
@@ -81,15 +93,39 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark 加载本地数据
+- (void)loadLocalData
+{
+    [[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"GOODS_TABLE"];
+    
+    NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:50];
+    
+    for (int i = 0; i < 10; ++i) {
+        
+        Post *post;
+        
+        if (i%2) {
+            
+            post = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%lu",(unsigned long)i ],@"tid", [NSString stringWithFormat:@"%@ %d",@"测试标题测试标题", i] ,@"title",@"http://next17.me/meng/lun1.jpg",@"coverimg",@"http://next17.me",@"url",@"item",@"type", nil] ];
+            
+        }
+        else{
+            
+            post = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%lu",(unsigned long)i ],@"tid", [NSString stringWithFormat:@"%@ %d",@"测试标题测试标题", i] ,@"title",@"http://next17.me/meng/lun2.jpg",@"coverimg",@"http://next17.me",@"url",@"item",@"type", nil] ];
+        }
+        [mutablePosts addObject:post];
+    }
+    [[FMDBHelper sharedFMDBHelper] insertIntoGOODS_TABLEWithArray:mutablePosts];
+    
+    
+    
+    //[[FMDBHelper sharedFMDBHelper] selectFromGOODS_TABLE:@"\'item\'"];
+    
+    self.posts =  [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromGOODS_TABLE:@"\'item\'"]];
+    
+    [self.collectionView reloadData];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
 
 #pragma mark UICollectionView 上下拉刷新
 - (void)setupRefresh
@@ -126,24 +162,83 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     }];
 }
 
+
 #pragma mark 下拉刷新数据
 - (void)loadNewData
 {
-    // 1.添加假数据
-    /*for (int i = 0; i<5; i++) {
-        [self.data insertObject:MJRandomData atIndex:0];
-    }*/
-    
-    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-        //[self.tableView reloadData];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:@"xiala" forKey:@"loadType"];
+    /**
+     *  商品列表接口
+     *  地址:/e­commerce.php?0=itemid&1=list&token=
+     *  方式:get 参数:itemid是一个商品的唯一识别码,uid(用户登录时需要,用于显示是否收藏)tag(标 签),参数为产品标签,type(1,2)
+     *  (1表示下拉刷新,2表示上拉加载更多),sid(请求数据的 起始id)
+     */
+    [userDefaults setObject:@"0=itemid&1=list&tag=fruit&type=1&sid=0" forKey:@"loadAPI"];
+    NSLog(@"Defaults: %@", userDefaults);
+    [self reload:nil];
         
-        // 拿到当前的下拉刷新控件，结束刷新状态
-        [self.collectionView.header endRefreshing];
-    });
+    // 拿到当前的下拉刷新控件，结束刷新状态
+    //[self.collectionView.header endRefreshing];
+    
 }
 
+#pragma mark -AFNetworkingPart
+
+- (void)reload:(__unused id)sender
+{
+    NSLog(@"\n开始调用RELOAD\n");
+    
+    NSURLSessionTask *task = [Post globalTimelinePostsWithBlock:^(NSArray *posts, NSError *error) {
+        if (!error) {
+            
+            NSLog(@"\n开始回调\n");
+            
+            NSLog(@"\n开始赋值给self.posts\n");
+            
+            self.posts = posts;
+            //self.posts = [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromGOODS_TABLE:@"\'item\'"]];
+            
+            //更新轮播图的数据postsLun
+            //            self.postsLun = [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromPOST_TABLE:@"\'最新\'" :@"\'lun\'"]];
+            
+            NSLog(@"\n开始POST LUN赋值\n");
+            //self.postsLun = [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromPOST_TABLE:@"\'最新\'" :@"\'lun\'"]];
+            
+            NSLog(@"\n结束赋值\n");
+            
+            if ([ [[NSUserDefaults standardUserDefaults] stringForKey:@"loadType"] isEqualToString:@"xiala"]) {
+                
+                NSLog(@"\n重载tableView\n");
+                //更新table的数据
+                
+                NSLog(@"\n开始RELOAD计时开始\n");
+                [self.collectionView reloadData];
+                NSLog(@"\n开始RELOAD计时结束\n");
+                NSLog(@"\n重载结束\n");
+                
+                
+                //刷新结束shangla
+                [self.collectionView.header endRefreshing];
+                NSLog(@"\n下拉结束\n");
+                
+                //[self performSelector:@selector(delayMethodNoticificationXiala) withObject:nil afterDelay:0.4f];
+                
+                }
+            else
+            {
+                //刷新结束shangla
+                [self.collectionView.header endRefreshing];
+                NSLog(@"\n下拉结束\n");
+            }
+            }
+
+    }];
+    //刷新结束shangla
+    [self.collectionView.header endRefreshing];
+    NSLog(@"\n下拉结束\n");
+    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+}
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -160,7 +255,8 @@ static NSString * const reuseIdentifier5 = @"headerView1";
         return 6;
     }
     else
-        return 20;
+        return [self.posts count];
+        //return 20;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -205,11 +301,8 @@ static NSString * const reuseIdentifier5 = @"headerView1";
     }
     else
     {
-        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier3 forIndexPath:indexPath];
-        UIImage *image = [UIImage imageNamed:@"content.jpg"];
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-        
-        [cell.contentView addSubview:imageView];
+        MainGoodsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier3 forIndexPath:indexPath];
+        cell.post = [self.posts objectAtIndex:indexPath.row];
         // Configure the cell
         
         return cell;
@@ -222,7 +315,7 @@ static NSString * const reuseIdentifier5 = @"headerView1";
 
 {
     UICollectionReusableView *reusableView = nil;
-    
+    //定义分栏标题
     if (kind == UICollectionElementKindSectionHeader && indexPath.section == 2){
         
         MainHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4 forIndexPath:indexPath];
@@ -283,7 +376,7 @@ static NSString * const reuseIdentifier5 = @"headerView1";
         return CGSizeMake(50, 50);
     }
     else
-        return CGSizeMake(163, 163);
+        return CGSizeMake(163, 163+50);
 }
 
 //  定义单元格所在行line之间的距离,前一行和后一行的距离

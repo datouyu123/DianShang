@@ -7,10 +7,8 @@
 //
 
 #import "AFAppDotNetAPIClient.h"
-#import "AFHTTPSessionManager.h"
-#import "AFNetworking.h"
 
-static NSString * const AFAppDotNetAPIBaseURLString = @"http://120.24.168.8";
+static NSString * const AFAppDotNetAPIBaseURLString = @"http://120.24.168.8/iosapi/e-commerce.php?";
 
 @implementation AFAppDotNetAPIClient
 

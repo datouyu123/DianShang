@@ -25,6 +25,7 @@
 #define GOODS_TITLE @"goods_title" //商品标题
 #define GOODS_COVERIMG @"goods_coverimg" //商品封面图片
 #define GOODS_PRICE @"goods_price" //商品价格
+#define GOODS_TYPE @"goods_type" //种类（轮播还是商品）
 
 /**
  *  本地数据库操作
@@ -44,10 +45,12 @@
 //新建表
 - (void)createTableByName:(NSString *) dbName;
 //表查询
-- (NSMutableArray *) selectFromGOODS_TABLE;
+- (NSMutableArray *) selectFromGOODS_TABLE:(NSString *) type;
 //清空表
 -(BOOL) emptyDatabaseByName:(NSString *)dbName;
-
-
+//插入一条数据
+- (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type;
+//插入数组
+-(BOOL) insertIntoGOODS_TABLEWithArray:(NSMutableArray *) mutablePosts;
 
 @end

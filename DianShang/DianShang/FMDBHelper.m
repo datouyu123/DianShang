@@ -7,6 +7,8 @@
 //
 
 #import "FMDBHelper.h"
+#import "Post.h"
+#import "Good.h"
 
 @implementation FMDBHelper
 
@@ -64,7 +66,7 @@
 {
     if ([db open]) {
         if ([dbName isEqualToString:GOODS_TABLENAME]) {
-            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY AUTOINCREMENT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT)" ,GOODS_TABLENAME ,GOODS_TID ,GOODS_POSTID ,GOODS_ORDERID ,GOODS_POSTURL ,GOODS_TAG ,GOODS_TITLE ,GOODS_COVERIMG ,GOODS_PRICE];
+            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY AUTOINCREMENT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT)" ,GOODS_TABLENAME ,GOODS_TID ,GOODS_POSTID ,GOODS_ORDERID ,GOODS_POSTURL ,GOODS_TAG ,GOODS_TITLE ,GOODS_COVERIMG ,GOODS_PRICE, GOODS_TYPE];
             
             if (! [db executeUpdate:sqlCreateTable] ) {
                 NSLog(@"error when creating GOODS_TABLENAME table");
@@ -81,13 +83,12 @@
 /**
  *  插入一条数据到GOODS_TABLE
  */
-- (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL
-                           tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price
+- (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type
 {
     if ([db open]) {
-        NSString *insertSql=@"INSERT INTO %@ (%@, %@, %@, %@, %@, %@, %@) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        NSString *insertSql=[NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",GOODS_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE,GOODS_TYPE, postID, orderID, postURL, tag, title, postCoverImg, price, type];
         
-        if ([db executeUpdate:insertSql,GOODS_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE, postID, orderID, postURL, tag, title, postCoverImg, price]) {
+        if ([db executeUpdate:insertSql]) {
             NSLog(@"success to insert a data");
             return true;
         }
@@ -101,15 +102,36 @@
     return false;
 }
 
+//下面是 数组 的插入操作
+
+-(BOOL) insertIntoGOODS_TABLEWithArray:(NSMutableArray *) mutablePosts{
+    
+    for (Post *post in mutablePosts) {
+        
+        if (post != nil) {
+            
+            NSLog(@"插入-postID: %@, URL:%@, title:%@, coverimg:%@, type:%@", [NSString stringWithFormat:@"%lu",(unsigned long)post.postID], post.good.goodURL, post.good.goodTitle, post.good.coverImageURL, post.goodType);
+            
+            
+            [self insertIntoGOODS_TABLE:@"0" postID:[NSString stringWithFormat:@"%lu",(unsigned long)post.postID ] orderID:@"1" postURL:post.good.goodURL tag:@"电商" title:post.good.goodTitle postCoverImg:post.good.goodCoverImgString price:@"10" type:post.goodType];
+        }
+        
+        
+    }
+    
+    return true;
+    
+}
+
 /**
  *  表查询 GOODS_TABLE
  */
--(NSMutableArray *) selectFromGOODS_TABLE
+-(NSMutableArray *) selectFromGOODS_TABLE: (NSString*)type
 {
     if ([db open]) {
 
         NSMutableArray *mutableGoods = [NSMutableArray arrayWithCapacity:50];
-        NSString *selectSql = [NSString stringWithFormat:@"SELECT *FROM %@", GOODS_TABLENAME];
+        NSString *selectSql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@=%@", GOODS_TABLENAME, GOODS_TYPE, type];
         
         FMResultSet *rs = [db executeQuery:selectSql];
         while ([rs next]) {
@@ -121,8 +143,13 @@
             NSString *title = [rs stringForColumn:GOODS_TITLE];
             NSString *postCoverImg = [rs stringForColumn:GOODS_COVERIMG];
             NSString *price = [rs stringForColumn:GOODS_PRICE];
+            NSString *type = [rs stringForColumn:GOODS_TYPE];
             
-            NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price);
+            NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@ type=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price, type);
+            
+            Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%d", id] ,@"tid",title,@"title",postCoverImg,@"coverimg",price,@"price",tag,@"tag",postURL,@"url",type,@"type", nil] ];
+            [mutableGoods addObject:p];
+
         }
         [db close];
         return mutableGoods;
@@ -139,7 +166,7 @@
 {
     if ([db open]) {
         if ([dbName isEqualToString:GOODS_TABLENAME]) {
-            NSString *sqlDeleteTable = [NSString stringWithFormat:@"DELETE *FROM %@", GOODS_TABLENAME];
+            NSString *sqlDeleteTable = [NSString stringWithFormat:@"DELETE FROM %@", GOODS_TABLENAME];
             
             if (![db executeUpdate:sqlDeleteTable]) {
                 NSLog(@"fail to delete GOODS_TABLE");

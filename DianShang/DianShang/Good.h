@@ -10,9 +10,11 @@
 
 @interface Good : NSObject
 
-//@property (readonly, nonatomic, copy) NSString *goodURL;
+@property (readonly, nonatomic, copy) NSString *goodURL;
 @property (readonly, nonatomic, copy) NSString *goodTitle;
 @property (readonly, nonatomic, copy) NSString *goodPrice;
+@property (readonly, nonatomic, copy) NSString *goodTag;
+@property (readonly, nonatomic, copy) NSString *goodCoverImgString;
 @property (readonly, nonatomic, unsafe_unretained) NSURL *coverImageURL;
 
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
