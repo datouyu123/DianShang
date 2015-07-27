@@ -106,12 +106,12 @@ static NSString * const reuseIdentifier4 = @"headerView";
         
         if (i%2) {
             
-            post = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%lu",(unsigned long)i ],@"tid", [NSString stringWithFormat:@"%@ %d",@"测试标题测试标题", i] ,@"title",@"http://next17.me/meng/lun1.jpg",@"coverimg",@"http://next17.me",@"url",@"item",@"type", nil] ];
+            post = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%lu",(unsigned long)i ],@"tid", [NSString stringWithFormat:@"%@ %d",@"测试标题测试标题", i] ,@"title",@"http://120.24.168.8/iosapi/pic.jpg",@"coverimg",@"http://next17.me",@"url",@"item",@"type", nil] ];
             
         }
         else{
             
-            post = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%lu",(unsigned long)i ],@"tid", [NSString stringWithFormat:@"%@ %d",@"测试标题测试标题", i] ,@"title",@"http://next17.me/meng/lun2.jpg",@"coverimg",@"http://next17.me",@"url",@"item",@"type", nil] ];
+            post = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"%lu",(unsigned long)i ],@"tid", [NSString stringWithFormat:@"%@ %d",@"测试标题测试标题", i] ,@"title",@"http://120.24.168.8/iosapi/pic.jpg",@"coverimg",@"http://next17.me",@"url",@"item",@"type", nil] ];
         }
         [mutablePosts addObject:post];
     }

@@ -32,7 +32,9 @@
 
 + (NSURLSessionDataTask *)globalTimelinePostsWithBlock:(void (^)(NSArray *posts, NSError *error))block
 {
-    return [[AFAppDotNetAPIClient sharedClient] GET:[[NSUserDefaults standardUserDefaults] stringForKey:@"loadAPI"]parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
+    //afnetworking demo:@"stream/0/posts/stream/global"
+    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"] ;
+    return [[AFAppDotNetAPIClient sharedClient] POST:@"e-commerce.php" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
     {
         NSLog(@"\n开始调用POST.M\n");
         
@@ -63,6 +65,12 @@
     {
         if (block) {
             block([NSArray array], error);
+            NSLog(@"Error: %@", error);
+            NSData *errorData = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+            NSDictionary *serializedData = [NSJSONSerialization JSONObjectWithData: errorData options:kNilOptions error:nil];
+            NSLog(@"%@",errorData);
+            NSHTTPURLResponse* r = (NSHTTPURLResponse*)task.response;
+            NSLog( @"success: %d", r.statusCode );
         }
     }];
 }
