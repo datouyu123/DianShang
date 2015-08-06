@@ -11,7 +11,6 @@
 #import "RDVTabBar.h"
 #import "RDVTabBarItem.h"
 #import "ViewController.h"
-#import "FirstViewController.h"
 #import "FirstCollectionViewController.h"
 #import "FirstCollectionViewLayout.h"
 #import "FMDBHelper.h"

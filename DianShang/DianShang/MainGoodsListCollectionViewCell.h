@@ -11,11 +11,9 @@
 @class Post;
 @interface MainGoodsListCollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) UILabel *label;
+@property (strong, nonatomic) UIImageView *coverImageView;
+@property (strong, nonatomic) UILabel *title;
+@property (strong, nonatomic) UILabel *price;
 
-/*!
- *  下面两条记录用于添加AFNetworking
- */
-@property (nonatomic, strong) Post *post;
+- (void)setGoods:(Post *)post;
 @end

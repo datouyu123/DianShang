@@ -22,7 +22,7 @@
     self.postID = (NSUInteger)[[attributes valueForKeyPath:@"tid"] integerValue];
     self.goodType = [attributes valueForKeyPath:@"type"];
 
-    self.good = [[Good alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[attributes valueForKeyPath:@"url"],@"goods_url", [attributes valueForKeyPath:@"title"],@"goods_title",[attributes valueForKeyPath:@"coverimg"],@"goods_image_string",[attributes valueForKeyPath:@"price"],@"goods_price",[attributes valueForKeyPath:@"tag"],@"goods_tag",nil] ];
+    self.good = [[Good alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[attributes valueForKeyPath:@"url"],@"goods_url", [attributes valueForKeyPath:@"title"],@"goods_title",[attributes valueForKeyPath:@"coverimg"],@"goods_image_string",[attributes valueForKeyPath:@"itemprice"],@"goods_price",[attributes valueForKeyPath:@"tag"],@"goods_tag",nil]];
     
     return self;
 }
@@ -34,32 +34,35 @@
 {
     //afnetworking demo:@"stream/0/posts/stream/global"
     [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"] ;
-    return [[AFAppDotNetAPIClient sharedClient] POST:@"e-commerce.php" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
+    return [[AFAppDotNetAPIClient sharedClient] POST:@"" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
     {
-        NSLog(@"\n开始调用POST.M\n");
-        
-        NSLog(@"\n这是JSON%@\n", JSON);
-        NSArray *postsFromResponse = [JSON valueForKeyPath:@"message"];
-        
-        
-        NSLog(@"\n这是JSON二层%@\n", postsFromResponse);
-        
-        NSArray *postsFromResponse2 = [postsFromResponse valueForKeyPath:@"itemlist"];
-        //NSArray *postsFromResponseLun = [postsFromResponse valueForKeyPath:@"toplist"];
-        NSLog(@"\n这是JSON三层%@\n", postsFromResponse2);
-        
-        NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse2 count]];
-        for (NSMutableDictionary *attributes in postsFromResponse2)
-        {
-            NSMutableDictionary * attr = [NSMutableDictionary dictionaryWithDictionary:attributes];
-            [attr setValue:@"item" forKey:@"type"];
-            Post *post = [[Post alloc] initWithAttributes:attr];
-            [mutablePosts addObject:post];
-        }
-        if (block) {
-            block([NSArray arrayWithArray:mutablePosts], nil);
-        }
+        if ([JSON isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"\n开始调用POST.M\n");
+            
+            NSLog(@"\n这是JSON%@\n", JSON);
+            NSArray *postsFromResponse = [JSON valueForKeyPath:@"message"];
+            
+            
+            NSLog(@"\n这是JSON二层%@\n", postsFromResponse);
+            
+            NSArray *postsFromResponse2 = [postsFromResponse valueForKeyPath:@"itemlist"];
+            //NSArray *postsFromResponseLun = [postsFromResponse valueForKeyPath:@"toplist"];
+            NSLog(@"\n这是JSON三层%@\n", postsFromResponse2);
+            
+            NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse2 count]];
+            for (NSMutableDictionary *attributes in postsFromResponse2)
+            {
+                NSMutableDictionary * attr = [NSMutableDictionary dictionaryWithDictionary:attributes];
+                [attr setValue:@"item" forKey:@"type"];
+                Post *post = [[Post alloc] initWithAttributes:attr];
+                [mutablePosts addObject:post];
+            }
+            if (block) {
+                block([NSArray arrayWithArray:mutablePosts], nil);
+            }
 
+        }
+        
     }
         failure:^(NSURLSessionDataTask *__unused task, NSError *error)
     {
