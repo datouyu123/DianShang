@@ -29,7 +29,8 @@ static const CGFloat MJDuration = 2.0;
     UIButton *searchButton;
     //定义扫一扫按钮
     UIButton *saoButton;
-
+    //定义商品详情页控制器
+    CommodityDetailsPageController *cdpController;
 }
 /*!
  用于添加AFNetworking
@@ -94,11 +95,18 @@ static NSString * const reuseIdentifier4 = @"headerView";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
     //修改navigationbar背景颜色及title颜色
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     //进入商品详情页显示tabbar
-    [[self rdv_tabBarController] setTabBarHidden:NO animated:NO];
+    [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+    //取消向下滑动隐藏navigaitionbar向上滑动显示navigationbar
+    self.navigationController.hidesBarsOnSwipe = NO;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -373,10 +381,10 @@ static NSString * const reuseIdentifier4 = @"headerView";
 //  点击元素响应方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
-        CommodityDetailsPageController *cdpController = [[CommodityDetailsPageController alloc] init];
+        cdpController = [[CommodityDetailsPageController alloc] init];
         //cdpController.hidesBottomBarWhenPushed = YES;
         //进入商品详情页隐藏tabbar
-        [[self rdv_tabBarController] setTabBarHidden:YES animated:NO];
+        [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
         //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
         cdpController.view.backgroundColor = [UIColor whiteColor];
         [self.navigationController pushViewController:cdpController animated:YES];
@@ -397,7 +405,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
         return CGSizeMake(50, 50);
     }
     else
-        return CGSizeMake(163, 163+50+30);
+        return CGSizeMake(163, 163+40+20);
 }
 
 //  定义单元格所在行line之间的距离,前一行和后一行的距离

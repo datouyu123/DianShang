@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "-setupRefresh"
             landmarkType = "5">
          </BreakpointContent>
@@ -54,7 +54,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/Post.m"
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "-loadNewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "-loadNewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "@implementation FirstCollectionViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -138,23 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "-loadLocalData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "120"
@@ -170,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "-loadLocalData"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,39 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "-loadLocalData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-loadLocalData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "137"
@@ -234,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "139"
@@ -250,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "-loadLocalData"
             landmarkType = "5">
          </BreakpointContent>
@@ -266,11 +218,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560538.499604"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "-loadLocalData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DianShang/FirstCollectionViewController.m"
+            timestampString = "460658662.111598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
+            landmarkName = "-loadLocalData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DianShang/FirstCollectionViewController.m"
+            timestampString = "460658662.111598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-loadLocalData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DianShang/FirstCollectionViewController.m"
+            timestampString = "460646460.49399"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-loadLocalData"
             landmarkType = "5">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "-reload:"
             landmarkType = "5">
             <Locations>
@@ -314,7 +314,7 @@
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/FirstCollectionViewController.m"
-                  timestampString = "460568111.82731"
+                  timestampString = "460608234.629283"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "205"
@@ -329,7 +329,7 @@
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/FirstCollectionViewController.m"
-                  timestampString = "460568111.827572"
+                  timestampString = "460608234.62945"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "205"
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
             landmarkName = "-loadLocalData"
             landmarkType = "5">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560538.499604"
+            timestampString = "460646460.49399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "-loadNewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "-setupRefresh"
             landmarkType = "5">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "-reload:"
             landmarkType = "5">
          </BreakpointContent>
@@ -442,7 +442,7 @@
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/Post.m"
-                  timestampString = "460568111.829606"
+                  timestampString = "460608234.630799"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "66"
@@ -457,7 +457,7 @@
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/Post.m"
-                  timestampString = "460568111.829772"
+                  timestampString = "460608234.630959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -472,7 +472,7 @@
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/Post.m"
-                  timestampString = "460568111.829897"
+                  timestampString = "460608234.631087"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -489,11 +489,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -553,11 +553,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/FirstCollectionViewController.m"
-            timestampString = "460560803.390591"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -569,11 +569,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/CommodityDetailsPageController.m"
-            timestampString = "460568234.612101"
+            timestampString = "460658662.111598"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DianShang/CommodityDetailsPageController.m"
+            timestampString = "460658662.111598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>

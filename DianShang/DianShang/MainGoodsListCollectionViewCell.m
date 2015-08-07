@@ -18,7 +18,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.title = [[UILabel alloc] initWithFrame:CGRectMake(0, 163, 163, 50)];
+        self.title = [[UILabel alloc] initWithFrame:CGRectMake(0, 163, 163, 40)];
         //self.title.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         self.title.textAlignment = NSTextAlignmentLeft;
         self.title.numberOfLines = 2;
@@ -26,7 +26,7 @@
         self.title.textColor = [UIColor colorWithRed:148.0/255.0 green:148.0/255.0 blue:148.0/255.0 alpha:1.0];
         [self.contentView addSubview:self.title];
         
-        self.price = [[UILabel alloc] initWithFrame:CGRectMake(0, 213, 163, 30)];
+        self.price = [[UILabel alloc] initWithFrame:CGRectMake(0, 203, 163, 20)];
         self.price.textAlignment = NSTextAlignmentLeft;
         self.price.font = [UIFont boldSystemFontOfSize:13.0];
         self.price.textColor = [UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0];

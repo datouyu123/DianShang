@@ -13,6 +13,11 @@
 @end
 
 @implementation MJRefreshAutoFooter
+#pragma mark - set
+- (void) setAppearencePercentTriggerAutoRefresh:(CGFloat)appearencePercentTriggerAutoRefresh
+{
+    _appearencePercentTriggerAutoRefresh = appearencePercentTriggerAutoRefresh;
+}
 
 #pragma mark - 初始化
 - (void)willMoveToSuperview:(UIView *)newSuperview
