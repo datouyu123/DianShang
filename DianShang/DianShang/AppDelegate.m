@@ -14,6 +14,7 @@
 #import "FirstCollectionViewController.h"
 #import "FirstCollectionViewLayout.h"
 #import "FMDBHelper.h"
+#import "WNXTopWindow.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // 添加一个window, 点击这个window, 可以让屏幕上的scrollView滚到最顶部
+    //[WNXTopWindow show];
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -33,6 +36,8 @@
     [self customizeInterface];
     //新建表
     [[FMDBHelper sharedFMDBHelper] createTableByName: @"GOODS_TABLE"];
+    
+    
 
     return YES;
 }

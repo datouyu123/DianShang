@@ -48,7 +48,7 @@ static NSString * const reuseIdentifier3 = @"contentCell";
 static NSString * const reuseIdentifier4 = @"headerView";
 //static NSString * const reuseIdentifier5 = @"headerView1";
 
-
+#pragma mark - Controller Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -66,9 +66,6 @@ static NSString * const reuseIdentifier4 = @"headerView";
     //背景颜色
     //self.collectionView.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
     self.collectionView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
-
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
     
     //搜索按钮
     searchButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 25, 25)];
@@ -107,6 +104,8 @@ static NSString * const reuseIdentifier4 = @"headerView";
     [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
     //取消向下滑动隐藏navigaitionbar向上滑动显示navigationbar
     self.navigationController.hidesBarsOnSwipe = NO;
+    //
+    //[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -114,7 +113,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark 加载本地数据
+#pragma mark - 加载本地数据
 - (void)loadLocalData
 {
     [[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"GOODS_TABLE"];
@@ -148,7 +147,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
 
 }
 
-#pragma mark UICollectionView 上下拉刷新
+#pragma mark UICollectionView - 上下拉刷新
 - (void)setupRefresh
 {
     // 下拉刷新
@@ -184,7 +183,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
 }
 
 
-#pragma mark 下拉刷新数据
+#pragma mark - 下拉刷新数据
 - (void)loadNewData
 {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
@@ -204,7 +203,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     
 }
 
-#pragma mark -AFNetworkingPart
+#pragma mark - AFNetworkingPart
 
 - (void)reload:(__unused id)sender
 {
@@ -261,7 +260,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
 }
 
-#pragma mark <UICollectionViewDataSource>
+#pragma mark - <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 3;
@@ -353,7 +352,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     return reusableView;
 }
 
-#pragma mark <UICollectionViewDelegate>
+#pragma mark - <UICollectionViewDelegate>
 
 
 // Uncomment this method to specify if the specified item should be highlighted during tracking

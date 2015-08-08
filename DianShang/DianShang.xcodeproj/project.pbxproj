@@ -161,6 +161,7 @@
 		2065E8F11B730AD600169D6B /* CommodityDetailsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2065E8F01B730AD600169D6B /* CommodityDetailsPageController.m */; };
 		20751CCA1B525806009A064F /* FirstCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CC91B525806009A064F /* FirstCollectionViewController.m */; };
 		20751CCE1B529DAD009A064F /* ASScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CCD1B529DAD009A064F /* ASScroll.m */; };
+		208F1B7E1B75AC7E00115CB7 /* WNXTopWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 208F1B7D1B75AC7E00115CB7 /* WNXTopWindow.m */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
 		20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF221B4E154A008FFF11 /* AppDelegate.m */; };
 		20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF241B4E154A008FFF11 /* DianShang.xcdatamodeld */; };
@@ -361,6 +362,8 @@
 		20751CC91B525806009A064F /* FirstCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstCollectionViewController.m; path = DianShang/FirstCollectionViewController.m; sourceTree = "<group>"; };
 		20751CCC1B529DAD009A064F /* ASScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScroll.h; sourceTree = "<group>"; };
 		20751CCD1B529DAD009A064F /* ASScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASScroll.m; sourceTree = "<group>"; };
+		208F1B7C1B75AC7E00115CB7 /* WNXTopWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNXTopWindow.h; path = DianShang/WNXTopWindow.h; sourceTree = "<group>"; };
+		208F1B7D1B75AC7E00115CB7 /* WNXTopWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNXTopWindow.m; path = DianShang/WNXTopWindow.m; sourceTree = "<group>"; };
 		20CAFF1A1B4E154A008FFF11 /* DianShang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DianShang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CAFF1E1B4E154A008FFF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFF1F1B4E154A008FFF11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1162,6 +1165,15 @@
 			path = ASScroll;
 			sourceTree = "<group>";
 		};
+		208F1B7A1B75AC3B00115CB7 /* WNXTopWindow */ = {
+			isa = PBXGroup;
+			children = (
+				208F1B7C1B75AC7E00115CB7 /* WNXTopWindow.h */,
+				208F1B7D1B75AC7E00115CB7 /* WNXTopWindow.m */,
+			);
+			name = WNXTopWindow;
+			sourceTree = "<group>";
+		};
 		20CAFF111B4E154A008FFF11 = {
 			isa = PBXGroup;
 			children = (
@@ -1250,6 +1262,7 @@
 		20CAFF541B4E2082008FFF11 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				208F1B7A1B75AC3B00115CB7 /* WNXTopWindow */,
 				20751CCB1B529DAD009A064F /* ASScroll */,
 				20CAFF551B4E209A008FFF11 /* RDVTabBarController */,
 			);
@@ -1591,6 +1604,7 @@
 				2058D8FB1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m in Sources */,
 				20CAFF291B4E154A008FFF11 /* ViewController.m in Sources */,
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
+				208F1B7E1B75AC7E00115CB7 /* WNXTopWindow.m in Sources */,
 				20F370E01B5F962800E8C243 /* AFAppDotNetAPIClient.m in Sources */,
 				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
 				204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */,
