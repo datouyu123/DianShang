@@ -9,12 +9,16 @@
 #import "CommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
 #import "MJRefresh.h"
+#import "ASScroll.h"
 
 #define IPHONE_W ([UIScreen mainScreen].bounds.size.width)
 #define IPHONE_H ([UIScreen mainScreen].bounds.size.height)
 #define NAVIGATIONBAR_H (self.navigationController.navigationBar.frame.size.height)
-#define TOOLBAR_H (toolbar.frame.size.height)
+#define TOOLBAR_H (48.0)
 #define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
+
+static NSString *CellIdentifier1 = @"ScrollPicCell";
+static NSString *CellIdentifier2 = @"BriefIntroCell";
 
 @interface CommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
 {
@@ -54,25 +58,29 @@
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
     //初始化toolbar
-    addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, TOOLBAR_H)];
+    addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W/3, TOOLBAR_H)];
+    NSLog(@"iphone_w=%f",IPHONE_W);
     //addToCartButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [addToCartButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     addToCartButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    [addToCartButton setBackgroundColor:[UIColor redColor]];
-    
+    [addToCartButton setBackgroundColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
     //[addToCartButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"addx:%f\naddy:%f",addToCartButton.frame.origin.x,addToCartButton.frame.origin.y);
     NSLog(@"color=%@",addToCartButton.backgroundColor);
     addToCartItem = [[UIBarButtonItem alloc] initWithCustomView:addToCartButton];
-    buyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, TOOLBAR_H)];
+    buyButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W/3, TOOLBAR_H)];
     [buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
     buyButton.titleLabel.font = [UIFont systemFontOfSize:16];
-    buyButton.layer.backgroundColor = [UIColor orangeColor].CGColor;
+    buyButton.backgroundColor = [UIColor orangeColor];
     buyItem = [[UIBarButtonItem alloc] initWithCustomView:buyButton];
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *fixItemFirst = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    fixItemFirst.width = -10;
+    UIBarButtonItem *fixItemSecond = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    fixItemSecond.width = -20;
     toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 48.0, self.view.frame.size.width, 48.0)];
-    [toolbar setItems:[NSArray arrayWithObjects:spaceItem, spaceItem, addToCartItem, buyItem, nil] animated:YES];
+    [toolbar setItems:[NSArray arrayWithObjects:spaceItem, spaceItem, addToCartItem, fixItemFirst, buyItem, fixItemSecond, nil] animated:YES];
     [toolbar setBarStyle:UIBarStyleBlack];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     
@@ -106,6 +114,9 @@
     [header setTitle:@"释放回到商品详情" forState:MJRefreshStatePulling];
     header.lastUpdatedTimeLabel.hidden = YES;
     self.cdpWebView.scrollView.header = header;
+    
+    //防止tableview多几行
+     [self.cdpTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 
 }
 
@@ -173,14 +184,100 @@
 //返回表格分区行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 50;
+    if (section == 0) {
+        return 1;
+    }
+    return 1;
 }
 //定制单元格内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
-    cell.textLabel.text = [NSString stringWithFormat:@"%ld--%ld",indexPath.section,indexPath.row];
-    return cell;
+    if(indexPath.section == 0)
+    {
+        /*
+         轮播图使用ASSCroll实现
+         
+         :returns: <#return value description#>
+         */
+        ASScroll *asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.width)];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+        
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier1];
+        }
+        else
+        {
+            //防止字体有重绘阴影
+            while ([cell.contentView.subviews lastObject] != nil)
+            {
+                [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+            }
+        }
+        
+        NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
+        UIImage *image1 = [UIImage imageNamed:@"shoeImage1.jpg"];
+        UIImage *image2 = [UIImage imageNamed:@"shoeImage2.jpg"];
+        UIImage *image3 = [UIImage imageNamed:@"shoeImage1.jpg"];
+        UIImageView *imageView1 = [[UIImageView alloc]initWithImage:image1];
+        [imagesArray addObject:imageView1];
+        UIImageView *imageView2 = [[UIImageView alloc]initWithImage:image2];
+        [imagesArray addObject:imageView2];
+        UIImageView *imageView3 = [[UIImageView alloc]initWithImage:image3];
+        [imagesArray addObject:imageView3];
+        
+        [asScroll setArrOfImages:imagesArray];
+        [cell.contentView addSubview:asScroll];
+
+        return cell;
+    }
+    else
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier2];
+        }
+        else
+        {
+            //防止字体有重绘阴影
+            while ([cell.contentView.subviews lastObject] != nil)
+            {
+                [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+            }
+        }
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        label.text = @"hello";
+        [cell.contentView addSubview:label];
+        return cell;
+
+    }
+
+}
+//返回tableview分区数
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+#pragma mark - UITableView Delegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        //return self.view.frame.size.height/2;
+        return self.view.frame.size.width;
+    }
+    else if (indexPath.section == 1)
+        return 100;
+    
+    return 0.1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section==1)
+    {
+        return 10;
+    }
+    return 0.1;
 }
 
 #pragma mark - get
@@ -222,8 +319,5 @@
     }
     return _cdpWebView;
 }
-
-
-#pragma mark - UITableView Delegate
 
 @end
