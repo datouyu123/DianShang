@@ -17,6 +17,7 @@
 @property (readonly, nonatomic, copy) NSString *goodCoverImgString;
 @property (readonly, nonatomic, unsafe_unretained) NSURL *coverImageURL;
 
+
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 @property (nonatomic, strong) NSImage *coverImage;
 #endif

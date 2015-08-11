@@ -1,26 +1,25 @@
 //
-//  CommodityDetailsPageController.m
+//  WXSCommodityDetailsPageController.m
 //  DianShang
 //
 //  Created by 张伟颖 on 15/8/6.
 //  Copyright © 2015年 XMUSoftware. All rights reserved.
 //  商品详情页
 
-#import "CommodityDetailsPageController.h"
+#import "WXSCommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
 #import "MJRefresh.h"
 #import "ASScroll.h"
+#import "WXSCommodityDetailsPageNameAndPriceCell.h"
+#import "WXSCommodityDetailsPageScrollImagesCell.h"
+#import "UIimageView+AFNetworking.h"
 
-#define IPHONE_W ([UIScreen mainScreen].bounds.size.width)
-#define IPHONE_H ([UIScreen mainScreen].bounds.size.height)
+
 #define NAVIGATIONBAR_H (self.navigationController.navigationBar.frame.size.height)
 #define TOOLBAR_H (48.0)
 #define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
 
-static NSString *CellIdentifier1 = @"ScrollPicCell";
-static NSString *CellIdentifier2 = @"BriefIntroCell";
-
-@interface CommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
+@interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
 {
     //动态定义工具栏
     UIToolbar *toolbar;
@@ -36,7 +35,7 @@ static NSString *CellIdentifier2 = @"BriefIntroCell";
 
 @end
 
-@implementation CommodityDetailsPageController
+@implementation WXSCommodityDetailsPageController
 
 #pragma mark - Controller Life Cycle
 - (void)viewDidLoad
@@ -192,18 +191,16 @@ static NSString *CellIdentifier2 = @"BriefIntroCell";
 //定制单元格内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    static NSString *kCellIdentifier1 = @"ScrollPicCell";
+    static NSString *kCellIdentifier2 = @"BriefIntroCell";
+
     if(indexPath.section == 0)
     {
-        /*
-         轮播图使用ASSCroll实现
-         
-         :returns: <#return value description#>
-         */
-        ASScroll *asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.width)];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier1];
+
+        WXSCommodityDetailsPageScrollImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier1];
         
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier1];
+        if (cell == nil) {
+            cell = [[WXSCommodityDetailsPageScrollImagesCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier1];
         }
         else
         {
@@ -214,27 +211,15 @@ static NSString *CellIdentifier2 = @"BriefIntroCell";
             }
         }
         
-        NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
-        UIImage *image1 = [UIImage imageNamed:@"shoeImage1.jpg"];
-        UIImage *image2 = [UIImage imageNamed:@"shoeImage2.jpg"];
-        UIImage *image3 = [UIImage imageNamed:@"shoeImage1.jpg"];
-        UIImageView *imageView1 = [[UIImageView alloc]initWithImage:image1];
-        [imagesArray addObject:imageView1];
-        UIImageView *imageView2 = [[UIImageView alloc]initWithImage:image2];
-        [imagesArray addObject:imageView2];
-        UIImageView *imageView3 = [[UIImageView alloc]initWithImage:image3];
-        [imagesArray addObject:imageView3];
-        
-        [asScroll setArrOfImages:imagesArray];
-        [cell.contentView addSubview:asScroll];
+        [cell setGoods:self.post];
 
         return cell;
     }
     else
     {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier2];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier2];
+        WXSCommodityDetailsPageNameAndPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier2];
+        if (cell == nil) {
+            cell = [[WXSCommodityDetailsPageNameAndPriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier2];
         }
         else
         {
@@ -244,9 +229,7 @@ static NSString *CellIdentifier2 = @"BriefIntroCell";
                 [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
             }
         }
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
-        label.text = @"hello";
-        [cell.contentView addSubview:label];
+        [cell setGoods:self.post];
         return cell;
 
     }

@@ -11,9 +11,6 @@
 @class Post;
 @interface MainGoodsListCollectionViewCell : UICollectionViewCell
 
-@property (strong, nonatomic) UIImageView *coverImageView;
-@property (strong, nonatomic) UILabel *title;
-@property (strong, nonatomic) UILabel *price;
-
 - (void)setGoods:(Post *)post;
+
 @end

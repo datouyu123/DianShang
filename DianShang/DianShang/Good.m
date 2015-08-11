@@ -19,7 +19,6 @@ NSString * const kUserCoverImageDidLoadNotification = @"com.alamofire.user.profi
 @property (readwrite, nonatomic, copy) NSString *goodTag;
 @property (readwrite, nonatomic, copy) NSString *goodCoverImgString;
 
-
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 @property (readwrite, nonatomic, strong) AFHTTPRequestOperation *coverImageRequestOperation;
 #endif
@@ -39,7 +38,6 @@ NSString * const kUserCoverImageDidLoadNotification = @"com.alamofire.user.profi
     self.goodPrice = [attributes valueForKeyPath:@"goods_price"];
     self.goodTag = [attributes valueForKeyPath:@"goods_tag"];
     self.goodCoverImgString = [attributes valueForKeyPath:@"goods_image_string"];
-    
     
     return self;
 }

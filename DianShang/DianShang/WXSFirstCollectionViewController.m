@@ -1,13 +1,13 @@
 //
-//  FirstCollectionViewController.m
+//  WXSFirstCollectionViewController.m
 //  DianShang
 //
 //  Created by 张伟颖 on 15/7/12.
 //  Copyright (c) 2015年 XMUSoftware. All rights reserved.
 //
 
-#import "FirstCollectionViewController.h"
-#import "CommodityDetailsPageController.h"
+#import "WXSFirstCollectionViewController.h"
+#import "WXSCommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
 #import "ASScroll.h"
 #import "MainButtonCollectionViewCell.h"
@@ -23,14 +23,14 @@
 
 static const CGFloat MJDuration = 2.0;
 
-@interface FirstCollectionViewController ()
+@interface WXSFirstCollectionViewController ()
 {
     //定义搜索按钮
     UIButton *searchButton;
     //定义扫一扫按钮
     UIButton *saoButton;
     //定义商品详情页控制器
-    CommodityDetailsPageController *cdpController;
+    WXSCommodityDetailsPageController *cdpController;
 }
 /*!
  用于添加AFNetworking
@@ -40,12 +40,12 @@ static const CGFloat MJDuration = 2.0;
 
 @end
 
-@implementation FirstCollectionViewController
+@implementation WXSFirstCollectionViewController
 
-static NSString * const reuseIdentifier1 = @"adCell";
-static NSString * const reuseIdentifier2 = @"btnCell";
-static NSString * const reuseIdentifier3 = @"contentCell";
-static NSString * const reuseIdentifier4 = @"headerView";
+static NSString * const kReuseIdentifier1 = @"adCell";
+static NSString * const kReuseIdentifier2 = @"btnCell";
+static NSString * const kReuseIdentifier3 = @"contentCell";
+static NSString * const kReuseIdentifier4 = @"headerView";
 //static NSString * const reuseIdentifier5 = @"headerView1";
 
 #pragma mark - Controller Life Cycle
@@ -56,10 +56,10 @@ static NSString * const reuseIdentifier4 = @"headerView";
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier1];
-    [self.collectionView registerClass:[MainButtonCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier2];
-    [self.collectionView registerClass:[MainGoodsListCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier3];
-    [self.collectionView registerClass:[MainHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4];
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:kReuseIdentifier1];
+    [self.collectionView registerClass:[MainButtonCollectionViewCell class] forCellWithReuseIdentifier:kReuseIdentifier2];
+    [self.collectionView registerClass:[MainGoodsListCollectionViewCell class] forCellWithReuseIdentifier:kReuseIdentifier3];
+    [self.collectionView registerClass:[MainHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kReuseIdentifier4];
     //[self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5];
     
     // Do any additional setup after loading the view.
@@ -289,7 +289,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
         :returns: <#return value description#>
         */
         ASScroll *asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, self.collectionView.frame.size.width, self.collectionView.frame.size.width * 0.25)];
-                UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier1 forIndexPath:indexPath];
+        UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier1 forIndexPath:indexPath];
       
         NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
         UIImage *image1 = [UIImage imageNamed:@"ad_1.jpg"];
@@ -310,7 +310,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     }
     else if(indexPath.section == 1)
     {
-        MainButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier2 forIndexPath:indexPath];
+        MainButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier2 forIndexPath:indexPath];
         cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
         //cell.button.imageView.image = [UIImage imageNamed:@"sao.png"];
         [cell.layer setBorderWidth:2.0f];
@@ -321,7 +321,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     }
     else
     {
-        MainGoodsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier3 forIndexPath:indexPath];
+        MainGoodsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier3 forIndexPath:indexPath];
         [cell setGoods:[self.posts objectAtIndex:indexPath.row]];
         // Configure the cell
         
@@ -338,7 +338,7 @@ static NSString * const reuseIdentifier4 = @"headerView";
     //定义分栏标题
     if (kind == UICollectionElementKindSectionHeader && indexPath.section == 2){
         
-        MainHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier4 forIndexPath:indexPath];
+        MainHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kReuseIdentifier4 forIndexPath:indexPath];
         //reusableView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:reuseIdentifier5 forIndexPath:indexPath];
         headerView.layer.borderWidth = 1.0f;
         headerView.layer.borderColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0].CGColor;
@@ -380,12 +380,14 @@ static NSString * const reuseIdentifier4 = @"headerView";
 //  点击元素响应方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
-        cdpController = [[CommodityDetailsPageController alloc] init];
+        cdpController = [[WXSCommodityDetailsPageController alloc] init];
         //cdpController.hidesBottomBarWhenPushed = YES;
         //进入商品详情页隐藏tabbar
         [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
         //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
         cdpController.view.backgroundColor = [UIColor whiteColor];
+        //
+        cdpController.post = [self.posts objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:cdpController animated:YES];
     }
     

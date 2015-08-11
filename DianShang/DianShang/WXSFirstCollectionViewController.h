@@ -1,5 +1,5 @@
 //
-//  FirstCollectionViewController.h
+//  WXSFirstCollectionViewController.h
 //  DianShang
 //
 //  Created by 张伟颖 on 15/7/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstCollectionViewController : UICollectionViewController
+@interface WXSFirstCollectionViewController : UICollectionViewController
 
 @end

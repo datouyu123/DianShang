@@ -10,8 +10,10 @@
 #ifndef Prefix_pch
 #define Prefix_pch
 
-
+#define IPHONE_W ([UIScreen mainScreen].bounds.size.width)
+#define IPHONE_H ([UIScreen mainScreen].bounds.size.height)
 #endif /* Prefix_pch */
+
 
 
 
@@ -34,3 +36,4 @@
 #import <CoreServices/CoreServices.h>
 #endif
 #endif
+

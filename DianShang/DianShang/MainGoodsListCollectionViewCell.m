@@ -10,7 +10,13 @@
 #import "Post.h"
 #import "Good.h"
 #import "UIimageView+AFNetworking.h"
-
+@interface MainGoodsListCollectionViewCell ()
+{
+    UIImageView *coverImageView;
+    UILabel *title;
+    UILabel *price;
+}
+@end
 @implementation MainGoodsListCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame
@@ -18,24 +24,24 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.title = [[UILabel alloc] initWithFrame:CGRectMake(0, 163, 163, 40)];
-        //self.title.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-        self.title.textAlignment = NSTextAlignmentLeft;
-        self.title.numberOfLines = 2;
-        self.title.font = [UIFont boldSystemFontOfSize:13.0];
-        self.title.textColor = [UIColor colorWithRed:148.0/255.0 green:148.0/255.0 blue:148.0/255.0 alpha:1.0];
-        [self.contentView addSubview:self.title];
+        title = [[UILabel alloc] initWithFrame:CGRectMake(0, 163, 163, 40)];
+        //title.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+        title.textAlignment = NSTextAlignmentLeft;
+        title.numberOfLines = 2;
+        title.font = [UIFont boldSystemFontOfSize:13.0];
+        title.textColor = [UIColor colorWithRed:148.0/255.0 green:148.0/255.0 blue:148.0/255.0 alpha:1.0];
+        [self.contentView addSubview:title];
         
-        self.price = [[UILabel alloc] initWithFrame:CGRectMake(0, 203, 163, 20)];
-        self.price.textAlignment = NSTextAlignmentLeft;
-        self.price.font = [UIFont boldSystemFontOfSize:13.0];
-        self.price.textColor = [UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0];
-        self.price.text = @"11111";
-        self.price.numberOfLines = 1;
-        [self.contentView addSubview:self.price];
+        price = [[UILabel alloc] initWithFrame:CGRectMake(0, 203, 163, 20)];
+        price.textAlignment = NSTextAlignmentLeft;
+        price.font = [UIFont boldSystemFontOfSize:13.0];
+        price.textColor = [UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0];
+        price.text = @"11111";
+        price.numberOfLines = 1;
+        [self.contentView addSubview:price];
         
-        self.coverImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 163, 163)];
-        [self.contentView addSubview:self.coverImageView];
+        coverImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 163, 163)];
+        [self.contentView addSubview:coverImageView];
         
     }
     return self;
@@ -44,11 +50,11 @@
 - (void)setGoods:(Post *)post {
     
     //商品标题
-    self.title.text = post.good.goodTitle;
+    title.text = post.good.goodTitle;
     //商品价格
-    self.price.text = post.good.goodPrice;
+    price.text = post.good.goodPrice;
     //商品图片
-    [self.coverImageView setImageWithURL:post.good.coverImageURL placeholderImage:[UIImage imageNamed:@"profile-image-placeholder.jpg"]];
+    [coverImageView setImageWithURL:post.good.coverImageURL placeholderImage:[UIImage imageNamed:@"profile-image-placeholder.jpg"]];
 
 }
 

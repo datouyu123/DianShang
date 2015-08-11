@@ -11,7 +11,7 @@
 #import "RDVTabBar.h"
 #import "RDVTabBarItem.h"
 #import "ViewController.h"
-#import "FirstCollectionViewController.h"
+#import "WXSFirstCollectionViewController.h"
 #import "FirstCollectionViewLayout.h"
 #import "FMDBHelper.h"
 #import "WNXTopWindow.h"
@@ -153,7 +153,7 @@
     FirstCollectionViewLayout *flowLayout = [[FirstCollectionViewLayout alloc] init];
     //[flowLayout setItemSize:CGSizeMake(375, 200)];
     //[flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    FirstCollectionViewController *firstViewController = [[FirstCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
+    UICollectionViewController *firstViewController = [[WXSFirstCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:firstViewController];
     [firstViewController setTitle:@"首页"];

@@ -13,8 +13,8 @@
 @interface Post : NSObject
 
 @property (nonatomic, assign) NSUInteger postID;
-@property (nonatomic, strong) NSString *goodType; //
-
+@property (nonatomic, strong) NSString *goodType;
+@property (nonatomic, strong) NSArray *detailCoverImages;//详情页滚动图片集
 @property (nonatomic, strong) Good *good;
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;
