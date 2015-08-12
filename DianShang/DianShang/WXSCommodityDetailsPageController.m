@@ -13,6 +13,8 @@
 #import "WXSCommodityDetailsPageNameAndPriceCell.h"
 #import "WXSCommodityDetailsPageScrollImagesCell.h"
 #import "UIimageView+AFNetworking.h"
+#import "Post.h"
+#import "Good.h"
 
 
 #define NAVIGATIONBAR_H (self.navigationController.navigationBar.frame.size.height)
@@ -52,7 +54,7 @@
     [self.view addSubview:self.cdpScrollView];
     [self.cdpScrollView addSubview:self.cdpTableView];
     [self.cdpScrollView addSubview:self.cdpWebView];
-    [self.cdpWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]]];
+    //[self.cdpWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.baidu.com"]]];
     //tableview和webview头部不被navigationbar挡住
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -134,6 +136,11 @@
     //设置scrollview下边距
     self.cdpTableView.contentInset = UIEdgeInsetsMake(0, 0, TOOLBAR_H+NAVIGATIONBAR_H+STATUSBAR_H+44, 0);
     self.cdpWebView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, TOOLBAR_H+NAVIGATIONBAR_H+STATUSBAR_H, 0);
+    //初始化webview
+    NSURLRequest* request =
+    [NSURLRequest requestWithURL:[NSURL URLWithString:self.post.good.goodURL]];
+    
+    [self.cdpWebView loadRequest:request];
 }
 
 #pragma mark - UIScrollView Delegate
@@ -200,7 +207,7 @@
         WXSCommodityDetailsPageScrollImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier1];
         
         if (cell == nil) {
-            cell = [[WXSCommodityDetailsPageScrollImagesCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:kCellIdentifier1];
+            cell = [[WXSCommodityDetailsPageScrollImagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier1];
         }
         else
         {
@@ -246,7 +253,7 @@
 {
     if (indexPath.section == 0) {
         //return self.view.frame.size.height/2;
-        return self.view.frame.size.width;
+        return IPHONE_W;
     }
     else if (indexPath.section == 1)
         return 100;

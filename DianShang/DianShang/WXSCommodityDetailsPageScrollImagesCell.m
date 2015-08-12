@@ -11,7 +11,9 @@
 #import "Post.h"
 #import "Good.h"
 #import "UIimageView+AFNetworking.h"
-
+/**
+ *  因为滚动图总会向下偏移到下一个cell一点，找不到好的方法，所以暂时把坐标向上移动10
+ */
 @interface WXSCommodityDetailsPageScrollImagesCell ()
 {
     ASScroll *asScroll;
@@ -27,7 +29,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, IPHONE_W, IPHONE_W)];
+        asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, -10.0, IPHONE_W, IPHONE_W)];
+        NSLog(@"%f",IPHONE_W);
         [self.contentView addSubview:asScroll];
     }
     return self;
@@ -37,12 +40,8 @@
 {
     NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
     for (NSString *string in post.detailCoverImages) {
-        UIImageView *scrollImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        UIImageView *scrollImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, -10.0, self.frame.size.width, self.frame.size.height)];
         [scrollImageView setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"profile-image-placeholder.jpg"]];
-        [scrollImageView setContentScaleFactor:[[UIScreen mainScreen] scale]];
-        scrollImageView.contentMode =  UIViewContentModeScaleAspectFill;
-        scrollImageView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        scrollImageView.clipsToBounds  = YES;
         [imagesArray addObject:scrollImageView];
     }
     [asScroll setArrOfImages:imagesArray];

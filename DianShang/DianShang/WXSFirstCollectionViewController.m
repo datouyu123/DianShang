@@ -385,7 +385,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         //进入商品详情页隐藏tabbar
         [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
         //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
-        cdpController.view.backgroundColor = [UIColor whiteColor];
+        cdpController.view.backgroundColor = [UIColor lightGrayColor];
         //
         cdpController.post = [self.posts objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:cdpController animated:YES];
