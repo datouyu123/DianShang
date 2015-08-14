@@ -19,7 +19,7 @@
         return nil;
     }
     
-    self.postID = (NSUInteger)[[attributes valueForKeyPath:@"tid"] integerValue];
+    self.postID = (NSUInteger)[[attributes valueForKeyPath:@"itemid"] integerValue];
     self.goodType = [attributes valueForKeyPath:@"type"];
     self.detailCoverImages = [attributes valueForKeyPath:@"detailcoverimgs"];
 
@@ -34,14 +34,14 @@
 + (NSURLSessionDataTask *)globalTimelinePostsWithBlock:(void (^)(NSArray *posts, NSError *error))block
 {
     //afnetworking demo:@"stream/0/posts/stream/global"
-    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"] ;
-    return [[AFAppDotNetAPIClient sharedClient] POST:@"" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
+    [[AFAppDotNetAPIClient sharedClient].requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    return [[AFAppDotNetAPIClient sharedClient] GET:@"" parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON)
     {
         if ([JSON isKindOfClass:[NSDictionary class]]) {
             NSLog(@"\n开始调用POST.M\n");
             
             NSLog(@"\n这是JSON%@\n", JSON);
-            NSArray *postsFromResponse = [JSON valueForKeyPath:@"message"];
+            NSDictionary *postsFromResponse = [JSON valueForKeyPath:@"message"];
             
             
             NSLog(@"\n这是JSON二层%@\n", postsFromResponse);

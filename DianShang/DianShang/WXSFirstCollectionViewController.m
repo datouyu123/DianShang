@@ -8,6 +8,7 @@
 
 #import "WXSFirstCollectionViewController.h"
 #import "WXSCommodityDetailsPageController.h"
+#import "WXSCommodityDetailsPageChooseController.h"
 #import "RDVTabBarController.h"
 #import "ASScroll.h"
 #import "MainButtonCollectionViewCell.h"
@@ -257,7 +258,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     //刷新结束shangla
     [self.collectionView.header endRefreshing];
     NSLog(@"\n下拉结束\n");
-    [UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
+    //[UIAlertView showAlertViewForTaskWithErrorOnCompletion:task delegate:nil];
 }
 
 #pragma mark - <UICollectionViewDataSource>
@@ -386,9 +387,16 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
         //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
         cdpController.view.backgroundColor = [UIColor lightGrayColor];
-        //
+        //将post实体数据传入详情页
         cdpController.post = [self.posts objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:cdpController animated:YES];
+        //
+        //
+        WXSCommodityDetailsPageChooseController *rightMenuViewController = [[WXSCommodityDetailsPageChooseController alloc] init];
+        RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:cdpController
+                                                                        leftMenuViewController:nil
+                                                                       rightMenuViewController:rightMenuViewController];
+
+        [self.navigationController pushViewController:sideMenuViewController animated:YES];
     }
     
 }

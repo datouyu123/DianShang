@@ -26,15 +26,18 @@ PODS:
   - FMDB/standard (2.5):
     - FMDB/common
   - MJRefresh (2.3.1)
+  - RESideMenu (4.0.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - FMDB
   - MJRefresh
+  - RESideMenu (~> 4.0.7)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   MJRefresh: fa22d5d753aaceb4e76232ce264cb2dca90b323f
+  RESideMenu: f24c508404b49c667344c54aba7e590883533958
 
 COCOAPODS: 0.37.2

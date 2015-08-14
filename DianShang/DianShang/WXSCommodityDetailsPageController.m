@@ -5,9 +5,11 @@
 //  Created by 张伟颖 on 15/8/6.
 //  Copyright © 2015年 XMUSoftware. All rights reserved.
 //  商品详情页
+//  NAVIGATIONBAR_H = 44    TOOLBAR_H = 48  STATUSBAR_H = 20
 
 #import "WXSCommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
+#import "WXSCommodityDetailsPageChooseController.h"
 #import "MJRefresh.h"
 #import "ASScroll.h"
 #import "WXSCommodityDetailsPageNameAndPriceCell.h"
@@ -65,7 +67,7 @@
     [addToCartButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     addToCartButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [addToCartButton setBackgroundColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
-    //[addToCartButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [addToCartButton addTarget:self action:@selector(presentRightMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"addx:%f\naddy:%f",addToCartButton.frame.origin.x,addToCartButton.frame.origin.y);
     NSLog(@"color=%@",addToCartButton.backgroundColor);
     addToCartItem = [[UIBarButtonItem alloc] initWithCustomView:addToCartButton];
@@ -118,6 +120,12 @@
     
     //防止tableview多几行
      [self.cdpTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    //
+    WXSCommodityDetailsPageChooseController *rightMenuViewController = [[WXSCommodityDetailsPageChooseController alloc] init];
+    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:self
+                                                                    leftMenuViewController:nil
+                                                                   rightMenuViewController:rightMenuViewController];
+    [self.navigationController setViewControllers:sideMenuViewController];
 
 }
 
@@ -141,6 +149,8 @@
     [NSURLRequest requestWithURL:[NSURL URLWithString:self.post.good.goodURL]];
     
     [self.cdpWebView loadRequest:request];
+    //
+    NSLog(@"N=%f,T=%f,S=%f",NAVIGATIONBAR_H,TOOLBAR_H,STATUSBAR_H);
 }
 
 #pragma mark - UIScrollView Delegate

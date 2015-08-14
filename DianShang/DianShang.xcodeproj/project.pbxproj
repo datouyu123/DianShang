@@ -162,10 +162,11 @@
 		2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8FD1B57AB41001AC233 /* MainHeaderView.m */; };
 		2058D9001B57B57C001AC233 /* header_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8FF1B57B57C001AC233 /* header_banner.png */; };
 		2065E8EE1B723F4600169D6B /* profile-image-placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2065E8ED1B723F4600169D6B /* profile-image-placeholder.jpg */; };
-		2065E8F11B730AD600169D6B /* WXSCommodityDetailsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2065E8F01B730AD600169D6B /* WXSCommodityDetailsPageController.m */; };
 		20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */; };
 		20751CCE1B529DAD009A064F /* ASScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CCD1B529DAD009A064F /* ASScroll.m */; };
 		208F1B7E1B75AC7E00115CB7 /* WNXTopWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 208F1B7D1B75AC7E00115CB7 /* WNXTopWindow.m */; };
+		20A6271B1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */; };
+		20A6271E1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6271D1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.m */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
 		20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF221B4E154A008FFF11 /* AppDelegate.m */; };
 		20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF241B4E154A008FFF11 /* DianShang.xcdatamodeld */; };
@@ -366,14 +367,16 @@
 		2058D8FD1B57AB41001AC233 /* MainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHeaderView.m; sourceTree = "<group>"; };
 		2058D8FF1B57B57C001AC233 /* header_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_banner.png; sourceTree = "<group>"; };
 		2065E8ED1B723F4600169D6B /* profile-image-placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "profile-image-placeholder.jpg"; path = "../DianPing/profile-image-placeholder.jpg"; sourceTree = "<group>"; };
-		2065E8EF1B730AD600169D6B /* WXSCommodityDetailsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSCommodityDetailsPageController.h; path = DianShang/WXSCommodityDetailsPageController.h; sourceTree = "<group>"; };
-		2065E8F01B730AD600169D6B /* WXSCommodityDetailsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageController.m; path = DianShang/WXSCommodityDetailsPageController.m; sourceTree = "<group>"; };
 		20751CC81B525806009A064F /* WXSFirstCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSFirstCollectionViewController.h; path = DianShang/WXSFirstCollectionViewController.h; sourceTree = "<group>"; };
 		20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSFirstCollectionViewController.m; path = DianShang/WXSFirstCollectionViewController.m; sourceTree = "<group>"; };
 		20751CCC1B529DAD009A064F /* ASScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScroll.h; sourceTree = "<group>"; };
 		20751CCD1B529DAD009A064F /* ASScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASScroll.m; sourceTree = "<group>"; };
 		208F1B7C1B75AC7E00115CB7 /* WNXTopWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WNXTopWindow.h; path = DianShang/WNXTopWindow.h; sourceTree = "<group>"; };
 		208F1B7D1B75AC7E00115CB7 /* WNXTopWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WNXTopWindow.m; path = DianShang/WNXTopWindow.m; sourceTree = "<group>"; };
+		20A627191B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSCommodityDetailsPageController.h; path = DianShang/WXSCommodityDetailsPageController.h; sourceTree = "<group>"; };
+		20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageController.m; path = DianShang/WXSCommodityDetailsPageController.m; sourceTree = "<group>"; };
+		20A6271C1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSCommodityDetailsPageChooseController.h; path = DianShang/WXSCommodityDetailsPageChooseController.h; sourceTree = "<group>"; };
+		20A6271D1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageChooseController.m; path = DianShang/WXSCommodityDetailsPageChooseController.m; sourceTree = "<group>"; };
 		20CAFF1A1B4E154A008FFF11 /* DianShang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DianShang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CAFF1E1B4E154A008FFF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFF1F1B4E154A008FFF11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1268,8 +1271,10 @@
 			children = (
 				20751CC81B525806009A064F /* WXSFirstCollectionViewController.h */,
 				20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */,
-				2065E8EF1B730AD600169D6B /* WXSCommodityDetailsPageController.h */,
-				2065E8F01B730AD600169D6B /* WXSCommodityDetailsPageController.m */,
+				20A627191B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.h */,
+				20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */,
+				20A6271C1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.h */,
+				20A6271D1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -1613,6 +1618,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A6271E1B7CEB66002FAAD2 /* WXSCommodityDetailsPageChooseController.m in Sources */,
 				2058D8F21B566121001AC233 /* MainButtonCVLayoutAttributes.m in Sources */,
 				20CC60961B63650B00D95A95 /* MainGoodsListCollectionViewCell.m in Sources */,
 				20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */,
@@ -1625,6 +1631,7 @@
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
 				208F1B7E1B75AC7E00115CB7 /* WNXTopWindow.m in Sources */,
 				20F370E01B5F962800E8C243 /* AFAppDotNetAPIClient.m in Sources */,
+				20A6271B1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m in Sources */,
 				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
 				204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */,
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
@@ -1637,7 +1644,6 @@
 				20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */,
 				2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */,
 				20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */,
-				2065E8F11B730AD600169D6B /* WXSCommodityDetailsPageController.m in Sources */,
 				20751CCE1B529DAD009A064F /* ASScroll.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
