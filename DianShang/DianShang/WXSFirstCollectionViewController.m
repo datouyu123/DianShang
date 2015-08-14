@@ -8,7 +8,8 @@
 
 #import "WXSFirstCollectionViewController.h"
 #import "WXSCommodityDetailsPageController.h"
-#import "WXSCommodityDetailsPageChooseController.h"
+#import "WXSCommodityDetailsPageAddToCartController.h"
+#import "WXSCommodityDetailsPageBuyController.h"
 #import "RDVTabBarController.h"
 #import "ASScroll.h"
 #import "MainButtonCollectionViewCell.h"
@@ -53,6 +54,15 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //防止view被自定义navigationbar挡住
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        // For insetting with a navigation bar
+        UIEdgeInsets insets = UIEdgeInsetsMake(64, 0, 0, 0);
+        self.collectionView.contentInset = insets;
+        self.collectionView.scrollIndicatorInsets = insets;
+    }
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -68,19 +78,6 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     //self.collectionView.backgroundColor = [UIColor colorWithRed:240.0/255.0 green:240.0/255.0 blue:240.0/255.0 alpha:1.0];
     self.collectionView.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0];
     
-    //搜索按钮
-    searchButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 25, 25)];
-    [searchButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    [searchButton setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:searchButton];
-    self.navigationItem.rightBarButtonItem=right;
-    
-    //扫一扫按钮
-    saoButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 25, 25)];
-    [saoButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    [saoButton setImage:[UIImage imageNamed:@"sao.png"] forState:UIControlStateNormal];
-    UIBarButtonItem *left=[[UIBarButtonItem alloc]initWithCustomView:saoButton];
-    self.navigationItem.leftBarButtonItem=left;
     
     //加载本地数据
     //[self loadLocalData];
@@ -93,25 +90,52 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    //自定义navigationbar
+    [self styleNavBar];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
-    //修改navigationbar背景颜色及title颜色
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    [super viewDidAppear:YES];
     //进入商品详情页显示tabbar
     [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
-    //取消向下滑动隐藏navigaitionbar向上滑动显示navigationbar
-    self.navigationController.hidesBarsOnSwipe = NO;
-    //
-    //[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - custom navigationbar
+- (void)styleNavBar {
+    // 1. hide the existing nav bar
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    // 2. create a new nav bar and style it
+    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+    [newNavBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
+    
+    // 3. add a new navigation item w/title to the new nav bar
+    UINavigationItem *titleItem = [[UINavigationItem alloc] init];
+    titleItem.title = @"首页";
+    [newNavBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName,nil]];
+    //搜索按钮
+    searchButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 25, 25)];
+    [searchButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [searchButton setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:searchButton];
+    titleItem.rightBarButtonItem=right;
+    
+    //扫一扫按钮
+    saoButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 25, 25)];
+    [saoButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    [saoButton setImage:[UIImage imageNamed:@"sao.png"] forState:UIControlStateNormal];
+    UIBarButtonItem *left=[[UIBarButtonItem alloc]initWithCustomView:saoButton];
+    titleItem.leftBarButtonItem=left;
+    
+    [newNavBar setItems:@[titleItem]];
+    // 4. add the nav bar to the main view
+    [self.view addSubview:newNavBar];
 }
 
 #pragma mark - 加载本地数据
@@ -390,12 +414,16 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         //将post实体数据传入详情页
         cdpController.post = [self.posts objectAtIndex:indexPath.row];
         //
-        //
-        WXSCommodityDetailsPageChooseController *rightMenuViewController = [[WXSCommodityDetailsPageChooseController alloc] init];
+        //初始化包含侧边栏的详情页
+        WXSCommodityDetailsPageAddToCartController *leftMenuViewController = [[WXSCommodityDetailsPageAddToCartController alloc] init];
+        WXSCommodityDetailsPageBuyController *rightMenuViewController = [[WXSCommodityDetailsPageBuyController alloc] init];
         RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:cdpController
-                                                                        leftMenuViewController:nil
+                                                                        leftMenuViewController:leftMenuViewController
                                                                        rightMenuViewController:rightMenuViewController];
-
+        //设置从主视图到侧边栏不能通过滑动，只能点击toolbar按钮进行
+        //sideMenuViewController.interactivePopGestureRecognizerEnabled = NO;
+        //sideMenuViewController.panFromEdge = NO;
+        sideMenuViewController.panGestureEnabled = NO;
         [self.navigationController pushViewController:sideMenuViewController animated:YES];
     }
     

@@ -6,8 +6,14 @@
 //  Copyright © 2015年 XMUSoftware. All rights reserved.
 //
 
-#import "WXSCommodityDetailsPageChooseController.h"
+#import "WXSCommodityDetailsPageAddToCartController.h"
 
-@implementation WXSCommodityDetailsPageChooseController
+@implementation WXSCommodityDetailsPageAddToCartController
+
+- (void)viewDidLoad
+{
+ 
+}
+
 
 @end

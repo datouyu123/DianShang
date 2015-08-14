@@ -29,7 +29,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, -10.0, IPHONE_W, IPHONE_W)];
+        asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, IPHONE_W, IPHONE_W-10)];
         NSLog(@"%f",IPHONE_W);
         [self.contentView addSubview:asScroll];
     }
@@ -40,7 +40,7 @@
 {
     NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
     for (NSString *string in post.detailCoverImages) {
-        UIImageView *scrollImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, -10.0, self.frame.size.width, self.frame.size.height)];
+        UIImageView *scrollImageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [scrollImageView setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"profile-image-placeholder.jpg"]];
         [imagesArray addObject:scrollImageView];
     }

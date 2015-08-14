@@ -9,7 +9,7 @@
 
 #import "WXSCommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
-#import "WXSCommodityDetailsPageChooseController.h"
+
 #import "MJRefresh.h"
 #import "ASScroll.h"
 #import "WXSCommodityDetailsPageNameAndPriceCell.h"
@@ -26,6 +26,7 @@
 @interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
 {
     //动态定义工具栏
+    UINavigationBar *newNavBar;
     UIToolbar *toolbar;
     UIButton *addToCartButton;
     UIButton *buyButton;
@@ -44,8 +45,20 @@
 #pragma mark - Controller Life Cycle
 - (void)viewDidLoad
 {
-    self.title = @"商品详情";
-   
+    //self.title = @"商品详情";
+    //防止view被自定义navigationbar挡住
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        // For insetting with a navigation bar
+        UIEdgeInsets insets = UIEdgeInsetsMake(64, 0, 0, 0);
+        self.cdpScrollView.contentInset = insets;
+        self.cdpScrollView.scrollIndicatorInsets = insets;
+        self.cdpTableView.contentInset = insets;
+        self.cdpTableView.scrollIndicatorInsets = insets;
+        self.cdpWebView.scrollView.contentInset = insets;
+        self.cdpWebView.scrollView.scrollIndicatorInsets = insets;
+    }
     //控件添加到视图上
     /**
      *  设置一个 UIScrollView 作为视图底层，并且设置分页为两页
@@ -60,6 +73,7 @@
     //tableview和webview头部不被navigationbar挡住
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
+    self.navigationController.navigationBar.translucent = NO;
     //初始化toolbar
     addToCartButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W/3, TOOLBAR_H)];
     NSLog(@"iphone_w=%f",IPHONE_W);
@@ -67,7 +81,7 @@
     [addToCartButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     addToCartButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [addToCartButton setBackgroundColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
-    [addToCartButton addTarget:self action:@selector(presentRightMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [addToCartButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
     NSLog(@"addx:%f\naddy:%f",addToCartButton.frame.origin.x,addToCartButton.frame.origin.y);
     NSLog(@"color=%@",addToCartButton.backgroundColor);
     addToCartItem = [[UIBarButtonItem alloc] initWithCustomView:addToCartButton];
@@ -75,6 +89,7 @@
     [buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
     buyButton.titleLabel.font = [UIFont systemFontOfSize:16];
     buyButton.backgroundColor = [UIColor orangeColor];
+    [buyButton addTarget:self action:@selector(presentRightMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
     buyItem = [[UIBarButtonItem alloc] initWithCustomView:buyButton];
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
@@ -121,29 +136,21 @@
     //防止tableview多几行
      [self.cdpTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     //
-    WXSCommodityDetailsPageChooseController *rightMenuViewController = [[WXSCommodityDetailsPageChooseController alloc] init];
-    RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:self
-                                                                    leftMenuViewController:nil
-                                                                   rightMenuViewController:rightMenuViewController];
-    [self.navigationController setViewControllers:sideMenuViewController];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
-    //修改navigationbar背景颜色及title颜色
-    [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0],NSForegroundColorAttributeName,nil]];
-    //修改navigationbar返回键颜色
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleDefault;
-    [self.navigationController.navigationBar setTintColor:[UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1.0]];
+    //自定义navigationbar
+    [self styleNavBar];
+    //使滑动返回手势在自定义的navbar上生效
+    __weak id weakSelf = self;
+    self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
     //进入商品详情页隐藏tabbar
     [[self rdv_tabBarController] setTabBarHidden:YES animated:NO];
     //设置scrollview下边距
-    self.cdpTableView.contentInset = UIEdgeInsetsMake(0, 0, TOOLBAR_H+NAVIGATIONBAR_H+STATUSBAR_H+44, 0);
-    self.cdpWebView.scrollView.contentInset = UIEdgeInsetsMake(0, 0, TOOLBAR_H+NAVIGATIONBAR_H+STATUSBAR_H, 0);
+    self.cdpTableView.contentInset = UIEdgeInsetsMake(64, 0, TOOLBAR_H+44, 0);
+    self.cdpWebView.scrollView.contentInset = UIEdgeInsetsMake(64, 0, TOOLBAR_H, 0);
     //初始化webview
     NSURLRequest* request =
     [NSURLRequest requestWithURL:[NSURL URLWithString:self.post.good.goodURL]];
@@ -151,6 +158,32 @@
     [self.cdpWebView loadRequest:request];
     //
     NSLog(@"N=%f,T=%f,S=%f",NAVIGATIONBAR_H,TOOLBAR_H,STATUSBAR_H);
+    //
+}
+
+#pragma mark - custom navigationbar
+- (void)styleNavBar {
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+    [newNavBar setBarTintColor:[UIColor whiteColor]];
+    UINavigationItem *titleItem = [[UINavigationItem alloc] init];
+    titleItem.title = @"商品详情";
+    
+    // BackButtonBlack is an image we created and added to the app’s asset catalog
+    UIImage *backButtonImage = [UIImage imageNamed:@"back_icon.png"];
+    
+    // any buttons in a navigation bar are UIBarButtonItems, not just regular UIButtons. backTapped: is the method we’ll call when this button is tapped
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
+    
+    // the bar button item is actually set on the navigation item, not the navigation bar itself.
+    titleItem.leftBarButtonItem = backBarButtonItem;
+    
+    [newNavBar setItems:@[titleItem]];
+    [self.view addSubview:newNavBar];
+}
+
+- (void)backTapped:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UIScrollView Delegate

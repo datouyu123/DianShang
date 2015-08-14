@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 
-@interface WXSCommodityDetailsPageChooseController : UIViewController
+@interface WXSCommodityDetailsPageAddToCartController : UIViewController
 
 @end

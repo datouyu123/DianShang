@@ -14,7 +14,6 @@
 #import "WXSFirstCollectionViewController.h"
 #import "FirstCollectionViewLayout.h"
 #import "FMDBHelper.h"
-#import "WNXTopWindow.h"
 
 @interface AppDelegate ()
 
