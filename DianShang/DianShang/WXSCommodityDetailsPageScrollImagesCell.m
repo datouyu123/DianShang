@@ -8,8 +8,6 @@
 
 #import "WXSCommodityDetailsPageScrollImagesCell.h"
 #import "ASScroll.h"
-#import "Post.h"
-#import "Good.h"
 #import "UIimageView+AFNetworking.h"
 /**
  *  因为滚动图总会向下偏移到下一个cell一点，找不到好的方法，所以暂时把坐标向上移动10

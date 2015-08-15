@@ -10,6 +10,7 @@
 #import "Post.h"
 #import "Good.h"
 #import "UIimageView+AFNetworking.h"
+
 @interface MainGoodsListCollectionViewCell ()
 {
     UIImageView *coverImageView;

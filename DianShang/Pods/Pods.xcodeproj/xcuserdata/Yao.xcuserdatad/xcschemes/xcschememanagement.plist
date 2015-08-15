@@ -4,22 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-FMDB.xcscheme</key>
+		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MJRefresh.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-RESideMenu.xcscheme</key>
+		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,30 +24,35 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RESideMenu.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>82DB6B41F9D7159BE16D56DA</key>
+		<key>2965E38DCEBC6E89D5362BA6561D3FBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9D2B1600E9CD6111BA348D29</key>
+		<key>5377E5BF3E8DC8F1B9404F73CA086A5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C9486C6317F8793F1D3367CE</key>
+		<key>7FE3CD452D7273F9372FC6DE6E0722E9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DAB15C4F91467B8630AE59CA</key>
+		<key>8CEA18C344982753ECC716373C4B2E9D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E62025AF57149E5ED6B29F68</key>
+		<key>9FE5AB18B7410113CC9CE902DB789254</key>
 		<dict>
 			<key>primary</key>
 			<true/>

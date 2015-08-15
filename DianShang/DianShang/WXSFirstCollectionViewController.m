@@ -8,8 +8,6 @@
 
 #import "WXSFirstCollectionViewController.h"
 #import "WXSCommodityDetailsPageController.h"
-#import "WXSCommodityDetailsPageAddToCartController.h"
-#import "WXSCommodityDetailsPageBuyController.h"
 #import "RDVTabBarController.h"
 #import "ASScroll.h"
 #import "MainButtonCollectionViewCell.h"
@@ -406,7 +404,6 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 2) {
         cdpController = [[WXSCommodityDetailsPageController alloc] init];
-        //cdpController.hidesBottomBarWhenPushed = YES;
         //进入商品详情页隐藏tabbar
         [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
         //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
@@ -414,17 +411,8 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         //将post实体数据传入详情页
         cdpController.post = [self.posts objectAtIndex:indexPath.row];
         //
-        //初始化包含侧边栏的详情页
-        WXSCommodityDetailsPageAddToCartController *leftMenuViewController = [[WXSCommodityDetailsPageAddToCartController alloc] init];
-        WXSCommodityDetailsPageBuyController *rightMenuViewController = [[WXSCommodityDetailsPageBuyController alloc] init];
-        RESideMenu *sideMenuViewController = [[RESideMenu alloc] initWithContentViewController:cdpController
-                                                                        leftMenuViewController:leftMenuViewController
-                                                                       rightMenuViewController:rightMenuViewController];
-        //设置从主视图到侧边栏不能通过滑动，只能点击toolbar按钮进行
-        //sideMenuViewController.interactivePopGestureRecognizerEnabled = NO;
-        //sideMenuViewController.panFromEdge = NO;
-        sideMenuViewController.panGestureEnabled = NO;
-        [self.navigationController pushViewController:sideMenuViewController animated:YES];
+        
+        [self.navigationController pushViewController:cdpController animated:YES];
     }
     
 }

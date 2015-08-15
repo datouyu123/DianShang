@@ -1,8 +1,8 @@
 //
-//  WXSCommodityDetailsPageScrollImages.h
+//  WXSCommodityDetailsPagePopupViewFirstCell.h
 //  DianShang
 //
-//  Created by 张伟颖 on 15/8/11.
+//  Created by 张伟颖 on 15/8/16.
 //  Copyright © 2015年 XMUSoftware. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "Post.h"
 #import "Good.h"
 
-@interface WXSCommodityDetailsPageScrollImagesCell : UITableViewCell
+@interface WXSCommodityDetailsPagePopupViewFirstCell : UITableViewCell
 
 - (void)setGoods:(Post *)post;
 

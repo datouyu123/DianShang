@@ -163,10 +163,10 @@
 		20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */; };
 		20751CCE1B529DAD009A064F /* ASScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CCD1B529DAD009A064F /* ASScroll.m */; };
 		20A6271B1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */; };
-		20A6271E1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6271D1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.m */; };
 		20A627201B7D9F6C002FAAD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A6271F1B7D9F6C002FAAD2 /* Images.xcassets */; };
 		20A627261B7DAD05002FAAD2 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A627251B7DAD05002FAAD2 /* back_icon.png */; };
-		20BA92631B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BA92621B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.m */; };
+		20BA926A1B7F1FE70095F38E /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BA92691B7F1FE70095F38E /* CNPPopupController.m */; };
+		20BA92701B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BA926F1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
 		20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF221B4E154A008FFF11 /* AppDelegate.m */; };
 		20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF241B4E154A008FFF11 /* DianShang.xcdatamodeld */; };
@@ -370,12 +370,12 @@
 		20751CCD1B529DAD009A064F /* ASScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASScroll.m; sourceTree = "<group>"; };
 		20A627191B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSCommodityDetailsPageController.h; path = DianShang/WXSCommodityDetailsPageController.h; sourceTree = "<group>"; };
 		20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageController.m; path = DianShang/WXSCommodityDetailsPageController.m; sourceTree = "<group>"; };
-		20A6271C1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSCommodityDetailsPageAddToCartController.h; path = DianShang/WXSCommodityDetailsPageAddToCartController.h; sourceTree = "<group>"; };
-		20A6271D1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageAddToCartController.m; path = DianShang/WXSCommodityDetailsPageAddToCartController.m; sourceTree = "<group>"; };
 		20A6271F1B7D9F6C002FAAD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20A627251B7DAD05002FAAD2 /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
-		20BA92611B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSCommodityDetailsPageBuyController.h; path = DianShang/WXSCommodityDetailsPageBuyController.h; sourceTree = "<group>"; };
-		20BA92621B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageBuyController.m; path = DianShang/WXSCommodityDetailsPageBuyController.m; sourceTree = "<group>"; };
+		20BA92681B7F1FE70095F38E /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
+		20BA92691B7F1FE70095F38E /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
+		20BA926E1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSCommodityDetailsPagePopupViewFirstCell.h; sourceTree = "<group>"; };
+		20BA926F1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSCommodityDetailsPagePopupViewFirstCell.m; sourceTree = "<group>"; };
 		20CAFF1A1B4E154A008FFF11 /* DianShang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DianShang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20CAFF1E1B4E154A008FFF11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFF1F1B4E154A008FFF11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -1143,6 +1143,8 @@
 				201EF9FC1B78F28100C191A9 /* WXSCommodityDetailsPageNameAndPriceCell.m */,
 				205364DD1B7A513A00986398 /* WXSCommodityDetailsPageScrollImagesCell.h */,
 				205364DE1B7A513A00986398 /* WXSCommodityDetailsPageScrollImagesCell.m */,
+				20BA926E1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.h */,
+				20BA926F1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1178,6 +1180,15 @@
 				20751CCD1B529DAD009A064F /* ASScroll.m */,
 			);
 			path = ASScroll;
+			sourceTree = "<group>";
+		};
+		20BA92671B7F1FE70095F38E /* CNPPopupController */ = {
+			isa = PBXGroup;
+			children = (
+				20BA92681B7F1FE70095F38E /* CNPPopupController.h */,
+				20BA92691B7F1FE70095F38E /* CNPPopupController.m */,
+			);
+			path = CNPPopupController;
 			sourceTree = "<group>";
 		};
 		20CAFF111B4E154A008FFF11 = {
@@ -1261,10 +1272,6 @@
 				20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */,
 				20A627191B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.h */,
 				20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */,
-				20A6271C1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.h */,
-				20A6271D1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.m */,
-				20BA92611B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.h */,
-				20BA92621B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -1273,6 +1280,7 @@
 		20CAFF541B4E2082008FFF11 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				20BA92671B7F1FE70095F38E /* CNPPopupController */,
 				20751CCB1B529DAD009A064F /* ASScroll */,
 				20CAFF551B4E209A008FFF11 /* RDVTabBarController */,
 			);
@@ -1606,7 +1614,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20A6271E1B7CEB66002FAAD2 /* WXSCommodityDetailsPageAddToCartController.m in Sources */,
 				2058D8F21B566121001AC233 /* MainButtonCVLayoutAttributes.m in Sources */,
 				20CC60961B63650B00D95A95 /* MainGoodsListCollectionViewCell.m in Sources */,
 				20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */,
@@ -1614,6 +1621,7 @@
 				2058D8E61B550662001AC233 /* MainButtonCollectionViewCell.m in Sources */,
 				20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */,
 				204B5B901B5CBA340069194E /* MJChiBaoZiHeader.m in Sources */,
+				20BA926A1B7F1FE70095F38E /* CNPPopupController.m in Sources */,
 				2058D8FB1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m in Sources */,
 				20CAFF291B4E154A008FFF11 /* ViewController.m in Sources */,
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
@@ -1624,13 +1632,13 @@
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
 				205364DF1B7A513A00986398 /* WXSCommodityDetailsPageScrollImagesCell.m in Sources */,
 				20F370E81B5FB56300E8C243 /* Good.m in Sources */,
-				20BA92631B7E4BB00095F38E /* WXSCommodityDetailsPageBuyController.m in Sources */,
 				2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */,
 				20F370E51B5FB3F700E8C243 /* Post.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
 				2058D8EF1B56557F001AC233 /* MainButtonbgView.m in Sources */,
 				20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */,
 				2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */,
+				20BA92701B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m in Sources */,
 				20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */,
 				20751CCE1B529DAD009A064F /* ASScroll.m in Sources */,
 			);

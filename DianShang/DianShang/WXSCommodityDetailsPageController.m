@@ -9,11 +9,12 @@
 
 #import "WXSCommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
-
+#import "CNPPopupController.h"
 #import "MJRefresh.h"
 #import "ASScroll.h"
 #import "WXSCommodityDetailsPageNameAndPriceCell.h"
 #import "WXSCommodityDetailsPageScrollImagesCell.h"
+#import "WXSCommodityDetailsPagePopupViewFirstCell.h"
 #import "UIimageView+AFNetworking.h"
 #import "Post.h"
 #import "Good.h"
@@ -23,7 +24,7 @@
 #define TOOLBAR_H (48.0)
 #define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
 
-@interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate>
+@interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate,CNPPopupControllerDelegate>
 {
     //动态定义工具栏
     UINavigationBar *newNavBar;
@@ -34,9 +35,12 @@
     UIBarButtonItem *buyItem;
 }
 
-@property(strong,nonatomic)UIScrollView *cdpScrollView;
-@property(strong,nonatomic)UITableView *cdpTableView;
-@property(strong,nonatomic)UIWebView *cdpWebView;
+@property (strong,nonatomic) UIScrollView *cdpScrollView;
+@property (strong,nonatomic) UITableView *cdpTableView;
+@property (strong,nonatomic) UITableView *popupTableView;
+@property (strong,nonatomic) UIWebView *cdpWebView;
+@property (nonatomic, strong) CNPPopupController *addToCartController;
+@property (nonatomic, strong) CNPPopupController *buyController;
 
 @end
 
@@ -81,7 +85,9 @@
     [addToCartButton setTitle:@"加入购物车" forState:UIControlStateNormal];
     addToCartButton.titleLabel.font = [UIFont systemFontOfSize:16];
     [addToCartButton setBackgroundColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
-    [addToCartButton addTarget:self action:@selector(presentLeftMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [addToCartButton addTarget:self action:@selector(showPopupFormSheet:) forControlEvents:UIControlEventTouchUpInside];
+    //有利于传参，告诉点击按钮事件是“加入购物车按钮”，以弹出相应popview
+    [addToCartButton setTag:100];
     NSLog(@"addx:%f\naddy:%f",addToCartButton.frame.origin.x,addToCartButton.frame.origin.y);
     NSLog(@"color=%@",addToCartButton.backgroundColor);
     addToCartItem = [[UIBarButtonItem alloc] initWithCustomView:addToCartButton];
@@ -89,7 +95,9 @@
     [buyButton setTitle:@"立即购买" forState:UIControlStateNormal];
     buyButton.titleLabel.font = [UIFont systemFontOfSize:16];
     buyButton.backgroundColor = [UIColor orangeColor];
-    [buyButton addTarget:self action:@selector(presentRightMenuViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [buyButton addTarget:self action:@selector(showPopupFormSheet:) forControlEvents:UIControlEventTouchUpInside];
+    //有利于传参，告诉点击按钮事件是“立即购买按钮”，以弹出相应popview
+    [buyButton setTag:200];
     buyItem = [[UIBarButtonItem alloc] initWithCustomView:buyButton];
     
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
@@ -118,6 +126,7 @@
     // 设置文字
     [footer setTitle:@"上拉查看图文详情" forState:MJRefreshStateIdle];
     [footer setTitle:@"松开查看图文详情" forState:MJRefreshStatePulling];
+    [footer setTitle:@"" forState:MJRefreshStateRefreshing];
     self.cdpTableView.footer = footer;
     
     //设置UIWebView 有下拉操作
@@ -130,11 +139,13 @@
     //设置文字
     [header setTitle:@"下拉回到商品详情" forState:MJRefreshStateIdle];
     [header setTitle:@"释放回到商品详情" forState:MJRefreshStatePulling];
+    [header setTitle:@"" forState:MJRefreshStateRefreshing];
     header.lastUpdatedTimeLabel.hidden = YES;
     self.cdpWebView.scrollView.header = header;
     
     //防止tableview多几行
      [self.cdpTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.popupTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     //
 }
 
@@ -161,7 +172,7 @@
     //
 }
 
-#pragma mark - custom navigationbar
+#pragma mark - Custom NavigationBar
 - (void)styleNavBar {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
@@ -182,8 +193,96 @@
     [self.view addSubview:newNavBar];
 }
 
+
 - (void)backTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - PopupView Setting
+- (void)showPopupFormSheet:(id)sender {
+    if ([sender tag] == 100) {
+        [self showPopupWithStyle:CNPPopupStyleActionSheet flag:100];
+    }
+    else if([sender tag] == 200)
+    {
+        [self showPopupWithStyle:CNPPopupStyleActionSheet flag:200];
+    }
+}
+
+// flag: 判断点击的是“加入购物车”按钮还是“立即购买”按钮
+- (void)showPopupWithStyle:(CNPPopupStyle)popupStyle flag:(NSInteger)i
+{
+//    NSMutableParagraphStyle *paragraphStyle = NSMutableParagraphStyle.new;
+//    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+//    paragraphStyle.alignment = NSTextAlignmentCenter;
+//    
+//    NSAttributedString *title = [[NSAttributedString alloc] initWithString:@"It's A Popup!" attributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:24], NSParagraphStyleAttributeName : paragraphStyle}];
+//    NSAttributedString *lineOne = [[NSAttributedString alloc] initWithString:@"You can add text and images" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSParagraphStyleAttributeName : paragraphStyle}];
+//    NSAttributedString *lineTwo = [[NSAttributedString alloc] initWithString:@"With style, using NSAttributedString" attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:18], NSForegroundColorAttributeName : [UIColor colorWithRed:0.46 green:0.8 blue:1.0 alpha:1.0], NSParagraphStyleAttributeName : paragraphStyle}];
+//    
+    CNPPopupButton *button = [[CNPPopupButton alloc] initWithFrame:CGRectMake(0, 0, 200, 60)];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    [button setTitle:@"Close Me" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor colorWithRed:0.46 green:0.8 blue:1.0 alpha:1.0];
+    button.layer.cornerRadius = 4;
+////    SecondViewController *svc = [[SecondViewController alloc] init];
+////    svc.view.backgroundColor = [UIColor lightGrayColor];
+    button.selectionHandler = ^(CNPPopupButton *button){
+        if (i == 100) {
+            [self.addToCartController dismissPopupControllerAnimated:YES];
+        }
+        else if (i == 200)
+        {
+            [self.buyController dismissPopupControllerAnimated:YES];
+        }
+//        
+////        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////            [self.navigationController pushViewController:svc animated:YES];
+////        });
+//        
+        NSLog(@"Block for button: %@", button.titleLabel.text);
+        
+    };
+//    
+//    UILabel *titleLabel = [[UILabel alloc] init];
+//    titleLabel.numberOfLines = 0;
+//    titleLabel.attributedText = title;
+//    
+//    UILabel *lineOneLabel = [[UILabel alloc] init];
+//    lineOneLabel.numberOfLines = 0;
+//    lineOneLabel.attributedText = lineOne;
+//    
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon"]];
+//    
+//    UILabel *lineTwoLabel = [[UILabel alloc] init];
+//    lineTwoLabel.numberOfLines = 0;
+//    lineTwoLabel.attributedText = lineTwo;
+//    
+//    
+//    UIView *customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 250, 55)];
+//    customView.backgroundColor = [UIColor lightGrayColor];
+//    
+//    UITextField *textFied = [[UITextField alloc] initWithFrame:CGRectMake(10, 10, 230, 35)];
+//    textFied.borderStyle = UITextBorderStyleRoundedRect;
+//    textFied.placeholder = @"Custom view!";
+//    [customView addSubview:textFied];
+    if (i == 100) {
+        self.addToCartController = [[CNPPopupController alloc] initWithContents:@[self.popupTableView, button]];
+        self.addToCartController.theme = [CNPPopupTheme defaultTheme];
+        self.addToCartController.theme.popupStyle = popupStyle;
+        self.addToCartController.delegate = self;
+        [self.addToCartController presentPopupControllerAnimated:YES];
+    }
+    else if (i == 200) {
+        self.buyController = [[CNPPopupController alloc] initWithContents:@[self.popupTableView, button]];
+        self.buyController.theme = [CNPPopupTheme defaultTheme];
+        self.buyController.theme.popupStyle = popupStyle;
+        //self.addToCartController.theme.maskType = CNPPopupMaskTypeClear;
+        self.buyController.delegate = self;
+        [self.buyController presentPopupControllerAnimated:YES];
+    }
+    
 }
 
 #pragma mark - UIScrollView Delegate
@@ -233,84 +332,157 @@
 //返回表格分区行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if ([tableView isEqual:self.cdpTableView]) {
+        if (section == 0) {
+            return 1;
+        }
         return 1;
     }
-    return 1;
+    else if([tableView isEqual:self.popupTableView])
+        return 2;
+    else
+        return 0;
 }
 //定制单元格内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *kCellIdentifier1 = @"ScrollPicCell";
-    static NSString *kCellIdentifier2 = @"BriefIntroCell";
-
-    if(indexPath.section == 0)
-    {
-
-        WXSCommodityDetailsPageScrollImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier1];
+    if ([tableView isEqual:self.cdpTableView]) {
+        static NSString *kCellIdentifier1 = @"ScrollPicCell";
+        static NSString *kCellIdentifier2 = @"BriefIntroCell";
         
-        if (cell == nil) {
-            cell = [[WXSCommodityDetailsPageScrollImagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier1];
+        if(indexPath.section == 0)
+        {
+            
+            WXSCommodityDetailsPageScrollImagesCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier1];
+            
+            if (cell == nil) {
+                cell = [[WXSCommodityDetailsPageScrollImagesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier1];
+            }
+            else
+            {
+                //防止字体有重绘阴影
+                while ([cell.contentView.subviews lastObject] != nil)
+                {
+                    [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+                }
+            }
+            
+            [cell setGoods:self.post];
+            
+            return cell;
         }
         else
         {
-            //防止字体有重绘阴影
-            while ([cell.contentView.subviews lastObject] != nil)
-            {
-                [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+            WXSCommodityDetailsPageNameAndPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier2];
+            if (cell == nil) {
+                cell = [[WXSCommodityDetailsPageNameAndPriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier2];
             }
+            else
+            {
+                //防止字体有重绘阴影
+                while ([cell.contentView.subviews lastObject] != nil)
+                {
+                    [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+                }
+            }
+            [cell setGoods:self.post];
+            return cell;
+            
         }
-        
-        [cell setGoods:self.post];
 
-        return cell;
+    }
+    else if([tableView isEqual:self.popupTableView])
+    {
+        static NSString *kCellIdentifier3 = @"PicAndPriceCell";
+        static NSString *kCellIdentifier4 = @"StepperCell";
+        if(indexPath.row == 0)
+        {
+            WXSCommodityDetailsPagePopupViewFirstCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier3];
+            
+            if (cell == nil) {
+                cell = [[WXSCommodityDetailsPagePopupViewFirstCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier3];
+            }
+            else
+            {
+                //防止字体有重绘阴影
+                while ([cell.contentView.subviews lastObject] != nil)
+                {
+                    [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+                }
+            }
+            [cell setGoods:self.post];
+            return cell;
+        }
+        else
+        {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier4];
+            
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier4];
+            }
+            else
+            {
+                //防止字体有重绘阴影
+                while ([cell.contentView.subviews lastObject] != nil)
+                {
+                    [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
+                }
+            }
+        
+            return cell;
+        }
     }
     else
-    {
-        WXSCommodityDetailsPageNameAndPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier2];
-        if (cell == nil) {
-            cell = [[WXSCommodityDetailsPageNameAndPriceCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier2];
-        }
-        else
-        {
-            //防止字体有重绘阴影
-            while ([cell.contentView.subviews lastObject] != nil)
-            {
-                [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
-            }
-        }
-        [cell setGoods:self.post];
-        return cell;
-
-    }
-
+        return nil;
 }
 //返回tableview分区数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    if ([tableView isEqual:self.cdpTableView]) {
+        return 2;
+    }
+    else if([tableView isEqual:self.popupTableView])
+        return 1;
+    else
+        return 0;
 }
 
 #pragma mark - UITableView Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        //return self.view.frame.size.height/2;
-        return IPHONE_W;
+    if ([tableView isEqual:self.cdpTableView]) {
+        if (indexPath.section == 0) {
+            //return self.view.frame.size.height/2;
+            return IPHONE_W;
+        }
+        else if (indexPath.section == 1)
+            return 100;
+        
+        return 0.1;
     }
-    else if (indexPath.section == 1)
+    else if([tableView isEqual:self.popupTableView])
+    {
         return 100;
-    
-    return 0.1;
+    }
+    else
+        return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section==1)
-    {
-        return 10;
+    if ([tableView isEqual:self.cdpTableView]) {
+        if (section==1)
+        {
+            return 10;
+        }
+        return 0.1;
     }
-    return 0.1;
+    else if([tableView isEqual:self.popupTableView])
+    {
+        return 0.1;
+    }
+    else
+        return 0;
 }
 
 #pragma mark - get
@@ -341,6 +513,18 @@
         _cdpTableView.dataSource = self;
     }
     return _cdpTableView;
+}
+
+-(UITableView *)popupTableView
+{
+    if (_popupTableView == nil)
+    {
+        _popupTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_W, 200)
+                                                    style:UITableViewStylePlain];
+        _popupTableView.delegate = self;
+        _popupTableView.dataSource = self;
+    }
+    return _popupTableView;
 }
 
 -(UIWebView *)cdpWebView
