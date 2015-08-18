@@ -9,6 +9,13 @@
 #import "WXSCommodityDetailsPagePopupViewFirstCell.h"
 #import "UIimageView+AFNetworking.h"
 
+@interface WXSCommodityDetailsPagePopupViewFirstCell ()
+{
+    
+}
+
+@end
+
 @implementation WXSCommodityDetailsPagePopupViewFirstCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style
@@ -17,11 +24,17 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         //self.textLabel.adjustsFontSizeToFitWidth = NO;
         self.textLabel.numberOfLines = 1;
         self.textLabel.font = [UIFont systemFontOfSize:16.0f];
         self.textLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0];
-        //self.imageView.frame = CGRectMake(0, 0, 80, 80);
+        self.imageView.frame = CGRectMake(5, 5, 90, 90);
+        
+        self.closeButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(IPHONE_W-40, 10, 30, 30)];
+        [self.closeButton setBackgroundImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        
+        [self.contentView addSubview:self.closeButton];
     }
     return self;
 }
@@ -37,7 +50,8 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(0, 0, 90, 90);
+    self.imageView.frame = CGRectMake(5, 5, 90, 90);
+    self.closeButton.frame = CGRectMake(IPHONE_W-40, 10, 30, 30);
 }
 
 @end

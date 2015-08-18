@@ -26,6 +26,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         title = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, IPHONE_W-10, 60)];
         title.textAlignment = NSTextAlignmentLeft;
         title.numberOfLines = 2;

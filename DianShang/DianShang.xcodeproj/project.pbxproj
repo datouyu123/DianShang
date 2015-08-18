@@ -178,6 +178,7 @@
 		20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF591B4E209A008FFF11 /* RDVTabBarController.m */; };
 		20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */; };
 		20CC60961B63650B00D95A95 /* MainGoodsListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CC60951B63650B00D95A95 /* MainGoodsListCollectionViewCell.m */; };
+		20D4A7EC1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20D4A7EB1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m */; };
 		20EF32D71B5D2E6D0096A015 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */; };
 		20F370E01B5F962800E8C243 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F370DF1B5F962800E8C243 /* AFAppDotNetAPIClient.m */; };
 		20F370E51B5FB3F700E8C243 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 20F370E41B5FB3F700E8C243 /* Post.m */; };
@@ -397,6 +398,8 @@
 		20CAFF5B1B4E209A008FFF11 /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
 		20CC60941B63650B00D95A95 /* MainGoodsListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainGoodsListCollectionViewCell.h; sourceTree = "<group>"; };
 		20CC60951B63650B00D95A95 /* MainGoodsListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainGoodsListCollectionViewCell.m; sourceTree = "<group>"; };
+		20D4A7EA1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSCommodityDetailsPagePopupViewSecondCell.h; sourceTree = "<group>"; };
+		20D4A7EB1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSCommodityDetailsPagePopupViewSecondCell.m; sourceTree = "<group>"; };
 		20EF32D61B5D2E6D0096A015 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		20F370DE1B5F962800E8C243 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
 		20F370DF1B5F962800E8C243 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
@@ -1145,6 +1148,8 @@
 				205364DE1B7A513A00986398 /* WXSCommodityDetailsPageScrollImagesCell.m */,
 				20BA926E1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.h */,
 				20BA926F1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m */,
+				20D4A7EA1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.h */,
+				20D4A7EB1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1630,6 +1635,7 @@
 				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
 				204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */,
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
+				20D4A7EC1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m in Sources */,
 				205364DF1B7A513A00986398 /* WXSCommodityDetailsPageScrollImagesCell.m in Sources */,
 				20F370E81B5FB56300E8C243 /* Good.m in Sources */,
 				2058D8DB1B535210001AC233 /* FirstCollectionViewLayout.m in Sources */,

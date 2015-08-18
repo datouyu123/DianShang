@@ -27,6 +27,8 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         asScroll = [[ASScroll alloc] initWithFrame:CGRectMake(0.0, 0.0, IPHONE_W, IPHONE_W-10)];
         NSLog(@"%f",IPHONE_W);
         [self.contentView addSubview:asScroll];
