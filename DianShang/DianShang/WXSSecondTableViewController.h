@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WXSSecondTableViewController : UITableViewController
+@interface WXSSecondTableViewController : UIViewController
 
 @end

@@ -13,8 +13,10 @@
 #import "WXSSecondTableViewCell.h"
 
 @interface WXSSecondTableViewController ()<UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
+{}
 
 @property (readwrite, nonatomic, strong) NSMutableArray *goods;
+@property (strong,nonatomic) UITableView *tableView;
 
 @end
 
@@ -23,7 +25,19 @@
 #pragma mark - Controller Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //防止view被自定义navigationbar挡住
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
+        // For insetting with a navigation bar
+        UIEdgeInsets insets = UIEdgeInsetsMake(64, 0, 0, 0);
+        self.tableView.contentInset = insets;
+        self.tableView.scrollIndicatorInsets = insets;
+    }
+    //初始化显示数组
     self.goods = [[NSMutableArray alloc] init];
+    //tableview添加到控制器视图
+    [self.view addSubview:self.tableView];
     //防止tableview多几行
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
@@ -34,6 +48,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    //自定义navigationbar
+    [self styleNavBar];
     //[[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"SHOPPING_CART_TABLE"];
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
 
@@ -43,6 +59,39 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - custom navigationbar
+- (void)styleNavBar {
+    // 1. hide the existing nav bar
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    // 2. create a new nav bar and style it
+    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+    //[newNavBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
+    
+    // 3. add a new navigation item w/title to the new nav bar
+    UINavigationItem *titleItem = [[UINavigationItem alloc] init];
+    titleItem.title = @"购物车";
+    [newNavBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,nil]];
+    //搜索按钮
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllInCart)];
+    right.tintColor = [UIColor grayColor];
+    titleItem.rightBarButtonItem=right;
+    
+    [newNavBar setItems:@[titleItem]];
+    // 4. add the nav bar to the main view
+    [self.view addSubview:newNavBar];
+}
+
+//清空购物车
+- (void)deleteAllInCart
+{
+    [[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"SHOPPING_CART_TABLE"];
+    self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
+    
+    [self.tableView reloadData];
+
 }
 
 #pragma mark - Table view data source
@@ -125,6 +174,20 @@
         default:
             break;
     }
+}
+
+#pragma mark - get
+
+-(UITableView *)tableView
+{
+    if (_tableView == nil)
+    {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H)
+                                                    style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
 }
 
 @end
