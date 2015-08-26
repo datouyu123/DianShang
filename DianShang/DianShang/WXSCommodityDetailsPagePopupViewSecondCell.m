@@ -12,7 +12,6 @@
 {
     UILabel *textLabel;
 }
-@property(nonatomic, strong) PKYStepper *stepper;
 
 @end
 

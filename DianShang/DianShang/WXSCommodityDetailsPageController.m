@@ -19,13 +19,14 @@
 #import "UIimageView+AFNetworking.h"
 #import "Post.h"
 #import "Good.h"
-
+#import "FMDBHelper.h"
+#import "MBProgressHUD.h"
 
 #define NAVIGATIONBAR_H (self.navigationController.navigationBar.frame.size.height)
 #define TOOLBAR_H (48.0)
 #define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
 
-@interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate,CNPPopupControllerDelegate>
+@interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate,CNPPopupControllerDelegate, MBProgressHUDDelegate>
 {
     //动态定义工具栏
     UINavigationBar *newNavBar;
@@ -34,6 +35,9 @@
     UIButton *buyButton;
     UIBarButtonItem *addToCartItem;
     UIBarButtonItem *buyItem;
+    //提示完成加入购物车提示框
+    MBProgressHUD *addToCartHUD;
+    Post *p;
 }
 
 @property (strong,nonatomic) UIScrollView *cdpScrollView;
@@ -50,6 +54,7 @@
 #pragma mark - Controller Life Cycle
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     //self.title = @"商品详情";
     //防止view被自定义navigationbar挡住
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
@@ -227,21 +232,110 @@
     okButton.selectionHandler = ^(CNPPopupButton *button){
         
         [self.popupController dismissPopupControllerAnimated:YES];
-        
-//        
-////        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////            [self.navigationController pushViewController:svc animated:YES];
-////        });
-//        
+        if (i == 100) {
+            [self AddToCart];
+        }
+        //
+        ////        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        ////            [self.navigationController pushViewController:svc animated:YES];
+        ////        });
+        //
         NSLog(@"Block for button: %@", button.titleLabel.text);
     };
-    
+
     self.popupController = [[CNPPopupController alloc] initWithContents:@[self.popupTableView, okButton]];
     self.popupController.theme = [CNPPopupTheme defaultTheme];
     self.popupController.theme.popupStyle = popupStyle;
     self.popupController.delegate = self;
     [self.popupController presentPopupControllerAnimated:YES];
     
+}
+
+- (void)AddToCart
+{
+    NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:5];
+    //获取计数器数量
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+    WXSCommodityDetailsPagePopupViewSecondCell *cell = (WXSCommodityDetailsPagePopupViewSecondCell *)[self.popupTableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"!!%@",self.post.postID);
+    p = [[FMDBHelper sharedFMDBHelper] seletcFromSHOPPING_CART_TABLEbyPostId:self.post.postID];
+    //如果该商品已存在在购物车里（本地数据库）
+    if (p) {
+        //修改已经存在的记录，加上本次加入购物车数量
+        int num = [p.addToCartNum intValue];
+        num += cell.stepper.value;
+        NSString *num_c = [NSString stringWithFormat:@"%d", num];
+        BOOL flag = [[FMDBHelper sharedFMDBHelper] updateSHOPPING_CART_TABLESetNumber:self.post.postID number:num_c];
+        if (flag) {
+            addToCartHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:addToCartHUD];
+            
+            addToCartHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+            
+            // Set custom view mode
+            addToCartHUD.mode = MBProgressHUDModeCustomView;
+            
+            addToCartHUD.delegate = self;
+            addToCartHUD.labelText = @"成功加入购物车";
+            
+            [addToCartHUD show:YES];
+            [addToCartHUD hide:YES afterDelay:1];
+            
+        }
+        else{
+            addToCartHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:addToCartHUD];
+            
+            //addToCartHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+            
+            // Set custom view mode
+            addToCartHUD.mode = MBProgressHUDModeCustomView;
+            
+            addToCartHUD.delegate = self;
+            addToCartHUD.labelText = @"加入购物车失败";
+            
+            [addToCartHUD show:YES];
+            [addToCartHUD hide:YES afterDelay:1];
+        }
+
+    }
+    //购物车不存在该商品，插入一条数据（本地数据库）
+    else{
+        self.post.addToCartNum = [NSString stringWithFormat:@"%d", (int)cell.stepper.value];
+        [mutablePosts addObject:self.post];
+        BOOL flag =[[FMDBHelper sharedFMDBHelper] insertIntoSHOPPING_CART_TABLEWithArray:mutablePosts];
+        if (flag) {
+            addToCartHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:addToCartHUD];
+            
+            addToCartHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+            
+            // Set custom view mode
+            addToCartHUD.mode = MBProgressHUDModeCustomView;
+            
+            addToCartHUD.delegate = self;
+            addToCartHUD.labelText = @"成功加入购物车";
+            
+            [addToCartHUD show:YES];
+            [addToCartHUD hide:YES afterDelay:1];
+            
+        }
+        else{
+            addToCartHUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:addToCartHUD];
+            
+            //addToCartHUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark"]];
+            
+            // Set custom view mode
+            addToCartHUD.mode = MBProgressHUDModeCustomView;
+            
+            addToCartHUD.delegate = self;
+            addToCartHUD.labelText = @"加入购物车失败";
+            
+            [addToCartHUD show:YES];
+            [addToCartHUD hide:YES afterDelay:1];
+        }
+    }
 }
 
 #pragma mark - UIScrollView Delegate
@@ -391,7 +485,7 @@
                     [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
                 }
             }
-        
+            
             return cell;
         }
     }

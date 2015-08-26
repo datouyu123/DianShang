@@ -159,7 +159,9 @@
 		2058D8FB1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8FA1B579BF7001AC233 /* UICollectionViewFlowLayout+helper.m */; };
 		2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2058D8FD1B57AB41001AC233 /* MainHeaderView.m */; };
 		2058D9001B57B57C001AC233 /* header_banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 2058D8FF1B57B57C001AC233 /* header_banner.png */; };
+		2063CA371B8B4D310027FEBA /* WXSSecondTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2063CA361B8B4D310027FEBA /* WXSSecondTableViewController.m */; };
 		2065E8EE1B723F4600169D6B /* profile-image-placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2065E8ED1B723F4600169D6B /* profile-image-placeholder.jpg */; };
+		20690A071B8C228B00EE5814 /* WXSSecondTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20690A061B8C228B00EE5814 /* WXSSecondTableViewCell.m */; };
 		20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */; };
 		20751CCE1B529DAD009A064F /* ASScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 20751CCD1B529DAD009A064F /* ASScroll.m */; };
 		20A6271B1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */; };
@@ -364,7 +366,11 @@
 		2058D8FC1B57AB41001AC233 /* MainHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainHeaderView.h; sourceTree = "<group>"; };
 		2058D8FD1B57AB41001AC233 /* MainHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainHeaderView.m; sourceTree = "<group>"; };
 		2058D8FF1B57B57C001AC233 /* header_banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header_banner.png; sourceTree = "<group>"; };
+		2063CA351B8B4D310027FEBA /* WXSSecondTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSSecondTableViewController.h; path = DianShang/WXSSecondTableViewController.h; sourceTree = "<group>"; };
+		2063CA361B8B4D310027FEBA /* WXSSecondTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSSecondTableViewController.m; path = DianShang/WXSSecondTableViewController.m; sourceTree = "<group>"; };
 		2065E8ED1B723F4600169D6B /* profile-image-placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "profile-image-placeholder.jpg"; path = "../DianPing/profile-image-placeholder.jpg"; sourceTree = "<group>"; };
+		20690A051B8C228B00EE5814 /* WXSSecondTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSSecondTableViewCell.h; sourceTree = "<group>"; };
+		20690A061B8C228B00EE5814 /* WXSSecondTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSSecondTableViewCell.m; sourceTree = "<group>"; };
 		20751CC81B525806009A064F /* WXSFirstCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSFirstCollectionViewController.h; path = DianShang/WXSFirstCollectionViewController.h; sourceTree = "<group>"; };
 		20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSFirstCollectionViewController.m; path = DianShang/WXSFirstCollectionViewController.m; sourceTree = "<group>"; };
 		20751CCC1B529DAD009A064F /* ASScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScroll.h; sourceTree = "<group>"; };
@@ -1150,6 +1156,8 @@
 				20BA926F1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m */,
 				20D4A7EA1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.h */,
 				20D4A7EB1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m */,
+				20690A051B8C228B00EE5814 /* WXSSecondTableViewCell.h */,
+				20690A061B8C228B00EE5814 /* WXSSecondTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1277,6 +1285,8 @@
 				20751CC91B525806009A064F /* WXSFirstCollectionViewController.m */,
 				20A627191B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.h */,
 				20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */,
+				2063CA351B8B4D310027FEBA /* WXSSecondTableViewController.h */,
+				2063CA361B8B4D310027FEBA /* WXSSecondTableViewController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -1645,8 +1655,10 @@
 				20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */,
 				2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */,
 				20BA92701B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m in Sources */,
+				20690A071B8C228B00EE5814 /* WXSSecondTableViewCell.m in Sources */,
 				20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */,
 				20751CCE1B529DAD009A064F /* ASScroll.m in Sources */,
+				2063CA371B8B4D310027FEBA /* WXSSecondTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 #import "RDVTabBarItem.h"
 #import "ViewController.h"
 #import "WXSFirstCollectionViewController.h"
+#import "WXSSecondTableViewController.h"
 #import "FirstCollectionViewLayout.h"
 #import "FMDBHelper.h"
 
@@ -34,10 +35,9 @@
     
     [self customizeInterface];
     //新建表
-    [[FMDBHelper sharedFMDBHelper] createTableByName: @"GOODS_TABLE"];
+    //[[FMDBHelper sharedFMDBHelper] createTableByName: @"GOODS_TABLE"];
+    [[FMDBHelper sharedFMDBHelper] createTableByName: @"SHOPPING_CART_TABLE"];
     
-    
-
     return YES;
 }
 
@@ -150,15 +150,13 @@
 - (void)setupViewControllers {
     
     FirstCollectionViewLayout *flowLayout = [[FirstCollectionViewLayout alloc] init];
-    //[flowLayout setItemSize:CGSizeMake(375, 200)];
-    //[flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
     UICollectionViewController *firstViewController = [[WXSFirstCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:firstViewController];
     [firstViewController setTitle:@"首页"];
 
     
-    UIViewController *secondViewController = [[ViewController alloc] init];
+    UITableViewController *secondViewController = [[WXSSecondTableViewController alloc] init];
     UIViewController *secondNavigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:secondViewController];
     [secondViewController setTitle:@"购物车"];

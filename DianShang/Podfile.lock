@@ -25,22 +25,28 @@ PODS:
   - FMDB/common (2.5)
   - FMDB/standard (2.5):
     - FMDB/common
+  - MBProgressHUD (0.9.1)
   - MJRefresh (2.3.1)
   - PKYStepper (0.0.1)
   - RESideMenu (4.0.7)
+  - SWTableViewCell (0.3.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - FMDB
+  - MBProgressHUD (~> 0.9.1)
   - MJRefresh
   - PKYStepper (= 0.0.1)
   - RESideMenu (~> 4.0.7)
+  - SWTableViewCell (~> 0.3.7)
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: fa22d5d753aaceb4e76232ce264cb2dca90b323f
   PKYStepper: 8dacefbddf9fa2b6aaec2ef828b46a78daa2db7d
   RESideMenu: f24c508404b49c667344c54aba7e590883533958
+  SWTableViewCell: 2a94aadc9d47b2b611fa064566bf57948b95b579
 
 COCOAPODS: 0.38.2

@@ -345,7 +345,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     else
     {
         MainGoodsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier3 forIndexPath:indexPath];
-        [cell setGoods:[self.posts objectAtIndex:indexPath.row]];
+        [cell setGoods:[self.posts objectAtIndex:indexPath.item]];
         // Configure the cell
         
         return cell;
@@ -383,17 +383,10 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 	return YES;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didHighlightItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
-    //cell.contentView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:1 alpha:0.5];
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didUnhighlightItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
     cell.contentView.backgroundColor = nil;
 }
-
 
 // Uncomment this method to specify if the specified item should be selected
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -409,9 +402,11 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
         cdpController.view.backgroundColor = [UIColor lightGrayColor];
         //将post实体数据传入详情页
-        cdpController.post = [self.posts objectAtIndex:indexPath.row];
-        //
+        NSLog(@"%ld",(long)indexPath.item);
         
+        cdpController.post = [self.posts objectAtIndex:indexPath.item];
+        //
+        NSLog(@"!!%@,%@",[[self.posts objectAtIndex:indexPath.item] postID],cdpController.post.good.goodTitle);
         [self.navigationController pushViewController:cdpController animated:YES];
     }
     

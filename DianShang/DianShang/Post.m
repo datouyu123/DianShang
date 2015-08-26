@@ -19,10 +19,10 @@
         return nil;
     }
     
-    self.postID = (NSUInteger)[[attributes valueForKeyPath:@"itemid"] integerValue];
+    self.postID = [attributes valueForKeyPath:@"itemid"];
     self.goodType = [attributes valueForKeyPath:@"type"];
     self.detailCoverImages = [attributes valueForKeyPath:@"detailcoverimgs"];
-
+    self.addToCartNum = @"0";
     self.good = [[Good alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[attributes valueForKeyPath:@"url"],@"goods_url", [attributes valueForKeyPath:@"title"],@"goods_title",[attributes valueForKeyPath:@"coverimg"],@"goods_image_string",[attributes valueForKeyPath:@"itemprice"],@"goods_price",[attributes valueForKeyPath:@"tag"],@"goods_tag",nil]];
     
     return self;

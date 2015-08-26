@@ -13,3 +13,7 @@ platform :ios, '6.0'
 pod 'RESideMenu', '~> 4.0.7'
 
 pod 'PKYStepper', '0.0.1'
+
+pod 'MBProgressHUD', '~> 0.9.1'
+
+pod 'SWTableViewCell', '~> 0.3.7'

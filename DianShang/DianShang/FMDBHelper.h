@@ -7,6 +7,8 @@
 //
 
 #import "FMDatabase.h"
+#import "Post.h"
+#import "Good.h"
 
 //数据库
 #define DBNAME @"yaopostinfo.sqlite"
@@ -15,18 +17,21 @@
 
 //商品简介表（一级页面）
 #define GOODS_TABLENAME @"GOODS_TABLE"
+//购物车表
+#define SHOPPING_CART_TABLENAME @"SHOPPING_CART_TABLE"
 
-//商品简介表属性
+//商品简介表属性(购物车表也暂时用这个)
 #define GOODS_TID @"goods_tid" //自增id
 #define GOODS_POSTID @"goods_postid" //商品id
 #define GOODS_ORDERID @"goods_orderid" //商品显示顺序id
 #define GOODS_POSTURL @"goods_posturl" //商品详情页链接
-#define GOODS_TAG @"gooods_tag" //商品标签（分类名称）
+#define GOODS_TAG @"goods_tag" //商品标签（分类名称）
 #define GOODS_TITLE @"goods_title" //商品标题
 #define GOODS_COVERIMG @"goods_coverimg" //商品封面图片
 #define GOODS_PRICE @"goods_price" //商品价格
 #define GOODS_TYPE @"goods_type" //种类（轮播还是商品）
 
+#define NUMBER @"number" //购物车数量
 /**
  *  本地数据库操作
  */
@@ -45,12 +50,20 @@
 //新建表
 - (void)createTableByName:(NSString *) dbName;
 //表查询
-- (NSMutableArray *) selectFromGOODS_TABLE:(NSString *) type;
+- (NSMutableArray *)selectFromGOODS_TABLE:(NSString *)type;
+- (NSMutableArray *)selectFromSHOPPING_CART_TABLE;
+//表是否存在该postId数据,若存在,返回该条记录,不存在或者打开数据库失败,返回nil
+- (Post *)seletcFromSHOPPING_CART_TABLEbyPostId:(NSString *)postId;
 //清空表
--(BOOL) emptyDatabaseByName:(NSString *)dbName;
+-(BOOL)emptyDatabaseByName:(NSString *)dbName;
 //插入一条数据
 - (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type;
+- (BOOL)insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number;
+//删除一条数据
+- (BOOL)deleteFromSHOPPING_CART_TABLE:(NSString *)postID;
 //插入数组
--(BOOL) insertIntoGOODS_TABLEWithArray:(NSMutableArray *) mutablePosts;
-
+- (BOOL)insertIntoGOODS_TABLEWithArray:(NSMutableArray *) mutablePosts;
+- (BOOL)insertIntoSHOPPING_CART_TABLEWithArray:(NSMutableArray *) mutablePosts;
+//通过postId修改一条数据的购物车数量
+- (BOOL)updateSHOPPING_CART_TABLESetNumber:(NSString *)postID number:(NSString *)number;
 @end
