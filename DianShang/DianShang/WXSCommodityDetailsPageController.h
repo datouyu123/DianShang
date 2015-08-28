@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Post.h"
-#import "RESideMenu.h"
+
+@class Post;
 
 @interface WXSCommodityDetailsPageController : UIViewController
 

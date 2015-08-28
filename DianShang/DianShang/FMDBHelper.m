@@ -75,7 +75,7 @@
             }
         }
         else if ([dbName isEqualToString:SHOPPING_CART_TABLENAME]) {
-            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY AUTOINCREMENT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT)" ,SHOPPING_CART_TABLENAME ,GOODS_TID ,GOODS_POSTID ,GOODS_ORDERID ,GOODS_POSTURL ,GOODS_TAG ,GOODS_TITLE ,GOODS_COVERIMG ,GOODS_PRICE, GOODS_TYPE, NUMBER];
+            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY AUTOINCREMENT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT)" ,SHOPPING_CART_TABLENAME ,GOODS_TID ,GOODS_POSTID ,GOODS_ORDERID ,GOODS_POSTURL ,GOODS_TAG ,GOODS_TITLE ,GOODS_COVERIMG ,GOODS_PRICE, GOODS_TYPE, NUMBER, GOODS_DETAILCOVERIMAGES];
             
             if (! [db executeUpdate:sqlCreateTable] ) {
                 NSLog(@"error when creating SHOPPING_CART_TABLENAME table");
@@ -114,10 +114,10 @@
 /**
  *  插入一条数据到SHOPPING_CART_TABLE
  */
-- (BOOL) insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number
+- (BOOL) insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number detailCoverImages:(NSString *)detailCoverImages
 {
     if ([db open]) {
-        NSString *insertSql=[NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",SHOPPING_CART_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE,GOODS_TYPE, NUMBER, postID, orderID, postURL, tag, title, postCoverImg, price, type, number];
+        NSString *insertSql=[NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",SHOPPING_CART_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE,GOODS_TYPE, NUMBER, GOODS_DETAILCOVERIMAGES, postID, orderID, postURL, tag, title, postCoverImg, price, type, number, detailCoverImages];
         
         if ([db executeUpdate:insertSql]) {
             NSLog(@"success to insert a data");
@@ -174,9 +174,9 @@
 {
     for (Post *post in mutablePosts) {
         if (post != nil) {
-            NSLog(@"插入-postID: %@, URL:%@, title:%@, coverimg:%@, type:%@", post.postID, post.good.goodURL, post.good.goodTitle, post.good.coverImageURL, post.goodType);
+            NSLog(@"插入-postID: %@, URL:%@, title:%@, coverimg:%@, type:%@ ,detailimages:%@", post.postID, post.good.goodURL, post.good.goodTitle, post.good.coverImageURL, post.goodType, [post getJSONStringFromDetailCoverImagesArray]);
             BOOL flag =
-            [self insertIntoSHOPPING_CART_TABLE:@"0" postID:post.postID orderID:@"1" postURL:post.good.goodURL tag:@"购物车" title:post.good.goodTitle postCoverImg:post.good.goodCoverImgString price:post.good.goodPrice type:post.goodType number:post.addToCartNum];
+            [self insertIntoSHOPPING_CART_TABLE:@"0" postID:post.postID orderID:@"1" postURL:post.good.goodURL tag:@"购物车" title:post.good.goodTitle postCoverImg:post.good.goodCoverImgString price:post.good.goodPrice type:post.goodType number:post.addToCartNum detailCoverImages:[post getJSONStringFromDetailCoverImagesArray]];
             if (!flag) {
                 return false;
             }
@@ -219,6 +219,23 @@
     return nil;
 }
 
+// 将JSON串转化为字典或者数组
+- (id)toArrayOrNSDictionary:(NSData *)jsonData{
+    NSError *error = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                    options:NSJSONReadingAllowFragments
+                                                      error:&error];
+    
+    if (jsonObject != nil && error == nil){
+        return jsonObject;
+    }else{
+        // 解析错误
+        return nil;
+    }
+}
+
+// 将JSON串转化为
+
 - (NSMutableArray *) selectFromSHOPPING_CART_TABLE
 {
     if ([db open]) {
@@ -237,10 +254,12 @@
             NSString *price = [rs stringForColumn:GOODS_PRICE];
             NSString *type = [rs stringForColumn:GOODS_TYPE];
             NSString *number = [rs stringForColumn:NUMBER];
-            
+            NSString *detailcoverimgs = [rs stringForColumn:GOODS_DETAILCOVERIMAGES];
+            NSData *detailcoverimgsNSData = [detailcoverimgs dataUsingEncoding:NSASCIIStringEncoding];
+            NSArray *detailCoverImages = [self toArrayOrNSDictionary:detailcoverimgsNSData];
             NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@ type=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price, type);
             
-            Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:postId,@"itemid",title,@"title",postCoverImg,@"coverimg",price,@"itemprice",tag,@"tag",postURL,@"url",type,@"type", nil] ];
+            Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:postId,@"itemid",title,@"title",postCoverImg,@"coverimg",price,@"itemprice",tag,@"tag",postURL,@"url", detailCoverImages, @"detailcoverimgs", type,@"type", nil] ];
             p.addToCartNum = number;
             [mutableGoods addObject:p];
         }
@@ -252,7 +271,7 @@
 }
 
 //表是否存在该postId数据,若存在,返回该条记录,不存在或者打开数据库失败,返回nil
-- (Post *)seletcFromSHOPPING_CART_TABLEbyPostId:(NSString *)postId
+- (Post *)selectFromSHOPPING_CART_TABLEbyPostId:(NSString *)postId
 {
     if ([db open]) {
         NSString *selectSql = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE %@=%@", SHOPPING_CART_TABLENAME, GOODS_POSTID, postId];
@@ -270,10 +289,13 @@
             NSString *price = [rs stringForColumn:GOODS_PRICE];
             NSString *type = [rs stringForColumn:GOODS_TYPE];
             NSString *number = [rs stringForColumn:NUMBER];
+            NSString *detailcoverimgs = [rs stringForColumn:GOODS_DETAILCOVERIMAGES];
+            NSData *detailcoverimgsNSData = [detailcoverimgs dataUsingEncoding:NSASCIIStringEncoding];
+            NSArray *detailCoverImages = [self toArrayOrNSDictionary:detailcoverimgsNSData];
             
             NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@ type=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price, type);
             
-            Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:postId,@"itemid",title,@"title",postCoverImg,@"coverimg",price,@"itemprice",tag,@"tag",postURL,@"url",type,@"type", nil] ];
+            Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:postId,@"itemid",title,@"title",postCoverImg,@"coverimg",price,@"itemprice",tag,@"tag",postURL,@"url",detailCoverImages, @"detailcoverimgs",type,@"type", nil] ];
             p.addToCartNum = number;
             [db close];
             return p;

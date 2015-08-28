@@ -12,6 +12,10 @@
 
 #define IPHONE_W ([UIScreen mainScreen].bounds.size.width)
 #define IPHONE_H ([UIScreen mainScreen].bounds.size.height)
+#define NAVIGATIONBAR_H (64.0)
+#define TOOLBAR_H (48.0)
+#define RDVTABBAR_H (self.rdv_tabBarController.tabBar.frame.size.height)
+#define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
 #endif /* Prefix_pch */
 
 

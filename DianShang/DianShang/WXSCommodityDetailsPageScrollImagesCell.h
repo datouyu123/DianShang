@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Post.h"
-#import "Good.h"
+
+@class Post;
 
 @interface WXSCommodityDetailsPageScrollImagesCell : UITableViewCell
 

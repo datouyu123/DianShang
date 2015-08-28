@@ -7,7 +7,8 @@
 //  商品详情页 第二个cell 显示商品名和价格等
 
 #import <UIKit/UIKit.h>
-#import "Post.h"
+
+@class Post;
 
 @interface WXSCommodityDetailsPageNameAndPriceCell : UITableViewCell
 

@@ -8,13 +8,16 @@
 
 #import "WXSSecondTableViewCell.h"
 #import "UIimageView+AFNetworking.h"
-
+#import "DLRadioButton.h"
 #define iOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @interface WXSSecondTableViewCell ()
-
-@property (nonatomic, strong) UILabel *nameLabel;
-@property (nonatomic, strong) UILabel *numberLabel;
+{
+    UILabel *nameLabel;
+    UILabel *priceLabel;
+    UILabel *numberLabel;
+    UIButton *radioButton;
+}
 
 @end
 
@@ -27,44 +30,61 @@
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.imageView.frame = CGRectMake(5, 5, 90, 90);
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 5, IPHONE_W-120-10, 40)];
-        self.nameLabel.numberOfLines = 0;
-        self.nameLabel.font = [UIFont systemFontOfSize:14.0f];
-        [self.contentView addSubview:self.nameLabel];
+        radioButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
+        [radioButton setImage:[UIImage imageNamed:@"checkbox_normal"] forState:UIControlStateNormal];
+        [radioButton setImage:[UIImage imageNamed:@"checkbox_selected"] forState:UIControlStateSelected];
+        [radioButton addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:radioButton];
         
-        self.numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(110, 60, IPHONE_W-120-10, 20)];
-        self.numberLabel.numberOfLines = 1;
-        self.numberLabel.font = [UIFont systemFontOfSize:14.0f];
-        [self.contentView addSubview:self.numberLabel];
+        self.imageView.frame = CGRectMake(50, 5, 90, 90);
+        nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 5, IPHONE_W - 160 - 10, 40)];
+        nameLabel.numberOfLines = 0;
+        nameLabel.font = [UIFont systemFontOfSize:14.0f];
+        [self.contentView addSubview:nameLabel];
+        
+        priceLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 50, IPHONE_W - 160 - 10, 15)];
+        priceLabel.numberOfLines = 1;
+        priceLabel.font = [UIFont systemFontOfSize:14.0f];
+        priceLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0];
+
+        [self.contentView addSubview:priceLabel];
+        
+        numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 70, IPHONE_W - 160 - 10, 15)];
+        numberLabel.numberOfLines = 1;
+        numberLabel.font = [UIFont systemFontOfSize:14.0f];
+        [self.contentView addSubview:numberLabel];
         
     }
     return self;
+}
+
+-(void)click:(id)sender
+{
+    UIButton *u = (UIButton *)sender;
+    u.selected = !u.selected;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO，
 }
 
 - (void)setGoods:(Post *)post
 {
     [self.imageView setImageWithURL:post.good.coverImageURL placeholderImage:[UIImage imageNamed:@"profile-image-placeholder"]];
     //商品名
-    self.nameLabel.text = post.good.goodTitle;
+    nameLabel.text = post.good.goodTitle;
+    //单价
+    priceLabel.text = post.good.goodPrice;
     //加入购物车数量
-    self.numberLabel.text = [NSString stringWithFormat:@"数量: %@", post.addToCartNum];
-  
+    numberLabel.text = [NSString stringWithFormat:@"数量: %@", post.addToCartNum];
     //
-    [self setNeedsLayout];
-    NSLog(@"cell.name=%@,cell.number=%@",self.nameLabel.text,self.numberLabel.text);
-    NSLog(@"namelabel.width=%f,namelabel.height=%f",self.nameLabel.frame.size.width,self.nameLabel.frame.size.height);
-    NSLog(@"numberlabel.width=%f,numberlabel.height=%f",self.numberLabel.frame.size.width,self.numberLabel.frame.size.height);
-    NSLog(@"namelabel.x=%f,namelabel.y=%f",self.nameLabel.frame.origin.x,self.nameLabel.frame.origin.y);
-    NSLog(@"numberlabel.x=%f,numberlabel.y=%f",self.numberLabel.frame.origin.x,self.numberLabel.frame.origin.y);
+    //[self setNeedsLayout];
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(5, 5, 90, 90);
-    self.nameLabel.frame = CGRectMake(110, 5, IPHONE_W-120-10, 40);
-    self.numberLabel.frame = CGRectMake(110, 60, IPHONE_W-120-10, 20);
+    radioButton.frame = CGRectMake(10, 10, 30, 30);
+    self.imageView.frame = CGRectMake(50, 5, 90, 90);
+    nameLabel.frame = CGRectMake(160, 5, IPHONE_W - 160 - 10, 40);
+    priceLabel.frame = CGRectMake(160, 50, IPHONE_W - 160 - 10, 15);
+    numberLabel.frame = CGRectMake(160, 70, IPHONE_W - 160 - 10, 15);
 }
 
 //- (void)drawRect:(CGRect)rect

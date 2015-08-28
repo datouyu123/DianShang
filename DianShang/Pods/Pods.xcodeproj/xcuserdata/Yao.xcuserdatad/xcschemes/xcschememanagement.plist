@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DLRadioButton.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,42 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>026E32BD29688149F503D53B5D8A648F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>14AE0D4B3A9AF29CE6F05FD6E4B2CE97</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1C527B09142C3DFAB14CD76F4706E379</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2965E38DCEBC6E89D5362BA6561D3FBD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6B6D5187CA5544796E6979D819218D9A</key>
+		<key>50A30B3A8F73CEF36C7F34672463BAA0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8DCD3A631AEA70649201F16ED6B37C6F</key>
+		<key>85DFA5583D91BE819963CC4DECF77588</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>913B1104B9731B2F2D6EB0D865BE88D3</key>
+		<key>B0FE239833402B4B3EB2B8B5AE20F5A2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBBC143E299112DC098E5B23F9A67933</key>
+		<key>C69D04428ECC8B2C788029775C7F8947</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CDE0B7668B6EC1B2BF166A65E070AF5E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E6B5AE32B5C56EBBEA040AC4C6084804</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>EDE0952CF26ACAB6EE5A053ED259FF0C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

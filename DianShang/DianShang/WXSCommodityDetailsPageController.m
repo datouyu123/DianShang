@@ -10,6 +10,7 @@
 #import "WXSCommodityDetailsPageController.h"
 #import "RDVTabBarController.h"
 #import "CNPPopupController.h"
+#import "WXSSecondTableViewController.h"
 #import "MJRefresh.h"
 #import "ASScroll.h"
 #import "WXSCommodityDetailsPageNameAndPriceCell.h"
@@ -21,10 +22,7 @@
 #import "Good.h"
 #import "FMDBHelper.h"
 #import "MBProgressHUD.h"
-
-#define NAVIGATIONBAR_H (self.navigationController.navigationBar.frame.size.height)
-#define TOOLBAR_H (48.0)
-#define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
+#import "RESideMenu.h"
 
 @interface WXSCommodityDetailsPageController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, UIWebViewDelegate,CNPPopupControllerDelegate, MBProgressHUDDelegate>
 {
@@ -37,7 +35,8 @@
     UIBarButtonItem *buyItem;
     //提示完成加入购物车提示框
     MBProgressHUD *addToCartHUD;
-    Post *p;
+    //购物车页面控制器
+    WXSSecondTableViewController *cartViewController;
 }
 
 @property (strong,nonatomic) UIScrollView *cdpScrollView;
@@ -61,7 +60,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         // For insetting with a navigation bar
-        UIEdgeInsets insets = UIEdgeInsetsMake(64, 0, 0, 0);
+        UIEdgeInsets insets = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
         self.cdpScrollView.contentInset = insets;
         self.cdpScrollView.scrollIndicatorInsets = insets;
         self.cdpTableView.contentInset = insets;
@@ -69,6 +68,7 @@
         self.cdpWebView.scrollView.contentInset = insets;
         self.cdpWebView.scrollView.scrollIndicatorInsets = insets;
     }
+    
     //控件添加到视图上
     /**
      *  设置一个 UIScrollView 作为视图底层，并且设置分页为两页
@@ -111,7 +111,7 @@
     fixItemFirst.width = -10;
     UIBarButtonItem *fixItemSecond = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     fixItemSecond.width = -20;
-    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - 48.0, self.view.frame.size.width, 48.0)];
+    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, self.view.frame.size.height - TOOLBAR_H, self.view.frame.size.width, TOOLBAR_H)];
     [toolbar setItems:[NSArray arrayWithObjects:spaceItem, spaceItem, addToCartItem, fixItemFirst, buyItem, fixItemSecond, nil] animated:YES];
     [toolbar setBarStyle:UIBarStyleBlack];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
@@ -154,6 +154,7 @@
     [self.popupTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     //设置cell.imageView不挡住分隔线
     [self.popupTableView setSeparatorInset:UIEdgeInsetsZero];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -161,42 +162,45 @@
     [super viewWillAppear:YES];
     //自定义navigationbar
     [self styleNavBar];
+    //设置scrollview下边距
+    self.cdpTableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, TOOLBAR_H+RDVTABBAR_H, 0);
+    self.cdpWebView.scrollView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, TOOLBAR_H, 0);
+    self.popupTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     //使滑动返回手势在自定义的navbar上生效
     __weak id weakSelf = self;
     self.navigationController.interactivePopGestureRecognizer.delegate = weakSelf;
     //进入商品详情页隐藏tabbar
     [[self rdv_tabBarController] setTabBarHidden:YES animated:NO];
-    //设置scrollview下边距
-    self.cdpTableView.contentInset = UIEdgeInsetsMake(64, 0, TOOLBAR_H+44, 0);
-    self.cdpWebView.scrollView.contentInset = UIEdgeInsetsMake(64, 0, TOOLBAR_H, 0);
-    self.popupTableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);;
+    NSLog(@"!!height=%f",self.rdv_tabBarController.tabBar.frame.size.height); 
+   
     //初始化webview
     NSURLRequest* request =
     [NSURLRequest requestWithURL:[NSURL URLWithString:self.post.good.goodURL]];
     
     [self.cdpWebView loadRequest:request];
     //
-    NSLog(@"N=%f,T=%f,S=%f",NAVIGATIONBAR_H,TOOLBAR_H,STATUSBAR_H);
-    //
 }
 
 #pragma mark - Custom NavigationBar
 - (void)styleNavBar {
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-    newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+    newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), NAVIGATIONBAR_H)];
     [newNavBar setBarTintColor:[UIColor whiteColor]];
     UINavigationItem *titleItem = [[UINavigationItem alloc] init];
     titleItem.title = @"商品详情";
+    [newNavBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,nil]];
     
     // BackButtonBlack is an image we created and added to the app’s asset catalog
     UIImage *backButtonImage = [UIImage imageNamed:@"back_icon"];
-    
+    UIImage *cartButtonImage = [UIImage imageNamed:@"gotocart_icon"];
     // any buttons in a navigation bar are UIBarButtonItems, not just regular UIButtons. backTapped: is the method we’ll call when this button is tapped
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
-    
+    backBarButtonItem.tintColor = [UIColor grayColor];
+    UIBarButtonItem *cartBarButtonItem = [[UIBarButtonItem alloc] initWithImage:cartButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(goToCart:)];
+    cartBarButtonItem.tintColor = [UIColor grayColor];
     // the bar button item is actually set on the navigation item, not the navigation bar itself.
     titleItem.leftBarButtonItem = backBarButtonItem;
-    
+    titleItem.rightBarButtonItem = cartBarButtonItem;
     [newNavBar setItems:@[titleItem]];
     [self.view addSubview:newNavBar];
 }
@@ -204,6 +208,15 @@
 
 - (void)backTapped:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)goToCart:(id)sender{
+    cartViewController = [[WXSSecondTableViewController alloc] init];
+    //传参数，说明该购物车页面是从详情页进入的
+    cartViewController.controllerType = 100;
+    //设置cdpController.view背景色为浅灰色，原来默认为透明，切换时视觉上会出现卡顿
+    cartViewController.view.backgroundColor = [UIColor lightGrayColor];
+    [self.navigationController pushViewController:cartViewController animated:YES];
 }
 
 #pragma mark - PopupView Setting
@@ -258,7 +271,7 @@
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
     WXSCommodityDetailsPagePopupViewSecondCell *cell = (WXSCommodityDetailsPagePopupViewSecondCell *)[self.popupTableView cellForRowAtIndexPath:indexPath];
     NSLog(@"!!%@",self.post.postID);
-    p = [[FMDBHelper sharedFMDBHelper] seletcFromSHOPPING_CART_TABLEbyPostId:self.post.postID];
+    Post *p = [[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLEbyPostId:self.post.postID];
     //如果该商品已存在在购物车里（本地数据库）
     if (p) {
         //修改已经存在的记录，加上本次加入购物车数量

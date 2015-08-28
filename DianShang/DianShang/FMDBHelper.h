@@ -7,9 +7,6 @@
 //
 
 #import "FMDatabase.h"
-#import "Post.h"
-#import "Good.h"
-
 //数据库
 #define DBNAME @"yaopostinfo.sqlite"
 
@@ -30,11 +27,15 @@
 #define GOODS_COVERIMG @"goods_coverimg" //商品封面图片
 #define GOODS_PRICE @"goods_price" //商品价格
 #define GOODS_TYPE @"goods_type" //种类（轮播还是商品）
-
+#define GOODS_DETAILCOVERIMAGES @"goods_detailcoverimgs" //详情页滚动图
 #define NUMBER @"number" //购物车数量
+
 /**
  *  本地数据库操作
  */
+
+@class Post;
+
 @interface FMDBHelper : FMDatabase
 {
     FMDatabase *db;
@@ -53,12 +54,12 @@
 - (NSMutableArray *)selectFromGOODS_TABLE:(NSString *)type;
 - (NSMutableArray *)selectFromSHOPPING_CART_TABLE;
 //表是否存在该postId数据,若存在,返回该条记录,不存在或者打开数据库失败,返回nil
-- (Post *)seletcFromSHOPPING_CART_TABLEbyPostId:(NSString *)postId;
+- (Post *)selectFromSHOPPING_CART_TABLEbyPostId:(NSString *)postId;
 //清空表
 -(BOOL)emptyDatabaseByName:(NSString *)dbName;
 //插入一条数据
 - (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type;
-- (BOOL)insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number;
+- (BOOL)insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number detailCoverImages:(NSString *)detailCoverImages;
 //删除一条数据
 - (BOOL)deleteFromSHOPPING_CART_TABLE:(NSString *)postID;
 //插入数组

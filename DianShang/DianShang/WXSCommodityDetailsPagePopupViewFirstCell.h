@@ -7,9 +7,9 @@
 //  详情页弹出视图第一行
 
 #import <UIKit/UIKit.h>
-#import "Post.h"
-#import "Good.h"
 #import "CNPPopupController.h"
+
+@class Post;
 
 @interface WXSCommodityDetailsPagePopupViewFirstCell : UITableViewCell
 

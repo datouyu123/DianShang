@@ -7,13 +7,18 @@
 //
 
 #import "WXSSecondTableViewController.h"
+#import "WXSCommodityDetailsPageController.h"
+#import "RDVTabBarController.h"
 #import "FMDBHelper.h"
 #import "Post.h"
 #import "Good.h"
 #import "WXSSecondTableViewCell.h"
 
 @interface WXSSecondTableViewController ()<UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
-{}
+{
+    //定义商品详情页控制器
+    WXSCommodityDetailsPageController *cdpController;
+}
 
 @property (readwrite, nonatomic, strong) NSMutableArray *goods;
 @property (strong,nonatomic) UITableView *tableView;
@@ -30,7 +35,7 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         // For insetting with a navigation bar
-        UIEdgeInsets insets = UIEdgeInsetsMake(64, 0, 0, 0);
+        UIEdgeInsets insets = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
         self.tableView.contentInset = insets;
         self.tableView.scrollIndicatorInsets = insets;
     }
@@ -43,6 +48,10 @@
     
     //设置cell.imageView不挡住分隔线
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    
+    self.tableView.allowsMultipleSelectionDuringEditing=YES;
+    //[self.tableView setEditing:YES animated:YES];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -50,10 +59,46 @@
     [super viewWillAppear:YES];
     //自定义navigationbar
     [self styleNavBar];
+    //设置scrollview下边距
+    if (self.controllerType != 100) {
+        self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H, 0);
+    }
     //[[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"SHOPPING_CART_TABLE"];
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
-
+    //判断购物车是否为空
+    if (!self.goods.count) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
+        label.text = @"主人快去挑些宝贝吧";
+        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
+        image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
+        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        [self.tableView.tableHeaderView addSubview:label];
+        [self.tableView.tableHeaderView addSubview:image];
+        
+        [label sizeToFit];
+        label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
+        [image sizeToFit];
+        image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+    }
+    else
+    {
+        self.tableView.tableHeaderView = nil;
+    }
     [self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    //如果是点击ta进入购物车页显示tabbar
+    if (self.controllerType == 100) {
+        [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+    }
+    else{
+        [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
+
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,7 +112,7 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     // 2. create a new nav bar and style it
-    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), NAVIGATIONBAR_H)];
     //[newNavBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
     
     // 3. add a new navigation item w/title to the new nav bar
@@ -79,9 +124,20 @@
     right.tintColor = [UIColor grayColor];
     titleItem.rightBarButtonItem=right;
     
+    if (self.controllerType == 100) {
+        UIImage *backButtonImage = [UIImage imageNamed:@"back_icon"];
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
+        backBarButtonItem.tintColor = [UIColor grayColor];
+        titleItem.leftBarButtonItem = backBarButtonItem;
+    }
+    
     [newNavBar setItems:@[titleItem]];
     // 4. add the nav bar to the main view
     [self.view addSubview:newNavBar];
+}
+
+- (void)backTapped:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 //清空购物车
@@ -89,7 +145,25 @@
 {
     [[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"SHOPPING_CART_TABLE"];
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
-    
+    //判断购物车是否为空
+    if (!self.goods.count) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
+        label.text = @"主人快去挑些宝贝吧";
+        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
+        image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
+        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        [self.tableView.tableHeaderView addSubview:label];
+        [self.tableView.tableHeaderView addSubview:image];
+        
+        [label sizeToFit];
+        label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
+        [image sizeToFit];
+        image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+    }
+    else
+    {
+        self.tableView.tableHeaderView = nil;
+    }
     [self.tableView reloadData];
 
 }
@@ -148,6 +222,23 @@
     return 100;
 }
 
+//单元格选中事件
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cdpController = [[WXSCommodityDetailsPageController alloc] init];
+    //进入商品详情页隐藏tabbar
+    [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
+    //设置cdpController.view背景色为浅灰色，原来默认为透明，切换时视觉上会出现卡顿
+    cdpController.view.backgroundColor = [UIColor lightGrayColor];
+    //将post实体数据传入详情页
+    NSLog(@"%ld",(long)indexPath.item);
+    
+    cdpController.post = [self.goods objectAtIndex:indexPath.row];
+    //
+    NSLog(@"!!%@",cdpController.post.good.goodTitle);
+    [self.navigationController pushViewController:cdpController animated:YES];
+}
+
 #pragma mark - SWTableViewDelegate
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
@@ -168,6 +259,25 @@
             Post *post = [self.goods objectAtIndex:cellIndexPath.row];
             [self.goods removeObjectAtIndex:cellIndexPath.row];
             [self.tableView deleteRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            //判断购物车是否为空
+            if (!self.goods.count) {
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
+                label.text = @"主人快去挑些宝贝吧";
+                UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
+                image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
+                self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+                [self.tableView.tableHeaderView addSubview:label];
+                [self.tableView.tableHeaderView addSubview:image];
+                
+                [label sizeToFit];
+                label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
+                [image sizeToFit];
+                image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);            }
+            else
+            {
+                self.tableView.tableHeaderView = nil;
+            }
+            //本地数据库删除该条记录
             [[FMDBHelper sharedFMDBHelper] deleteFromSHOPPING_CART_TABLE:post.postID];
             break;
         }

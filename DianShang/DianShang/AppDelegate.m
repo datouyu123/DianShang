@@ -156,7 +156,7 @@
     [firstViewController setTitle:@"首页"];
 
     
-    UITableViewController *secondViewController = [[WXSSecondTableViewController alloc] init];
+    UIViewController *secondViewController = [[WXSSecondTableViewController alloc] init];
     UIViewController *secondNavigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:secondViewController];
     [secondViewController setTitle:@"购物车"];

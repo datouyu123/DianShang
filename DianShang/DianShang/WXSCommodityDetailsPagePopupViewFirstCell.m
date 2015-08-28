@@ -8,6 +8,8 @@
 
 #import "WXSCommodityDetailsPagePopupViewFirstCell.h"
 #import "UIimageView+AFNetworking.h"
+#import "Post.h"
+#import "Good.h"
 
 @interface WXSCommodityDetailsPagePopupViewFirstCell ()
 {

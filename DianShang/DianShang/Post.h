@@ -19,6 +19,8 @@
 @property (nonatomic, strong) Good *good;
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;
+//将detailCoverImages数组转换成JSONString,方便存入sqlite
+- (NSString *)getJSONStringFromDetailCoverImagesArray;
 
 + (NSURLSessionDataTask *)globalTimelinePostsWithBlock:(void (^)(NSArray *posts, NSError *error))block;
 

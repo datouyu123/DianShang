@@ -19,6 +19,7 @@
 #import "MJChiBaoZiHeader.h"
 #import "FMDBHelper.h"
 #import "Post.h"
+#import "Good.h"
 #import "UIAlertView+AFNetworking.h"
 
 static const CGFloat MJDuration = 2.0;
@@ -57,7 +58,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         self.edgesForExtendedLayout = UIRectEdgeNone;
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         // For insetting with a navigation bar
-        UIEdgeInsets insets = UIEdgeInsetsMake(64, 0, 0, 0);
+        UIEdgeInsets insets = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
         self.collectionView.contentInset = insets;
         self.collectionView.scrollIndicatorInsets = insets;
     }
@@ -95,7 +96,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    //进入商品详情页显示tabbar
+    //进入首页显示tabbar
     [[self rdv_tabBarController] setTabBarHidden:NO animated:YES];
 }
 
@@ -110,7 +111,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     // 2. create a new nav bar and style it
-    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 64.0)];
+    UINavigationBar *newNavBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), NAVIGATIONBAR_H)];
     [newNavBar setBarTintColor:[UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1.0]];
     
     // 3. add a new navigation item w/title to the new nav bar
@@ -399,14 +400,14 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         cdpController = [[WXSCommodityDetailsPageController alloc] init];
         //进入商品详情页隐藏tabbar
         [[self rdv_tabBarController] setTabBarHidden:YES animated:YES];
-        //设置cdpController.view背景色为白色，原来默认为透明，切换时视觉上会出现卡顿
+        //设置cdpController.view背景色为浅灰色，原来默认为透明，切换时视觉上会出现卡顿
         cdpController.view.backgroundColor = [UIColor lightGrayColor];
         //将post实体数据传入详情页
         NSLog(@"%ld",(long)indexPath.item);
         
         cdpController.post = [self.posts objectAtIndex:indexPath.item];
         //
-        NSLog(@"!!%@,%@",[[self.posts objectAtIndex:indexPath.item] postID],cdpController.post.good.goodTitle);
+        NSLog(@"!!%@",cdpController.post.good.goodTitle);
         [self.navigationController pushViewController:cdpController animated:YES];
     }
     

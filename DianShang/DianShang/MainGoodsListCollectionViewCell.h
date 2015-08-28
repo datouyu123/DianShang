@@ -8,7 +8,9 @@
 //  首页第三个section商品列表cell
 
 #import <UIKit/UIKit.h>
+
 @class Post;
+
 @interface MainGoodsListCollectionViewCell : UICollectionViewCell
 
 - (void)setGoods:(Post *)post;
