@@ -28,7 +28,8 @@
 #define GOODS_PRICE @"goods_price" //商品价格
 #define GOODS_TYPE @"goods_type" //种类（轮播还是商品）
 #define GOODS_DETAILCOVERIMAGES @"goods_detailcoverimgs" //详情页滚动图
-#define NUMBER @"number" //购物车数量
+#define CART_NUMBER @"cart_number" //购物车数量
+#define CART_SELECTED_STATE @"cart_selected_state" //购物车中是否被选中状态（1代表选中，0代表未选中或者未加入购物车）
 
 /**
  *  本地数据库操作
@@ -59,7 +60,7 @@
 -(BOOL)emptyDatabaseByName:(NSString *)dbName;
 //插入一条数据
 - (BOOL) insertIntoGOODS_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type;
-- (BOOL)insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number detailCoverImages:(NSString *)detailCoverImages;
+- (BOOL)insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number detailCoverImages:(NSString *)detailCoverImages cartSelectedState:(NSString *)cartSelectedState;
 //删除一条数据
 - (BOOL)deleteFromSHOPPING_CART_TABLE:(NSString *)postID;
 //插入数组
@@ -67,4 +68,7 @@
 - (BOOL)insertIntoSHOPPING_CART_TABLEWithArray:(NSMutableArray *) mutablePosts;
 //通过postId修改一条数据的购物车数量
 - (BOOL)updateSHOPPING_CART_TABLESetNumber:(NSString *)postID number:(NSString *)number;
+//通过postId修改一条数据的购物车状态
+- (BOOL)updateSHOPPING_CART_TABLESetCartSelectedState:(NSString *)postID cartSelectedState:(NSString *)cartSelectedState;
+
 @end

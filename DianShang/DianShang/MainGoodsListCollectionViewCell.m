@@ -53,7 +53,7 @@
     //商品标题
     title.text = post.good.goodTitle;
     //商品价格
-    price.text = post.good.goodPrice;
+    price.text = [NSString stringWithFormat:@"¥%@",post.good.goodPrice];
     //商品图片
     [coverImageView setImageWithURL:post.good.coverImageURL placeholderImage:[UIImage imageNamed:@"profile-image-placeholder.jpg"]];
 

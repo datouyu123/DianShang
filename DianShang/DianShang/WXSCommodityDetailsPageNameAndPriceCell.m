@@ -52,7 +52,7 @@
 - (void)setGoods:(Post *)post
 {
     title.text = post.good.goodTitle;
-    price.text = post.good.goodPrice;
+    price.text = [NSString stringWithFormat:@"¥%@",post.good.goodPrice];
 }
 
 @end

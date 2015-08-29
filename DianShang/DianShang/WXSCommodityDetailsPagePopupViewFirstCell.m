@@ -44,7 +44,7 @@
 - (void)setGoods:(Post *)post
 {
     //单价
-    self.textLabel.text = post.good.goodPrice;
+    self.textLabel.text = [NSString stringWithFormat:@"¥%@",post.good.goodPrice];
     //
     [self.imageView setImageWithURL:post.good.coverImageURL placeholderImage:[UIImage imageNamed:@"profile-image-placeholder"]];
 }

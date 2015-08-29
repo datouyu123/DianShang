@@ -11,7 +11,16 @@
 #import "Post.h"
 #import "Good.h"
 
+//添加代理，用于radiobutton的实现
+@protocol WXSSecondTableViewCellDelegate <NSObject>
+
+-(void)radioBtnClick:(UITableViewCell *)cell;
+
+@end
+
 @interface WXSSecondTableViewCell : SWTableViewCell
+
+@property (weak,nonatomic) id <WXSSecondTableViewCellDelegate> wxsdelegate;
 
 - (void)setGoods:(Post *)post;
 

@@ -75,7 +75,7 @@
             }
         }
         else if ([dbName isEqualToString:SHOPPING_CART_TABLENAME]) {
-            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY AUTOINCREMENT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT)" ,SHOPPING_CART_TABLENAME ,GOODS_TID ,GOODS_POSTID ,GOODS_ORDERID ,GOODS_POSTURL ,GOODS_TAG ,GOODS_TITLE ,GOODS_COVERIMG ,GOODS_PRICE, GOODS_TYPE, NUMBER, GOODS_DETAILCOVERIMAGES];
+            NSString *sqlCreateTable =  [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS '%@' ('%@' INTEGER PRIMARY KEY AUTOINCREMENT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT, '%@' TEXT)" ,SHOPPING_CART_TABLENAME ,GOODS_TID ,GOODS_POSTID ,GOODS_ORDERID ,GOODS_POSTURL ,GOODS_TAG ,GOODS_TITLE ,GOODS_COVERIMG ,GOODS_PRICE, GOODS_TYPE, CART_NUMBER, GOODS_DETAILCOVERIMAGES, CART_SELECTED_STATE];
             
             if (! [db executeUpdate:sqlCreateTable] ) {
                 NSLog(@"error when creating SHOPPING_CART_TABLENAME table");
@@ -114,10 +114,10 @@
 /**
  *  插入一条数据到SHOPPING_CART_TABLE
  */
-- (BOOL) insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number detailCoverImages:(NSString *)detailCoverImages
+- (BOOL) insertIntoSHOPPING_CART_TABLE:(NSString *)tID postID:(NSString *)postID orderID:(NSString *)orderID postURL:(NSString *)postURL tag:(NSString *)tag title:(NSString *)title postCoverImg:(NSString *)postCoverImg price:(NSString *) price type:(NSString *) type number:(NSString *)number detailCoverImages:(NSString *)detailCoverImages cartSelectedState:(NSString *)cartSelectedState
 {
     if ([db open]) {
-        NSString *insertSql=[NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",SHOPPING_CART_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE,GOODS_TYPE, NUMBER, GOODS_DETAILCOVERIMAGES, postID, orderID, postURL, tag, title, postCoverImg, price, type, number, detailCoverImages];
+        NSString *insertSql=[NSString stringWithFormat:@"INSERT INTO '%@' ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@') VALUES ('%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@', '%@')",SHOPPING_CART_TABLENAME, GOODS_POSTID, GOODS_ORDERID, GOODS_POSTURL, GOODS_TAG, GOODS_TITLE, GOODS_COVERIMG,GOODS_PRICE,GOODS_TYPE, CART_NUMBER, GOODS_DETAILCOVERIMAGES, CART_SELECTED_STATE, postID, orderID, postURL, tag, title, postCoverImg, price, type, number, detailCoverImages, cartSelectedState];
         
         if ([db executeUpdate:insertSql]) {
             NSLog(@"success to insert a data");
@@ -176,7 +176,7 @@
         if (post != nil) {
             NSLog(@"插入-postID: %@, URL:%@, title:%@, coverimg:%@, type:%@ ,detailimages:%@", post.postID, post.good.goodURL, post.good.goodTitle, post.good.coverImageURL, post.goodType, [post getJSONStringFromDetailCoverImagesArray]);
             BOOL flag =
-            [self insertIntoSHOPPING_CART_TABLE:@"0" postID:post.postID orderID:@"1" postURL:post.good.goodURL tag:@"购物车" title:post.good.goodTitle postCoverImg:post.good.goodCoverImgString price:post.good.goodPrice type:post.goodType number:post.addToCartNum detailCoverImages:[post getJSONStringFromDetailCoverImagesArray]];
+            [self insertIntoSHOPPING_CART_TABLE:@"0" postID:post.postID orderID:@"1" postURL:post.good.goodURL tag:@"购物车" title:post.good.goodTitle postCoverImg:post.good.goodCoverImgString price:post.good.goodPrice type:post.goodType number:post.addToCartNum detailCoverImages:[post getJSONStringFromDetailCoverImagesArray] cartSelectedState:post.cartSelectedState];
             if (!flag) {
                 return false;
             }
@@ -253,14 +253,17 @@
             NSString *postCoverImg = [rs stringForColumn:GOODS_COVERIMG];
             NSString *price = [rs stringForColumn:GOODS_PRICE];
             NSString *type = [rs stringForColumn:GOODS_TYPE];
-            NSString *number = [rs stringForColumn:NUMBER];
+            NSString *number = [rs stringForColumn:CART_NUMBER];
             NSString *detailcoverimgs = [rs stringForColumn:GOODS_DETAILCOVERIMAGES];
             NSData *detailcoverimgsNSData = [detailcoverimgs dataUsingEncoding:NSASCIIStringEncoding];
             NSArray *detailCoverImages = [self toArrayOrNSDictionary:detailcoverimgsNSData];
+            NSString *cartSelectedState = [rs stringForColumn:CART_SELECTED_STATE];
+            
             NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@ type=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price, type);
             
             Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:postId,@"itemid",title,@"title",postCoverImg,@"coverimg",price,@"itemprice",tag,@"tag",postURL,@"url", detailCoverImages, @"detailcoverimgs", type,@"type", nil] ];
             p.addToCartNum = number;
+            p.cartSelectedState = cartSelectedState;
             [mutableGoods addObject:p];
         }
         [db close];
@@ -288,15 +291,17 @@
             NSString *postCoverImg = [rs stringForColumn:GOODS_COVERIMG];
             NSString *price = [rs stringForColumn:GOODS_PRICE];
             NSString *type = [rs stringForColumn:GOODS_TYPE];
-            NSString *number = [rs stringForColumn:NUMBER];
+            NSString *number = [rs stringForColumn:CART_NUMBER];
             NSString *detailcoverimgs = [rs stringForColumn:GOODS_DETAILCOVERIMAGES];
             NSData *detailcoverimgsNSData = [detailcoverimgs dataUsingEncoding:NSASCIIStringEncoding];
             NSArray *detailCoverImages = [self toArrayOrNSDictionary:detailcoverimgsNSData];
+            NSString *cartSelectedState = [rs stringForColumn:CART_SELECTED_STATE];
             
             NSLog(@"id=%d, postId=%@, orderId=%@, postURL=%@, tag=%@, title=%@, postCoverImg=%@, price=%@ type=%@",id, postId, orderId ,postURL, tag, title, postCoverImg, price, type);
             
             Post *p = [[Post alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:postId,@"itemid",title,@"title",postCoverImg,@"coverimg",price,@"itemprice",tag,@"tag",postURL,@"url",detailCoverImages, @"detailcoverimgs",type,@"type", nil] ];
             p.addToCartNum = number;
+            p.cartSelectedState = cartSelectedState;
             [db close];
             return p;
         }
@@ -314,7 +319,7 @@
     if ([db open]) {
         NSString *updateSql = [NSString stringWithFormat:
                                @"UPDATE %@ SET %@ = %@ WHERE %@ = %@",
-                               SHOPPING_CART_TABLENAME, NUMBER, number, GOODS_POSTID, postID];
+                               SHOPPING_CART_TABLENAME, CART_NUMBER, number, GOODS_POSTID, postID];
         BOOL res = [db executeUpdate:updateSql];
         if (!res) {
             NSLog(@"error when update SHOPPING_CART_TABLE");
@@ -330,6 +335,30 @@
     NSLog(@"fail to open db in updateSHOPPING_CART_TABLESetNumber:");
     return false;
 }
+
+//通过postId修改一条数据的购物车状态
+- (BOOL)updateSHOPPING_CART_TABLESetCartSelectedState:(NSString *)postID cartSelectedState:(NSString *)cartSelectedState
+{
+    if ([db open]) {
+        NSString *updateSql = [NSString stringWithFormat:
+                               @"UPDATE %@ SET %@ = %@ WHERE %@ = %@",
+                               SHOPPING_CART_TABLENAME, CART_SELECTED_STATE, cartSelectedState, GOODS_POSTID, postID];
+        BOOL res = [db executeUpdate:updateSql];
+        if (!res) {
+            NSLog(@"error when update SHOPPING_CART_TABLE");
+            [db close];
+            return false;
+        } else {
+            NSLog(@"success to update SHOPPING_CART_TABLE");
+            [db close];
+            return true;
+        }
+        
+    }
+    NSLog(@"fail to open db in updateSHOPPING_CART_TABLESetNumber:");
+    return false;
+}
+
 /**
  *  清空数据库
  */

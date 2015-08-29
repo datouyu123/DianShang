@@ -17,6 +17,7 @@
     UILabel *priceLabel;
     UILabel *numberLabel;
     UIButton *radioButton;
+    BOOL selectState;//选中状态
 }
 
 @end
@@ -60,8 +61,8 @@
 
 -(void)click:(id)sender
 {
-    UIButton *u = (UIButton *)sender;
-    u.selected = !u.selected;//选择状态设置为YES,如果有其他按钮 先把其他按钮的selected设置为NO，
+    //调用tableview中代理方法，将model层状态更新，再通过reloaddata刷新
+    [self.wxsdelegate radioBtnClick:self];
 }
 
 - (void)setGoods:(Post *)post
@@ -70,10 +71,21 @@
     //商品名
     nameLabel.text = post.good.goodTitle;
     //单价
-    priceLabel.text = post.good.goodPrice;
+    priceLabel.text = [NSString stringWithFormat:@"¥%@",post.good.goodPrice];
     //加入购物车数量
     numberLabel.text = [NSString stringWithFormat:@"数量: %@", post.addToCartNum];
-    //
+    //选中状态
+    if([post.cartSelectedState isEqualToString:@"1"])
+    {
+        selectState = YES;
+        radioButton.selected = YES;
+    }
+    else
+    {
+        selectState = NO;
+        radioButton.selected = NO;
+    }
+    
     //[self setNeedsLayout];
 }
 

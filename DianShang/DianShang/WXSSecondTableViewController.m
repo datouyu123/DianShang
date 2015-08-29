@@ -14,10 +14,25 @@
 #import "Good.h"
 #import "WXSSecondTableViewCell.h"
 
-@interface WXSSecondTableViewController ()<UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate>
+@interface WXSSecondTableViewController ()<UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, WXSSecondTableViewCellDelegate>
 {
     //定义商品详情页控制器
     WXSCommodityDetailsPageController *cdpController;
+    //工具栏
+    UIToolbar *toolbar;
+    //结算
+    UIButton *settleAccountButton;
+    UIBarButtonItem *settleAccountItem;
+    //全选
+    UIButton *selectAllButton;
+    UIBarButtonItem *selectAllItem;
+    UILabel *selectAllLabel;
+    UIBarButtonItem *selectAllLabelItem;
+    //总计
+    UILabel *totalLabel;
+    UIBarButtonItem *totalLabelItem;
+    //总价
+    float allPrice;
 }
 
 @property (readwrite, nonatomic, strong) NSMutableArray *goods;
@@ -51,6 +66,35 @@
     
     self.tableView.allowsMultipleSelectionDuringEditing=YES;
     //[self.tableView setEditing:YES animated:YES];
+    //初始化toolbar
+    settleAccountButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W/3, TOOLBAR_H)];
+    [settleAccountButton setTitle:@"买单" forState:UIControlStateNormal];
+    settleAccountButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    settleAccountButton.backgroundColor = [UIColor orangeColor];
+    [settleAccountButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
+    settleAccountItem = [[UIBarButtonItem alloc] initWithCustomView:settleAccountButton];
+    selectAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, TOOLBAR_H)];
+    selectAllLabel.text = @"全选";
+    selectAllLabel.textColor = [UIColor whiteColor];
+    selectAllLabelItem = [[UIBarButtonItem alloc] initWithCustomView:selectAllLabel];
+    selectAllButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 30, 30)];
+    [selectAllButton setImage:[UIImage imageNamed:@"checkbox_normal"] forState:UIControlStateNormal];
+    [selectAllButton setImage:[UIImage imageNamed:@"checkbox_selected"] forState:UIControlStateSelected];
+    [selectAllButton addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    selectAllItem = [[UIBarButtonItem alloc] initWithCustomView:selectAllButton];
+    totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W/3, TOOLBAR_H)];
+    totalLabel.text = @"总计:¥0.00";
+    totalLabel.textColor = [UIColor whiteColor];
+    totalLabelItem = [[UIBarButtonItem alloc] initWithCustomView:totalLabel];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *fixItemSecond = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    fixItemSecond.width = -20;
+    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, IPHONE_H - TOOLBAR_H, IPHONE_W, TOOLBAR_H)];
+    [toolbar setItems:[NSArray arrayWithObjects:selectAllItem, selectAllLabelItem, totalLabelItem, spaceItem, settleAccountItem, fixItemSecond, nil] animated:YES];
+
+    [toolbar setBarStyle:UIBarStyleBlack];
+    toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [self.view addSubview:toolbar];
     
 }
 
@@ -79,10 +123,29 @@
         label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
         [image sizeToFit];
         image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+        //隐藏toolbar
+        toolbar.hidden = YES;
     }
     else
     {
         self.tableView.tableHeaderView = nil;
+        //显示toolbar
+        toolbar.hidden = NO;
+        //计算总价
+        [self totalPrice];
+        //判断全选按钮状态
+        for (int i=0; i<self.goods.count; i++)
+        {
+            Post *item = [self.goods objectAtIndex:i];
+            if ([item.cartSelectedState isEqualToString:@"0"]) {
+                selectAllButton.selected = NO;
+                break;
+            }
+            if (i == self.goods.count - 1) {
+                selectAllButton.selected = YES;
+            }
+        }
+        
     }
     [self.tableView reloadData];
 }
@@ -159,10 +222,27 @@
         label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
         [image sizeToFit];
         image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+        //隐藏toolbar
+        toolbar.hidden = YES;
     }
     else
     {
         self.tableView.tableHeaderView = nil;
+        //显示toolbar
+        toolbar.hidden = NO;
+        //判断全选按钮状态
+        for (int i=0; i<self.goods.count; i++)
+        {
+            Post *item = [self.goods objectAtIndex:i];
+            if ([item.cartSelectedState isEqualToString:@"0"]) {
+                selectAllButton.selected = NO;
+                break;
+            }
+            if (i == self.goods.count - 1) {
+                selectAllButton.selected = YES;
+            }
+        }
+
     }
     [self.tableView reloadData];
 
@@ -186,6 +266,7 @@
         cell = [[WXSSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
         cell.rightUtilityButtons = [self rightButtons];
         cell.delegate = self;
+        cell.wxsdelegate = self;
 
     }
     //加上下面这段cell的label会再第二次出现以后消失
@@ -239,6 +320,57 @@
     [self.navigationController pushViewController:cdpController animated:YES];
 }
 
+#pragma mark - 全选按钮事件
+/**
+ *  全选按钮事件
+ *
+ *  @param sender 全选按钮
+ */
+-(void)selectBtnClick:(UIButton *)sender
+{
+    //判断是否选中，是改成否，否改成是，改变图片状态
+    UIButton *button = (UIButton *)sender;
+    button.selected = !button.selected;
+ 
+    //改变单元格选中状态
+    for (int i=0; i<self.goods.count; i++)
+    {
+        Post *item = [self.goods objectAtIndex:i];
+        if (button.selected) {
+            item.cartSelectedState = @"1";
+        }
+        else
+        {
+            item.cartSelectedState = @"0";
+        }
+    }
+    //计算总价
+    [self totalPrice];
+    //刷新表格
+    [self.tableView reloadData];
+}
+
+#pragma mark - 计算总价
+-(void)totalPrice
+{
+    //遍历整个数据源，然后判断如果是选中的商品，就计算总价（单价 * 商品数量）
+    for ( int i =0; i<self.goods.count; i++)
+    {
+        Post *item = [self.goods objectAtIndex:i];
+        if ([item.cartSelectedState isEqualToString:@"1"])
+        {
+            allPrice = allPrice + [item.addToCartNum intValue] * [item.good.goodPrice intValue];
+        }
+    }
+    
+    //给总价文本赋值
+    totalLabel.text = [NSString stringWithFormat:@"总计:¥%.2f",allPrice];
+    NSLog(@"%f",allPrice);
+    
+    //每次算完要重置为0，因为每次的都是全部循环算一遍
+    allPrice = 0.0;
+}
+
 #pragma mark - SWTableViewDelegate
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell didTriggerRightUtilityButtonWithIndex:(NSInteger)index
 {
@@ -272,18 +404,71 @@
                 [label sizeToFit];
                 label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
                 [image sizeToFit];
-                image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);            }
+                image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+                //隐藏toolbar
+                toolbar.hidden = YES;
+            }
             else
             {
                 self.tableView.tableHeaderView = nil;
+                //显示toolbar
+                toolbar.hidden = NO;
+                //判断全选按钮状态
+                for (int i=0; i<self.goods.count; i++)
+                {
+                    Post *item = [self.goods objectAtIndex:i];
+                    if ([item.cartSelectedState isEqualToString:@"0"]) {
+                        selectAllButton.selected = NO;
+                        break;
+                    }
+                    if (i == self.goods.count - 1) {
+                        selectAllButton.selected = YES;
+                    }
+                }
+
             }
             //本地数据库删除该条记录
             [[FMDBHelper sharedFMDBHelper] deleteFromSHOPPING_CART_TABLE:post.postID];
+            //[self.tableView reloadData];
             break;
         }
         default:
             break;
     }
+}
+
+#pragma mark - WXSSecondTableViewCellDelegate(radiobutton代理)
+
+//实现radiobutton点击代理事件
+-(void)radioBtnClick:(UITableViewCell *)cell
+{
+    NSIndexPath *index = [self.tableView indexPathForCell:cell];
+    Post *item = self.goods[index.row];
+    if ([item.cartSelectedState isEqualToString:@"1"]) {
+        item.cartSelectedState = @"0";
+    }
+    else{
+        item.cartSelectedState = @"1";
+    }
+    //判断全选按钮状态
+    for (int i=0; i<self.goods.count; i++)
+    {
+        Post *item = [self.goods objectAtIndex:i];
+        if ([item.cartSelectedState isEqualToString:@"0"]) {
+            selectAllButton.selected = NO;
+            break;
+        }
+        if (i == self.goods.count - 1) {
+            selectAllButton.selected = YES;
+        }
+    }
+    
+    //刷新
+    [self.tableView reloadData];
+    //计算总价
+    [self totalPrice];
+    //修改本地数据库
+    [[FMDBHelper sharedFMDBHelper] updateSHOPPING_CART_TABLESetCartSelectedState:item.postID cartSelectedState:item.cartSelectedState];
 }
 
 #pragma mark - get
