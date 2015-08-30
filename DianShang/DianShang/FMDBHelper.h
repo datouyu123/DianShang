@@ -70,5 +70,7 @@
 - (BOOL)updateSHOPPING_CART_TABLESetNumber:(NSString *)postID number:(NSString *)number;
 //通过postId修改一条数据的购物车状态
 - (BOOL)updateSHOPPING_CART_TABLESetCartSelectedState:(NSString *)postID cartSelectedState:(NSString *)cartSelectedState;
+//修改所有数据购物车状态
+- (BOOL)updateSHOPPING_CART_TABLESetCartSelectedState:(NSString *)cartSelectedState;
 
 @end

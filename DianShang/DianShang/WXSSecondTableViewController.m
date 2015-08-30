@@ -75,6 +75,7 @@
     settleAccountItem = [[UIBarButtonItem alloc] initWithCustomView:settleAccountButton];
     selectAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, TOOLBAR_H)];
     selectAllLabel.text = @"全选";
+    selectAllLabel.font = [UIFont boldSystemFontOfSize:14];
     selectAllLabel.textColor = [UIColor whiteColor];
     selectAllLabelItem = [[UIBarButtonItem alloc] initWithCustomView:selectAllLabel];
     selectAllButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 30, 30)];
@@ -84,6 +85,7 @@
     selectAllItem = [[UIBarButtonItem alloc] initWithCustomView:selectAllButton];
     totalLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W/3, TOOLBAR_H)];
     totalLabel.text = @"总计:¥0.00";
+    totalLabel.font = [UIFont boldSystemFontOfSize:14.0];
     totalLabel.textColor = [UIColor whiteColor];
     totalLabelItem = [[UIBarButtonItem alloc] initWithCustomView:totalLabel];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
@@ -105,7 +107,10 @@
     [self styleNavBar];
     //设置scrollview下边距
     if (self.controllerType != 100) {
-        self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H, 0);
+        self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H + TOOLBAR_H, 0);
+    }
+    else{
+        self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, TOOLBAR_H, 0);
     }
     //[[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"SHOPPING_CART_TABLE"];
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
@@ -348,6 +353,12 @@
     [self totalPrice];
     //刷新表格
     [self.tableView reloadData];
+    //更新本地数据库
+    if (button.selected) {
+        [[FMDBHelper sharedFMDBHelper] updateSHOPPING_CART_TABLESetCartSelectedState:@"1"];
+    }
+    else
+        [[FMDBHelper sharedFMDBHelper] updateSHOPPING_CART_TABLESetCartSelectedState:@"0"];
 }
 
 #pragma mark - 计算总价
@@ -359,7 +370,7 @@
         Post *item = [self.goods objectAtIndex:i];
         if ([item.cartSelectedState isEqualToString:@"1"])
         {
-            allPrice = allPrice + [item.addToCartNum intValue] * [item.good.goodPrice intValue];
+            allPrice = allPrice + [item.addToCartNum intValue] * [item.good.goodPrice floatValue];
         }
     }
     

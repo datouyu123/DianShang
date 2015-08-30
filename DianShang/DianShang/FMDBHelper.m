@@ -359,6 +359,30 @@
     return false;
 }
 
+//修改所有数据购物车状态
+- (BOOL)updateSHOPPING_CART_TABLESetCartSelectedState:(NSString *)cartSelectedState
+{
+    if ([db open]) {
+        NSString *updateSql = [NSString stringWithFormat:
+                               @"UPDATE %@ SET %@ = %@",
+                               SHOPPING_CART_TABLENAME, CART_SELECTED_STATE, cartSelectedState];
+        BOOL res = [db executeUpdate:updateSql];
+        if (!res) {
+            NSLog(@"error when update SHOPPING_CART_TABLE");
+            [db close];
+            return false;
+        } else {
+            NSLog(@"success to update SHOPPING_CART_TABLE");
+            [db close];
+            return true;
+        }
+        
+    }
+    NSLog(@"fail to open db in updateSHOPPING_CART_TABLESetNumber:");
+    return false;
+
+}
+
 /**
  *  清空数据库
  */

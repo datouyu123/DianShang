@@ -31,7 +31,7 @@
     if (self)
     {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        radioButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 30, 30)];
+        radioButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 100)];
         [radioButton setImage:[UIImage imageNamed:@"checkbox_normal"] forState:UIControlStateNormal];
         [radioButton setImage:[UIImage imageNamed:@"checkbox_selected"] forState:UIControlStateSelected];
         [radioButton addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
@@ -92,7 +92,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    radioButton.frame = CGRectMake(10, 10, 30, 30);
+    radioButton.frame = CGRectMake(0, 0, 50, 100);
     self.imageView.frame = CGRectMake(50, 5, 90, 90);
     nameLabel.frame = CGRectMake(160, 5, IPHONE_W - 160 - 10, 40);
     priceLabel.frame = CGRectMake(160, 50, IPHONE_W - 160 - 10, 15);

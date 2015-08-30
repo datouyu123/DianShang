@@ -43,6 +43,8 @@
     for (NSString *string in post.detailCoverImages) {
         UIImageView *scrollImageView = [[UIImageView alloc] initWithFrame:self.bounds];
         [scrollImageView setImageWithURL:[NSURL URLWithString:string] placeholderImage:[UIImage imageNamed:@"profile-image-placeholder.jpg"]];
+        //[scrollImageView sizeToFit];
+        scrollImageView.contentMode =  UIViewContentModeCenter;
         [imagesArray addObject:scrollImageView];
     }
     [asScroll setArrOfImages:imagesArray];
