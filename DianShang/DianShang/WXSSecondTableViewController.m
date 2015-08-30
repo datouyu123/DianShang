@@ -13,6 +13,8 @@
 #import "Post.h"
 #import "Good.h"
 #import "WXSSecondTableViewCell.h"
+#import "MJRefresh.h"
+#import "MJChiBaoZiHeader.h"
 
 @interface WXSSecondTableViewController ()<UITableViewDelegate, UITableViewDataSource, SWTableViewCellDelegate, WXSSecondTableViewCellDelegate>
 {
@@ -97,6 +99,10 @@
     [toolbar setBarStyle:UIBarStyleBlack];
     toolbar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:toolbar];
+    //添加刷新
+    [self setupRefresh];
+    //设置tableview背景色
+    [self.tableView setBackgroundColor:CONTROLLER_BG_COLOR];
     
 }
 
@@ -251,6 +257,64 @@
     }
     [self.tableView reloadData];
 
+}
+
+#pragma mark UICollectionView - 上下拉刷新
+- (void)setupRefresh
+{
+    // 下拉刷新
+    // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+    self.tableView.header = [MJChiBaoZiHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+}
+
+#pragma mark - 下拉刷新数据
+- (void)loadNewData
+{
+    self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
+    //判断购物车是否为空
+    if (!self.goods.count) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
+        label.text = @"主人快去挑些宝贝吧";
+        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
+        image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
+        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        [self.tableView.tableHeaderView addSubview:label];
+        [self.tableView.tableHeaderView addSubview:image];
+        
+        [label sizeToFit];
+        label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
+        [image sizeToFit];
+        image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+        //隐藏toolbar
+        toolbar.hidden = YES;
+    }
+    else
+    {
+        self.tableView.tableHeaderView = nil;
+        //显示toolbar
+        toolbar.hidden = NO;
+        //计算总价
+        [self totalPrice];
+        //判断全选按钮状态
+        for (int i=0; i<self.goods.count; i++)
+        {
+            Post *item = [self.goods objectAtIndex:i];
+            if ([item.cartSelectedState isEqualToString:@"0"]) {
+                selectAllButton.selected = NO;
+                break;
+            }
+            if (i == self.goods.count - 1) {
+                selectAllButton.selected = YES;
+            }
+        }
+        
+    }
+    [self.tableView reloadData];
+
+    
+    // 拿到当前的下拉刷新控件，结束刷新状态
+    [self.tableView.header endRefreshing];
+    
 }
 
 #pragma mark - Table view data source

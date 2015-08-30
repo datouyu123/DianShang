@@ -154,6 +154,10 @@
     [self.popupTableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     //设置cell.imageView不挡住分隔线
     [self.popupTableView setSeparatorInset:UIEdgeInsetsZero];
+    //设置背景色
+    [self.cdpScrollView setBackgroundColor:CONTROLLER_BG_COLOR];
+    [self.cdpTableView setBackgroundColor:CONTROLLER_BG_COLOR];
+    [self.cdpWebView setBackgroundColor:CONTROLLER_BG_COLOR];
     
 }
 

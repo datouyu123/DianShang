@@ -21,10 +21,11 @@
 #import "Post.h"
 #import "Good.h"
 #import "UIAlertView+AFNetworking.h"
+#import "MBProgressHUD.h"
 
 static const CGFloat MJDuration = 2.0;
 
-@interface WXSFirstCollectionViewController ()
+@interface WXSFirstCollectionViewController ()<MBProgressHUDDelegate>
 {
     //定义搜索按钮
     UIButton *searchButton;
@@ -32,6 +33,8 @@ static const CGFloat MJDuration = 2.0;
     UIButton *saoButton;
     //定义商品详情页控制器
     WXSCommodityDetailsPageController *cdpController;
+    //加载时提示框
+    MBProgressHUD *HUD;
 }
 /*!
  用于添加AFNetworking
@@ -83,6 +86,8 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     
     //添加刷新
     [self setupRefresh];
+    //设置collectionview背景色
+    //[self.collectionView setBackgroundColor:CONTROLLER_BG_COLOR];
 
 }
 
@@ -232,8 +237,10 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 - (void)reload:(__unused id)sender
 {
     NSLog(@"\n开始调用RELOAD\n");
-    
-    NSURLSessionTask *task = [Post globalTimelinePostsWithBlock:^(NSArray *posts, NSError *error) {
+
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"主人，我在拼命加载中～";
+    [Post globalTimelinePostsWithBlock:^(NSArray *posts, NSError *error) {
         if (!error) {
             
             NSLog(@"\n开始回调\n");
@@ -258,6 +265,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
                 
                 NSLog(@"\n开始RELOAD计时开始\n");
                 [self.collectionView reloadData];
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSLog(@"\n开始RELOAD计时结束\n");
                 NSLog(@"\n重载结束\n");
                 
@@ -272,10 +280,29 @@ static NSString * const kReuseIdentifier4 = @"headerView";
             else
             {
                 //刷新结束shangla
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
                 [self.collectionView.header endRefreshing];
                 NSLog(@"\n下拉结束\n");
             }
-            }
+        }
+        else{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+            [self.navigationController.view addSubview:HUD];
+            
+            // Set custom view mode
+            HUD.mode = MBProgressHUDModeCustomView;
+            
+            HUD.delegate = self;
+            HUD.labelText = @"网络请求失败，请主人检查网络～";
+            
+            [HUD show:YES];
+            [HUD hide:YES afterDelay:2];
+
+            //刷新结束shangla
+            [self.collectionView.header endRefreshing];
+        }
 
     }];
     //刷新结束shangla

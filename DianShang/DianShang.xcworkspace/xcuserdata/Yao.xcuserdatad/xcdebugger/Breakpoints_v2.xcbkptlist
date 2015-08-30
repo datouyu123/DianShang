@@ -745,11 +745,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "337"
-            endingLineNumber = "337"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -761,11 +761,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "316"
-            endingLineNumber = "316"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -825,11 +825,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
             landmarkName = "@implementation WXSCommodityDetailsPageController"
             landmarkType = "3">
          </BreakpointContent>
@@ -841,11 +841,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "357"
-            endingLineNumber = "357"
+            startingLineNumber = "361"
+            endingLineNumber = "361"
             landmarkName = "-scrollViewDidScroll:"
             landmarkType = "5">
          </BreakpointContent>
@@ -889,11 +889,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-loadNewData"
             landmarkType = "5">
          </BreakpointContent>
@@ -905,11 +905,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -921,11 +921,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459701.565105"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -969,11 +969,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "-showPopupFormSheet:"
             landmarkType = "5">
          </BreakpointContent>
@@ -985,11 +985,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "405"
+            endingLineNumber = "405"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1001,11 +1001,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "413"
-            endingLineNumber = "413"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1017,11 +1017,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "414"
-            endingLineNumber = "414"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1033,11 +1033,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "406"
+            endingLineNumber = "406"
             landmarkName = "-tableView:numberOfRowsInSection:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1065,11 +1065,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "154"
+            endingLineNumber = "154"
             landmarkName = "-loadLocalData"
             landmarkType = "5">
          </BreakpointContent>
@@ -1081,11 +1081,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1097,11 +1097,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "-AddToCart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1113,11 +1113,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1129,11 +1129,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "287"
-            endingLineNumber = "287"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1145,11 +1145,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1161,11 +1161,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1177,11 +1177,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1225,11 +1225,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1273,11 +1273,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "-AddToCart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1289,11 +1289,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "271"
+            endingLineNumber = "271"
             landmarkName = "-AddToCart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1305,11 +1305,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1321,11 +1321,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1353,11 +1353,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "-AddToCart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1369,11 +1369,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "-AddToCart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1417,11 +1417,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1433,11 +1433,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "411"
-            endingLineNumber = "411"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1445,47 +1445,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "243"
+            endingLineNumber = "243"
             landmarkName = "-reload:"
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[WXSFirstCollectionViewController reload:]"
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/WXSFirstCollectionViewController.m"
-                  timestampString = "462281054.76093"
+                  timestampString = "462643350.035529"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "81">
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "200">
                </Location>
                <Location
-                  shouldBeEnabled = "No"
+                  shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__43-[WXSFirstCollectionViewController reload:]_block_invoke"
                   moduleName = "DianShang"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/WXSFirstCollectionViewController.m"
-                  timestampString = "462281054.761147"
+                  timestampString = "462643350.035723"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "70">
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "76">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1513,11 +1513,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
             landmarkName = "-reload:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1529,11 +1529,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "349"
-            endingLineNumber = "349"
+            startingLineNumber = "376"
+            endingLineNumber = "376"
             landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1545,11 +1545,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "454"
-            endingLineNumber = "454"
+            startingLineNumber = "458"
+            endingLineNumber = "458"
             landmarkName = "-tableView:cellForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1561,11 +1561,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
             landmarkName = "-styleNavBar"
             landmarkType = "5">
          </BreakpointContent>
@@ -1576,60 +1576,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462347928.273709"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "-reload:"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[WXSFirstCollectionViewController reload:]"
-                  moduleName = "DianShang"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/WXSFirstCollectionViewController.m"
-                  timestampString = "462281063.656194"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "81">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__43-[WXSFirstCollectionViewController reload:]_block_invoke"
-                  moduleName = "DianShang"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Yao/Documents/DianShang/DianShang/DianShang/WXSFirstCollectionViewController.m"
-                  timestampString = "462281063.656511"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "235"
-                  endingLineNumber = "235"
-                  offsetFromSymbolStart = "70">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1641,11 +1593,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSCommodityDetailsPageController.m"
-            timestampString = "462459622.675765"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "-AddToCart"
             landmarkType = "5">
          </BreakpointContent>
@@ -1657,11 +1609,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSFirstCollectionViewController.m"
-            timestampString = "462435990.201941"
+            timestampString = "462643772.962472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "407"
-            endingLineNumber = "407"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "-collectionView:didSelectItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1673,11 +1625,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612719.236101"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "468"
+            endingLineNumber = "468"
             landmarkName = "-swipeableTableViewCell:didTriggerRightUtilityButtonWithIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1689,11 +1641,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1721,11 +1673,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612719.236101"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "457"
-            endingLineNumber = "457"
+            startingLineNumber = "521"
+            endingLineNumber = "521"
             landmarkName = "-radioBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1737,11 +1689,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612719.236101"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "482"
-            endingLineNumber = "482"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
             landmarkName = "-radioBtnClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1753,11 +1705,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612257.033569"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1769,11 +1721,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612719.236101"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "-totalPrice"
             landmarkType = "5">
          </BreakpointContent>
@@ -1785,12 +1737,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DianShang/WXSSecondTableViewController.m"
-            timestampString = "462612719.236101"
+            timestampString = "462639935.418307"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "435"
+            endingLineNumber = "435"
             landmarkName = "-totalPrice"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DianShang/WXSFirstCollectionViewController.m"
+            timestampString = "462642950.778579"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-reload:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

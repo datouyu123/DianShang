@@ -16,6 +16,7 @@
 #define TOOLBAR_H (48.0)
 #define RDVTABBAR_H (self.rdv_tabBarController.tabBar.frame.size.height)
 #define STATUSBAR_H ([[UIApplication sharedApplication] statusBarFrame].size.height)
+#define CONTROLLER_BG_COLOR ([UIColor colorWithRed:240.0/255.0 green:243.0/255.0 blue:245.0/255.0 alpha:1.0])
 #endif /* Prefix_pch */
 
 
