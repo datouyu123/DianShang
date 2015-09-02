@@ -8,16 +8,11 @@
 
 #import "Good.h"
 #import "AFHTTPRequestOperation.h"
+#import "MJExtension.h"
 
 NSString * const kUserCoverImageDidLoadNotification = @"com.alamofire.user.profile-image.loaded";
 
 @interface Good ()
-
-@property (readwrite, nonatomic, copy) NSString *goodURL;
-@property (readwrite, nonatomic, copy) NSString *goodTitle;
-@property (readwrite, nonatomic, copy) NSString *goodPrice;
-@property (readwrite, nonatomic, copy) NSString *goodTag;
-@property (readwrite, nonatomic, copy) NSString *goodCoverImgString;
 
 #ifdef __MAC_OS_X_VERSION_MIN_REQUIRED
 @property (readwrite, nonatomic, strong) AFHTTPRequestOperation *coverImageRequestOperation;
@@ -26,18 +21,23 @@ NSString * const kUserCoverImageDidLoadNotification = @"com.alamofire.user.profi
 
 @end
 @implementation Good
+// NSCoding实现
+MJExtensionCodingImplementation
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes {
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        self.goodURL = [[NSString alloc] init];
+        self.goodURL = [attributes valueForKeyPath:@"goods_url"];
+        self.goodTitle = [[NSString alloc] init];
+        self.goodTitle = [attributes valueForKeyPath:@"goods_title"];
+        self.goodPrice = [[NSString alloc] init];
+        self.goodPrice = [attributes valueForKeyPath:@"goods_price"];
+        self.goodTag = [[NSString alloc] init];
+        self.goodTag = [attributes valueForKeyPath:@"goods_tag"];
+        self.goodCoverImgString = [[NSString alloc] init];
+        self.goodCoverImgString = [attributes valueForKeyPath:@"goods_image_string"];
     }
-    
-    self.goodURL = [attributes valueForKeyPath:@"goods_url"];
-    self.goodTitle = [attributes valueForKeyPath:@"goods_title"];
-    self.goodPrice = [attributes valueForKeyPath:@"goods_price"];
-    self.goodTag = [attributes valueForKeyPath:@"goods_tag"];
-    self.goodCoverImgString = [attributes valueForKeyPath:@"goods_image_string"];
     
     return self;
 }

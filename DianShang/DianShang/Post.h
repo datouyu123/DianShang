@@ -12,11 +12,11 @@
 
 @interface Post : NSObject
 
-@property (nonatomic, strong) NSString *postID;
-@property (nonatomic, strong) NSString *goodType;
+@property (nonatomic, copy) NSString *postID;
+@property (nonatomic, copy) NSString *goodType;
 @property (nonatomic, strong) NSArray *detailCoverImages;//详情页滚动图片集
-@property (nonatomic, strong) NSString *addToCartNum; //加入购物车数量
-@property (nonatomic, strong) NSString *cartSelectedState; //在购物车中是否被选中状态，1代表选中，0代表未选中（未加入购物车）
+@property (nonatomic, copy) NSString *addToCartNum; //加入购物车数量
+@property (nonatomic, copy) NSString *cartSelectedState; //在购物车中是否被选中状态，1代表选中，0代表未选中（未加入购物车）
 @property (nonatomic, strong) Good *good;
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes;

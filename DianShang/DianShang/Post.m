@@ -15,16 +15,16 @@
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes {
     self = [super init];
-    if (!self) {
-        return nil;
+    if (self) {
+        self.postID = [[NSString alloc] initWithString:[attributes valueForKeyPath:@"itemid"]];
+        self.goodType = [[NSString alloc] initWithString:[attributes valueForKeyPath:@"type"]];
+        self.detailCoverImages = [[NSArray alloc] initWithArray:[attributes valueForKeyPath:@"detailcoverimgs"]];
+        self.addToCartNum = [[NSString alloc] init];
+        self.addToCartNum = @"0";
+        self.cartSelectedState = [[NSString alloc] init];
+        self.cartSelectedState = @"0";
+        self.good = [[Good alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[attributes valueForKeyPath:@"url"],@"goods_url", [attributes valueForKeyPath:@"title"],@"goods_title",[attributes valueForKeyPath:@"coverimg"],@"goods_image_string",[attributes valueForKeyPath:@"itemprice"],@"goods_price",[attributes valueForKeyPath:@"tag"],@"goods_tag",nil]];
     }
-    
-    self.postID = [attributes valueForKeyPath:@"itemid"];
-    self.goodType = [attributes valueForKeyPath:@"type"];
-    self.detailCoverImages = [attributes valueForKeyPath:@"detailcoverimgs"];
-    self.addToCartNum = @"0";
-    self.cartSelectedState = @"0";
-    self.good = [[Good alloc] initWithAttributes: [NSDictionary dictionaryWithObjectsAndKeys:[attributes valueForKeyPath:@"url"],@"goods_url", [attributes valueForKeyPath:@"title"],@"goods_title",[attributes valueForKeyPath:@"coverimg"],@"goods_image_string",[attributes valueForKeyPath:@"itemprice"],@"goods_price",[attributes valueForKeyPath:@"tag"],@"goods_tag",nil]];
     
     return self;
 }

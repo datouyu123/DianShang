@@ -9,17 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DLRadioButton.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,17 +52,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>026E32BD29688149F503D53B5D8A648F</key>
+		<key>03BF68198C6D241124374F0E89D79632</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>14AE0D4B3A9AF29CE6F05FD6E4B2CE97</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1C527B09142C3DFAB14CD76F4706E379</key>
+		<key>1AF8DD2C3C67B1D1C76BA6CE84F79D16</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,22 +67,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>50A30B3A8F73CEF36C7F34672463BAA0</key>
+		<key>386873F9DD03BA2999B240F289BEAEDD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>85DFA5583D91BE819963CC4DECF77588</key>
+		<key>712D02E35FC99144A5BA87AEA3F05A20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0FE239833402B4B3EB2B8B5AE20F5A2</key>
+		<key>74838BB50016EEF94CBF3978C6DB57C2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C69D04428ECC8B2C788029775C7F8947</key>
+		<key>A48A5B62EEE8B8FEC80DB418A83047BD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ABC367D1A7E92C2E08CFE7BC977A3183</key>
 		<dict>
 			<key>primary</key>
 			<true/>

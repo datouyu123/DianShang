@@ -563,6 +563,23 @@
         return 0;
 }
 
+// 分割线封口
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    //按照作者最后的意思还要加上下面这一段
+    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+}
+
 #pragma mark - get
 
 -(UIScrollView *)cdpScrollView

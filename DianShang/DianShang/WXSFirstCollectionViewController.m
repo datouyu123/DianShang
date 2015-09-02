@@ -237,7 +237,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 - (void)reload:(__unused id)sender
 {
     NSLog(@"\n开始调用RELOAD\n");
-
+    //提示框显示
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"主人，我在拼命加载中～";
     [Post globalTimelinePostsWithBlock:^(NSArray *posts, NSError *error) {
@@ -246,25 +246,17 @@ static NSString * const kReuseIdentifier4 = @"headerView";
             NSLog(@"\n开始回调\n");
             
             NSLog(@"\n开始赋值给self.posts\n");
-            
             self.posts = posts;
-            //self.posts = [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromGOODS_TABLE:@"\'item\'"]];
-            
-            //更新轮播图的数据postsLun
-            //            self.postsLun = [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromPOST_TABLE:@"\'最新\'" :@"\'lun\'"]];
-            
-            NSLog(@"\n开始POST LUN赋值\n");
-            //self.postsLun = [NSArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromPOST_TABLE:@"\'最新\'" :@"\'lun\'"]];
-            
             NSLog(@"\n结束赋值\n");
             
-            if ([ [[NSUserDefaults standardUserDefaults] stringForKey:@"loadType"] isEqualToString:@"xiala"]) {
+            if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"loadType"] isEqualToString:@"xiala"]) {
                 
                 NSLog(@"\n重载tableView\n");
                 //更新table的数据
                 
                 NSLog(@"\n开始RELOAD计时开始\n");
                 [self.collectionView reloadData];
+                //提示框消失
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 NSLog(@"\n开始RELOAD计时结束\n");
                 NSLog(@"\n重载结束\n");
@@ -279,29 +271,30 @@ static NSString * const kReuseIdentifier4 = @"headerView";
                 }
             else
             {
-                //刷新结束shangla
+                //提示框消失
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                
+                //刷新结束shangla
                 [self.collectionView.header endRefreshing];
                 NSLog(@"\n下拉结束\n");
             }
         }
         else{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-            [self.navigationController.view addSubview:HUD];
+                //提示框消失
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+                [self.navigationController.view addSubview:HUD];
             
-            // Set custom view mode
-            HUD.mode = MBProgressHUDModeCustomView;
+                // Set custom view mode
+                HUD.mode = MBProgressHUDModeCustomView;
             
-            HUD.delegate = self;
-            HUD.labelText = @"网络请求失败，请主人检查网络～";
+                HUD.delegate = self;
+                HUD.labelText = @"网络请求失败，请主人检查网络～";
             
-            [HUD show:YES];
-            [HUD hide:YES afterDelay:2];
+                [HUD show:YES];
+                [HUD hide:YES afterDelay:2];
 
-            //刷新结束shangla
-            [self.collectionView.header endRefreshing];
+                //刷新结束shangla
+                [self.collectionView.header endRefreshing];
         }
 
     }];
@@ -363,7 +356,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     {
         MainButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier2 forIndexPath:indexPath];
         cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
-        //cell.button.imageView.image = [UIImage imageNamed:@"sao.png"];
+ 
         [cell.layer setBorderWidth:2.0f];
         [cell.layer setBorderColor:[UIColor cyanColor].CGColor];
         [cell.layer setCornerRadius:25.0f];

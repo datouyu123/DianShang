@@ -13,6 +13,7 @@
 #import "ViewController.h"
 #import "WXSFirstCollectionViewController.h"
 #import "WXSSecondTableViewController.h"
+#import "WXSThirdMyViewController.h"
 #import "FirstCollectionViewLayout.h"
 #import "FMDBHelper.h"
 
@@ -161,7 +162,7 @@
                                                     initWithRootViewController:secondViewController];
     [secondViewController setTitle:@"购物车"];
     
-    UIViewController *thirdViewController = [[ViewController alloc] init];
+    UIViewController *thirdViewController = [[WXSThirdMyViewController alloc] init];
     UIViewController *thirdNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:thirdViewController];
     [thirdViewController setTitle:@"我的"];

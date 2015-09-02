@@ -167,6 +167,12 @@
 		20A6271B1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */; };
 		20A627201B7D9F6C002FAAD2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20A6271F1B7D9F6C002FAAD2 /* Images.xcassets */; };
 		20A627261B7DAD05002FAAD2 /* back_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 20A627251B7DAD05002FAAD2 /* back_icon.png */; };
+		20B1570D1B942A6800BC63B0 /* WXSThirdMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B1570C1B942A6800BC63B0 /* WXSThirdMyViewController.m */; };
+		20B157101B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B1570F1B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.m */; };
+		20B157131B9491AD00BC63B0 /* PersonalMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B157121B9491AD00BC63B0 /* PersonalMessage.m */; };
+		20B157161B95764D00BC63B0 /* deliveryAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B157151B95764D00BC63B0 /* deliveryAddress.m */; };
+		20B157191B96C67500BC63B0 /* WXSThirdMySetupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B157181B96C67500BC63B0 /* WXSThirdMySetupController.m */; };
+		20B1571C1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20B1571B1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.m */; };
 		20BA926A1B7F1FE70095F38E /* CNPPopupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BA92691B7F1FE70095F38E /* CNPPopupController.m */; };
 		20BA92701B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 20BA926F1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m */; };
 		20CAFF201B4E154A008FFF11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFF1F1B4E154A008FFF11 /* main.m */; };
@@ -379,6 +385,18 @@
 		20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSCommodityDetailsPageController.m; path = DianShang/WXSCommodityDetailsPageController.m; sourceTree = "<group>"; };
 		20A6271F1B7D9F6C002FAAD2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		20A627251B7DAD05002FAAD2 /* back_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_icon.png; sourceTree = "<group>"; };
+		20B1570B1B942A6800BC63B0 /* WXSThirdMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSThirdMyViewController.h; path = DianShang/WXSThirdMyViewController.h; sourceTree = "<group>"; };
+		20B1570C1B942A6800BC63B0 /* WXSThirdMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSThirdMyViewController.m; path = DianShang/WXSThirdMyViewController.m; sourceTree = "<group>"; };
+		20B1570E1B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSThirdMyAvatarAndNameTableViewCell.h; sourceTree = "<group>"; };
+		20B1570F1B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSThirdMyAvatarAndNameTableViewCell.m; sourceTree = "<group>"; };
+		20B157111B9491AD00BC63B0 /* PersonalMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalMessage.h; sourceTree = "<group>"; };
+		20B157121B9491AD00BC63B0 /* PersonalMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalMessage.m; sourceTree = "<group>"; };
+		20B157141B95764D00BC63B0 /* deliveryAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deliveryAddress.h; sourceTree = "<group>"; };
+		20B157151B95764D00BC63B0 /* deliveryAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deliveryAddress.m; sourceTree = "<group>"; };
+		20B157171B96C67500BC63B0 /* WXSThirdMySetupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WXSThirdMySetupController.h; path = DianShang/WXSThirdMySetupController.h; sourceTree = "<group>"; };
+		20B157181B96C67500BC63B0 /* WXSThirdMySetupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WXSThirdMySetupController.m; path = DianShang/WXSThirdMySetupController.m; sourceTree = "<group>"; };
+		20B1571A1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSThirdMyOrderTableViewCell.h; sourceTree = "<group>"; };
+		20B1571B1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXSThirdMyOrderTableViewCell.m; sourceTree = "<group>"; };
 		20BA92681B7F1FE70095F38E /* CNPPopupController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNPPopupController.h; sourceTree = "<group>"; };
 		20BA92691B7F1FE70095F38E /* CNPPopupController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CNPPopupController.m; sourceTree = "<group>"; };
 		20BA926E1B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXSCommodityDetailsPagePopupViewFirstCell.h; sourceTree = "<group>"; };
@@ -1158,6 +1176,10 @@
 				20D4A7EB1B80A33E00641783 /* WXSCommodityDetailsPagePopupViewSecondCell.m */,
 				20690A051B8C228B00EE5814 /* WXSSecondTableViewCell.h */,
 				20690A061B8C228B00EE5814 /* WXSSecondTableViewCell.m */,
+				20B1570E1B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.h */,
+				20B1570F1B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.m */,
+				20B1571A1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.h */,
+				20B1571B1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -1287,6 +1309,10 @@
 				20A6271A1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m */,
 				2063CA351B8B4D310027FEBA /* WXSSecondTableViewController.h */,
 				2063CA361B8B4D310027FEBA /* WXSSecondTableViewController.m */,
+				20B1570B1B942A6800BC63B0 /* WXSThirdMyViewController.h */,
+				20B1570C1B942A6800BC63B0 /* WXSThirdMyViewController.m */,
+				20B157171B96C67500BC63B0 /* WXSThirdMySetupController.h */,
+				20B157181B96C67500BC63B0 /* WXSThirdMySetupController.m */,
 			);
 			name = Controllers;
 			path = ..;
@@ -1332,6 +1358,10 @@
 				20F370E41B5FB3F700E8C243 /* Post.m */,
 				20F370E61B5FB56300E8C243 /* Good.h */,
 				20F370E71B5FB56300E8C243 /* Good.m */,
+				20B157111B9491AD00BC63B0 /* PersonalMessage.h */,
+				20B157121B9491AD00BC63B0 /* PersonalMessage.m */,
+				20B157141B95764D00BC63B0 /* deliveryAddress.h */,
+				20B157151B95764D00BC63B0 /* deliveryAddress.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1633,6 +1663,8 @@
 				20CC60961B63650B00D95A95 /* MainGoodsListCollectionViewCell.m in Sources */,
 				20CAFF261B4E154A008FFF11 /* DianShang.xcdatamodeld in Sources */,
 				201EF9FD1B78F28100C191A9 /* WXSCommodityDetailsPageNameAndPriceCell.m in Sources */,
+				20B157191B96C67500BC63B0 /* WXSThirdMySetupController.m in Sources */,
+				20B157161B95764D00BC63B0 /* deliveryAddress.m in Sources */,
 				2058D8E61B550662001AC233 /* MainButtonCollectionViewCell.m in Sources */,
 				20CAFF231B4E154A008FFF11 /* AppDelegate.m in Sources */,
 				204B5B901B5CBA340069194E /* MJChiBaoZiHeader.m in Sources */,
@@ -1642,6 +1674,7 @@
 				20CAFF5C1B4E209A008FFF11 /* RDVTabBar.m in Sources */,
 				20F370E01B5F962800E8C243 /* AFAppDotNetAPIClient.m in Sources */,
 				20A6271B1B7CE5F9002FAAD2 /* WXSCommodityDetailsPageController.m in Sources */,
+				20B1571C1B971F9000BC63B0 /* WXSThirdMyOrderTableViewCell.m in Sources */,
 				2058D8FE1B57AB41001AC233 /* MainHeaderView.m in Sources */,
 				204B5CD01B5D2A1F0069194E /* FMDBHelper.m in Sources */,
 				20CAFF5D1B4E209A008FFF11 /* RDVTabBarController.m in Sources */,
@@ -1652,13 +1685,16 @@
 				20F370E51B5FB3F700E8C243 /* Post.m in Sources */,
 				20CAFF201B4E154A008FFF11 /* main.m in Sources */,
 				2058D8EF1B56557F001AC233 /* MainButtonbgView.m in Sources */,
+				20B1570D1B942A6800BC63B0 /* WXSThirdMyViewController.m in Sources */,
 				20751CCA1B525806009A064F /* WXSFirstCollectionViewController.m in Sources */,
 				2058D8F51B575BD3001AC233 /* MainLineView.m in Sources */,
+				20B157101B9433B800BC63B0 /* WXSThirdMyAvatarAndNameTableViewCell.m in Sources */,
 				20BA92701B7F9C800095F38E /* WXSCommodityDetailsPagePopupViewFirstCell.m in Sources */,
 				20690A071B8C228B00EE5814 /* WXSSecondTableViewCell.m in Sources */,
 				20CAFF5E1B4E209A008FFF11 /* RDVTabBarItem.m in Sources */,
 				20751CCE1B529DAD009A064F /* ASScroll.m in Sources */,
 				2063CA371B8B4D310027FEBA /* WXSSecondTableViewController.m in Sources */,
+				20B157131B9491AD00BC63B0 /* PersonalMessage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

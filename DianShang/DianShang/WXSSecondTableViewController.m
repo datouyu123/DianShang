@@ -47,6 +47,8 @@
 #pragma mark - Controller Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    [self.view addSubview:self.tableView];
     //防止view被自定义navigationbar挡住
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -58,10 +60,8 @@
     }
     //初始化显示数组
     self.goods = [[NSMutableArray alloc] init];
-    //tableview添加到控制器视图
-    [self.view addSubview:self.tableView];
     //防止tableview多几行
-    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    //[self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     
     //设置cell.imageView不挡住分隔线
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -101,9 +101,8 @@
     [self.view addSubview:toolbar];
     //添加刷新
     [self setupRefresh];
-    //设置tableview背景色
-    [self.tableView setBackgroundColor:CONTROLLER_BG_COLOR];
-    
+    //设置tableheaderview背景色
+    [self.tableView.tableHeaderView setBackgroundColor:[UIColor whiteColor]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -111,24 +110,28 @@
     [super viewWillAppear:YES];
     //自定义navigationbar
     [self styleNavBar];
-    //设置scrollview下边距
-    if (self.controllerType != 100) {
-        self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H + TOOLBAR_H, 0);
-    }
-    else{
-        self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, TOOLBAR_H, 0);
-    }
-    //[[FMDBHelper sharedFMDBHelper] emptyDatabaseByName:@"SHOPPING_CART_TABLE"];
+    //从本地数据库取数据并更新数据和布局
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
     //判断购物车是否为空
     if (!self.goods.count) {
+        //设置scrollview下边距
+        if (self.controllerType != 100) {
+            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H , 0);
+            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        }
+        else{
+            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
+            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H)];
+        }
+
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
         label.text = @"主人快去挑些宝贝吧";
         UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
         image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
-        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        
         [self.tableView.tableHeaderView addSubview:label];
         [self.tableView.tableHeaderView addSubview:image];
+        [self.tableView.tableHeaderView setBackgroundColor:[UIColor whiteColor]];
         
         [label sizeToFit];
         label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
@@ -139,6 +142,14 @@
     }
     else
     {
+        //设置scrollview下边距
+        if (self.controllerType != 100) {
+            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H + TOOLBAR_H, 0);
+        }
+        else{
+            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, TOOLBAR_H, 0);
+        }
+
         self.tableView.tableHeaderView = nil;
         //显示toolbar
         toolbar.hidden = NO;
@@ -193,11 +204,11 @@
     UINavigationItem *titleItem = [[UINavigationItem alloc] init];
     titleItem.title = @"购物车";
     [newNavBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor blackColor],NSForegroundColorAttributeName,nil]];
-    //搜索按钮
-    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllInCart)];
+    //清空按钮
+    UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithTitle:@"清空  " style:UIBarButtonItemStylePlain target:self action:@selector(deleteAllInCart)];
     right.tintColor = [UIColor grayColor];
     titleItem.rightBarButtonItem=right;
-    
+    // 如果是从详情页进入添加返回按钮
     if (self.controllerType == 100) {
         UIImage *backButtonImage = [UIImage imageNamed:@"back_icon"];
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithImage:backButtonImage style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
@@ -221,13 +232,24 @@
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
     //判断购物车是否为空
     if (!self.goods.count) {
+        //设置scrollview下边距
+        if (self.controllerType != 100) {
+            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H , 0);
+            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        }
+        else{
+            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
+            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H)];
+        }
+        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
         label.text = @"主人快去挑些宝贝吧";
         UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
         image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
-        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+        
         [self.tableView.tableHeaderView addSubview:label];
         [self.tableView.tableHeaderView addSubview:image];
+        [self.tableView.tableHeaderView setBackgroundColor:[UIColor whiteColor]];
         
         [label sizeToFit];
         label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
@@ -265,55 +287,66 @@
     // 下拉刷新
     // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
     self.tableView.header = [MJChiBaoZiHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    
+    
 }
 
 #pragma mark - 下拉刷新数据
 - (void)loadNewData
 {
     self.goods = [NSMutableArray arrayWithArray:[[FMDBHelper sharedFMDBHelper] selectFromSHOPPING_CART_TABLE]];
-    //判断购物车是否为空
-    if (!self.goods.count) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
-        label.text = @"主人快去挑些宝贝吧";
-        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
-        image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
-        self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
-        [self.tableView.tableHeaderView addSubview:label];
-        [self.tableView.tableHeaderView addSubview:image];
-        
-        [label sizeToFit];
-        label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
-        [image sizeToFit];
-        image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
-        //隐藏toolbar
-        toolbar.hidden = YES;
-    }
-    else
-    {
-        self.tableView.tableHeaderView = nil;
-        //显示toolbar
-        toolbar.hidden = NO;
-        //计算总价
-        [self totalPrice];
-        //判断全选按钮状态
-        for (int i=0; i<self.goods.count; i++)
-        {
-            Post *item = [self.goods objectAtIndex:i];
-            if ([item.cartSelectedState isEqualToString:@"0"]) {
-                selectAllButton.selected = NO;
-                break;
-            }
-            if (i == self.goods.count - 1) {
-                selectAllButton.selected = YES;
-            }
-        }
-        
-    }
+//    //判断购物车是否为空
+//    if (!self.goods.count) {
+//        //设置scrollview下边距
+//        if (self.controllerType != 100) {
+//            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H , 0);
+//            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+//        }
+//        else{
+//            self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
+//            self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H)];
+//        }
+//        
+//        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
+//        label.text = @"主人快去挑些宝贝吧";
+//        UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
+//        image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
+//        
+//        [self.tableView.tableHeaderView addSubview:label];
+//        [self.tableView.tableHeaderView addSubview:image];
+//        [self.tableView.tableHeaderView setBackgroundColor:[UIColor whiteColor]];
+//        
+//        [label sizeToFit];
+//        label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
+//        [image sizeToFit];
+//        image.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 - 70);
+//        //隐藏toolbar
+//        toolbar.hidden = YES;
+//    }
+//    else
+//    {
+//        self.tableView.tableHeaderView = nil;
+//        //显示toolbar
+//        toolbar.hidden = NO;
+//        //判断全选按钮状态
+//        for (int i=0; i<self.goods.count; i++)
+//        {
+//            Post *item = [self.goods objectAtIndex:i];
+//            if ([item.cartSelectedState isEqualToString:@"0"]) {
+//                selectAllButton.selected = NO;
+//                break;
+//            }
+//            if (i == self.goods.count - 1) {
+//                selectAllButton.selected = YES;
+//            }
+//        }
+//        
+//    }
     [self.tableView reloadData];
 
-    
     // 拿到当前的下拉刷新控件，结束刷新状态
     [self.tableView.header endRefreshing];
+    
     
 }
 
@@ -324,34 +357,29 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.goods count];
+    if (section == 0) {
+        return [self.goods count];
+    }
+    else
+        return 0;
+    
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    WXSSecondTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier"];
-    if (cell == nil) {
-        cell = [[WXSSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
-        cell.rightUtilityButtons = [self rightButtons];
-        cell.delegate = self;
-        cell.wxsdelegate = self;
-
+    if (indexPath.section == 0) {
+        WXSSecondTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"identifier"];
+        if (cell == nil) {
+            cell = [[WXSSecondTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"identifier"];
+            cell.rightUtilityButtons = [self rightButtons];
+            cell.delegate = self;
+            cell.wxsdelegate = self;
+        }
+        Post *post = [self.goods objectAtIndex:indexPath.row];
+        [cell setGoods:post];
+        
+        return cell;
     }
-    //加上下面这段cell的label会再第二次出现以后消失
-//    else
-//    {
-//        //防止字体有重绘阴影
-//        while ([cell.contentView.subviews lastObject] != nil)
-//        {
-//            [(UIView*)[cell.contentView.subviews lastObject] removeFromSuperview];
-//            NSLog(@"%@",[cell.contentView.subviews lastObject]);
-//        }
-//    }
-    Post *post = [self.goods objectAtIndex:indexPath.row];
-    [cell setGoods:post];
-    
-    return cell;
+    return nil;
 }
 
 - (NSArray *)rightButtons
@@ -372,6 +400,28 @@
     return 100;
 }
 
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+//{
+//    if (section==0)
+//    {
+//        return 10;
+//    }
+//    return 0.1;
+//}
+//
+//
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.1;
+}
+
+//- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 10)];
+//    [headerView setBackgroundColor:CONTROLLER_BG_COLOR];
+//    return headerView;
+//}
+
 //单元格选中事件
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -387,6 +437,23 @@
     //
     NSLog(@"!!%@",cdpController.post.good.goodTitle);
     [self.navigationController pushViewController:cdpController animated:YES];
+}
+
+// 分割线封口
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    //按照作者最后的意思还要加上下面这一段
+    if([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]){
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
 }
 
 #pragma mark - 全选按钮事件
@@ -468,13 +535,24 @@
             [self.tableView deleteRowsAtIndexPaths:@[cellIndexPath] withRowAnimation:UITableViewRowAnimationLeft];
             //判断购物车是否为空
             if (!self.goods.count) {
+                //设置scrollview下边距
+                if (self.controllerType != 100) {
+                    self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, RDVTABBAR_H , 0);
+                    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+                }
+                else{
+                    self.tableView.contentInset = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
+                    self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H)];
+                }
+                
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, 100)];
                 label.text = @"主人快去挑些宝贝吧";
                 UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cart_empty"]];
                 image.frame = CGRectMake(0, 0, IPHONE_W, IPHONE_H);
-                self.tableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, IPHONE_W, IPHONE_H - NAVIGATIONBAR_H - RDVTABBAR_H)];
+                
                 [self.tableView.tableHeaderView addSubview:label];
                 [self.tableView.tableHeaderView addSubview:image];
+                [self.tableView.tableHeaderView setBackgroundColor:[UIColor whiteColor]];
                 
                 [label sizeToFit];
                 label.center = CGPointMake(self.tableView.tableHeaderView.bounds.size.width/2,self.tableView.tableHeaderView.bounds.size.height/2 + 30);
@@ -556,6 +634,7 @@
                                                     style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = CONTROLLER_BG_COLOR;
     }
     return _tableView;
 }

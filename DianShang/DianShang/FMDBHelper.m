@@ -234,8 +234,6 @@
     }
 }
 
-// 将JSON串转化为
-
 - (NSMutableArray *) selectFromSHOPPING_CART_TABLE
 {
     if ([db open]) {

@@ -34,7 +34,7 @@
         self.imageView.frame = CGRectMake(5, 5, 90, 90);
         
         self.closeButton = [[CNPPopupButton alloc] initWithFrame:CGRectMake(IPHONE_W-40, 10, 30, 30)];
-        [self.closeButton setBackgroundImage:[UIImage imageNamed:@"close_icon"] forState:UIControlStateNormal];
+        [self.closeButton setBackgroundImage:[UIImage imageNamed:@"cancel_button"] forState:UIControlStateNormal];
         
         [self.contentView addSubview:self.closeButton];
     }

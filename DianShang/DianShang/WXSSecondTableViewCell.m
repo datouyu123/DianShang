@@ -8,7 +8,7 @@
 
 #import "WXSSecondTableViewCell.h"
 #import "UIimageView+AFNetworking.h"
-#import "DLRadioButton.h"
+
 #define iOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
 @interface WXSSecondTableViewCell ()
@@ -30,7 +30,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self)
     {
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        //self.selectionStyle = UITableViewCellSelectionStyleNone;
         radioButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 100)];
         [radioButton setImage:[UIImage imageNamed:@"checkbox_normal"] forState:UIControlStateNormal];
         [radioButton setImage:[UIImage imageNamed:@"checkbox_selected"] forState:UIControlStateSelected];
@@ -38,6 +38,7 @@
         [self.contentView addSubview:radioButton];
         
         self.imageView.frame = CGRectMake(50, 5, 90, 90);
+        
         nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(160, 5, IPHONE_W - 160 - 10, 40)];
         nameLabel.numberOfLines = 0;
         nameLabel.font = [UIFont systemFontOfSize:14.0f];
