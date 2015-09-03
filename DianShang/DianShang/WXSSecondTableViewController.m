@@ -93,7 +93,7 @@
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     UIBarButtonItem *fixItemSecond = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
     fixItemSecond.width = -20;
-    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, IPHONE_H - TOOLBAR_H, IPHONE_W, TOOLBAR_H)];
+    toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0, IPHONE_H - TOOLBAR_H - RDVTABBAR_H, IPHONE_W, TOOLBAR_H)];
     [toolbar setItems:[NSArray arrayWithObjects:selectAllItem, selectAllLabelItem, totalLabelItem, spaceItem, settleAccountItem, fixItemSecond, nil] animated:YES];
 
     [toolbar setBarStyle:UIBarStyleBlack];

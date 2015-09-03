@@ -154,22 +154,32 @@
     UICollectionViewController *firstViewController = [[WXSFirstCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:firstViewController];
-    [firstViewController setTitle:@"首页"];
+    //[firstViewController setTitle:@"首页"];
 
     
     UIViewController *secondViewController = [[WXSSecondTableViewController alloc] init];
     UIViewController *secondNavigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:secondViewController];
-    [secondViewController setTitle:@"购物车"];
+    //[secondViewController setTitle:@"购物车"];
     
     UIViewController *thirdViewController = [[WXSThirdMyViewController alloc] init];
     UIViewController *thirdNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:thirdViewController];
-    [thirdViewController setTitle:@"我的"];
+    //[thirdViewController setTitle:@"我的"];
     
     RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
     [tabBarController setViewControllers:@[firstNavigationController, secondNavigationController,
                                            thirdNavigationController]];
+    RDVTabBar *tabBar = tabBarController.tabBar;
+    
+    // After the tabBarController initialization
+    tabBar.translucent = YES;
+    
+    // Customize the tabBar background
+    tabBar.backgroundView.backgroundColor = [UIColor colorWithRed:255/255.0
+                                                            green:255/255.0
+                                                             blue:255/255.0
+                                                            alpha:0.92];
     self.viewController = tabBarController;
     
     [self customizeTabBarForController:tabBarController];

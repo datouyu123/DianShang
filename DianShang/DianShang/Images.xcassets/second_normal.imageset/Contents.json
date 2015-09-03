@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "second_normal.png",
+      "filename" : "Shopping Cart Loaded-30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Shopping Cart Loaded-60.png",
       "scale" : "2x"
     },
     {

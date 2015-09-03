@@ -71,11 +71,11 @@
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
         _unselectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:10],
-                                       NSForegroundColorAttributeName: [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1],
+                                       NSForegroundColorAttributeName: [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1],
                                        };
         _selectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:10],
-                                       NSForegroundColorAttributeName: [UIColor colorWithRed:254.0/255.0 green:77.0/255.0 blue:61.0/255.0 alpha:1],
+                                       NSForegroundColorAttributeName: [UIColor colorWithRed:254.0/255.0 green:64.0/255.0 blue:47.0/255.0 alpha:1],
                                        };
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0

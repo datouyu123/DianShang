@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "first_selected.png",
+      "filename" : "Room-30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Room-60.png",
       "scale" : "2x"
     },
     {

@@ -55,13 +55,15 @@ static NSString * const kReuseIdentifier4 = @"headerView";
 #pragma mark - Controller Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+ 
     //防止view被自定义navigationbar挡住
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
     if ([self respondsToSelector:@selector(automaticallyAdjustsScrollViewInsets)]) {
         // For insetting with a navigation bar
-        UIEdgeInsets insets = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, 0, 0);
+        CGFloat tabBarHeight = CGRectGetHeight(self.rdv_tabBarController.tabBar.frame);
+        NSLog(@"tabbarheight=%f",tabBarHeight);
+        UIEdgeInsets insets = UIEdgeInsetsMake(NAVIGATIONBAR_H, 0, tabBarHeight, 0);
         self.collectionView.contentInset = insets;
         self.collectionView.scrollIndicatorInsets = insets;
     }
@@ -126,7 +128,7 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     //搜索按钮
     searchButton = [[UIButton alloc]initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-50, 100, 25, 25)];
     [searchButton addTarget:self action:nil forControlEvents:UIControlEventTouchUpInside];
-    [searchButton setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    [searchButton setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
     UIBarButtonItem *right=[[UIBarButtonItem alloc]initWithCustomView:searchButton];
     titleItem.rightBarButtonItem=right;
     
@@ -336,9 +338,9 @@ static NSString * const kReuseIdentifier4 = @"headerView";
         UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier1 forIndexPath:indexPath];
       
         NSMutableArray * imagesArray = [[NSMutableArray alloc] init];
-        UIImage *image1 = [UIImage imageNamed:@"ad_1.jpg"];
+        UIImage *image1 = [UIImage imageNamed:@"ad_3.jpg"];
         UIImage *image2 = [UIImage imageNamed:@"ad_2.jpg"];
-        UIImage *image3 = [UIImage imageNamed:@"ad_3.jpg"];
+        UIImage *image3 = [UIImage imageNamed:@"ad_1.jpg"];
         UIImageView *imageView1 = [[UIImageView alloc]initWithImage:image1];
         [imagesArray addObject:imageView1];
         UIImageView *imageView2 = [[UIImageView alloc]initWithImage:image2];
@@ -355,11 +357,31 @@ static NSString * const kReuseIdentifier4 = @"headerView";
     else if(indexPath.section == 1)
     {
         MainButtonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kReuseIdentifier2 forIndexPath:indexPath];
-        cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
- 
-        [cell.layer setBorderWidth:2.0f];
-        [cell.layer setBorderColor:[UIColor cyanColor].CGColor];
-        [cell.layer setCornerRadius:25.0f];
+        //cell.label.text = [NSString stringWithFormat:@"%ld",(long)indexPath.item];
+        if (indexPath.item == 0) {
+            cell.imageView.image = [UIImage imageNamed:@"delivery"];
+            cell.label.text = @"物流";
+        }
+        else if (indexPath.item == 1){
+            cell.imageView.image = [UIImage imageNamed:@"air_ticket"];
+            cell.label.text = @"机票";
+        }
+        else if (indexPath.item == 2){
+            cell.imageView.image = [UIImage imageNamed:@"hotel"];
+            cell.label.text = @"酒店";
+        }
+        else if (indexPath.item == 3){
+            cell.imageView.image = [UIImage imageNamed:@"movie"];
+            cell.label.text = @"电影";
+        }
+        else if (indexPath.item == 4){
+            cell.imageView.image = [UIImage imageNamed:@"food"];
+            cell.label.text = @"美食";
+        }
+        else if (indexPath.item == 5){
+            cell.imageView.image = [UIImage imageNamed:@"recharge"];
+            cell.label.text = @"充值";
+        }
         return cell;
 
     }
