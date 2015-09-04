@@ -154,18 +154,18 @@
     UICollectionViewController *firstViewController = [[WXSFirstCollectionViewController alloc] initWithCollectionViewLayout:flowLayout];
     UIViewController *firstNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:firstViewController];
-    //[firstViewController setTitle:@"首页"];
+    [firstViewController setTitle:@"首页"];
 
     
     UIViewController *secondViewController = [[WXSSecondTableViewController alloc] init];
     UIViewController *secondNavigationController = [[UINavigationController alloc]
                                                     initWithRootViewController:secondViewController];
-    //[secondViewController setTitle:@"购物车"];
+    [secondViewController setTitle:@"购物车"];
     
     UIViewController *thirdViewController = [[WXSThirdMyViewController alloc] init];
     UIViewController *thirdNavigationController = [[UINavigationController alloc]
                                                    initWithRootViewController:thirdViewController];
-    //[thirdViewController setTitle:@"我的"];
+    [thirdViewController setTitle:@"我的"];
     
     RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
     [tabBarController setViewControllers:@[firstNavigationController, secondNavigationController,

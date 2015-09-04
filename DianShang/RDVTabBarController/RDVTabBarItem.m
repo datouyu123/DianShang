@@ -71,7 +71,7 @@
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
         _unselectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:10],
-                                       NSForegroundColorAttributeName: [UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1],
+                                       NSForegroundColorAttributeName: [UIColor colorWithRed:196.0/255.0 green:197.0/255.0 blue:217.0/255.0 alpha:1],
                                        };
         _selectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:10],
