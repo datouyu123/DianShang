@@ -179,7 +179,7 @@
     tabBar.backgroundView.backgroundColor = [UIColor colorWithRed:255/255.0
                                                             green:255/255.0
                                                              blue:255/255.0
-                                                            alpha:0.92];
+                                                            alpha:0.93];
     self.viewController = tabBarController;
     
     [self customizeTabBarForController:tabBarController];
